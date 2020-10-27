@@ -7,6 +7,7 @@ import AuthTemplate from '../../Authentication/Template/Template';
 //import SpinnerButton from '../../../components/UI/Spinners/SpinnerButton';
 import SumbitButton from '../../Button/SumbitButton';
 import Navbar from '../../Navigation/Navbar';
+import BoardNav from '../../Navigation/BoardNav';
 //import Alert from '../alert';
 
 
@@ -373,6 +374,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
         return (
            <>
                <Navbar/>
+               <BoardNav/>
                 {alertContent}
                 
                 <div className="SideContent">

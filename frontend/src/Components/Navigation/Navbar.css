@@ -7,7 +7,7 @@
     
     background: #89609E 0% 0% no-repeat padding-box !important; 
     box-shadow: 0px 3px 11px #BAD8FD40 !important;
-    height:50px;
+    height:42px;
 }
 
 .navbar-brand{
@@ -49,6 +49,7 @@ font-weight: bolder;
     margin-left:10px;
 }
 .board-icon-text{
+    font-size:16px !important;
     color:white;
     padding-left:6px;
     font-weight:bolder;
