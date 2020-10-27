@@ -10,9 +10,18 @@
     height:42px;
 }
 
+.nav-item{
+
+    list-style:none;
+}
+.navbarBoard{
+    height:50px;
+}
+
+
 .navbar-brand{
-color:white!important;
-font-weight: bolder;
+    color:white!important;
+    font-weight: bolder;
 }
 
 
@@ -34,14 +43,19 @@ font-weight: bolder;
 
 .home,.board{
     background:rgba(255, 255, 255, 0.247);
-    border-radius:10px;
-
+    border-radius:px;
+    height: 37px;
+    padding-bottom:6px;
 }
 
+.fa-home{
+    font-size: 19px;
+    color:white;
+}
 
-.fa-home,.fa-dashcube{
+.fa-dashcube{
     color:rgb(255, 255, 255);
-    font-size:19px;
+    font-size:17px;
     
 }
 
@@ -49,7 +63,7 @@ font-weight: bolder;
     margin-left:10px;
 }
 .board-icon-text{
-    font-size:16px !important;
+    font-size:15px !important;
     color:white;
     padding-left:6px;
     font-weight:bolder;
@@ -167,7 +181,7 @@ font-weight: bolder;
 
 
 
-.fa-bars{
+.bar-nav{
     color:#2D81F7;
 }
 

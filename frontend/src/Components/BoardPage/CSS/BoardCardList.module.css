@@ -1,0 +1,90 @@
+.BoardPage{
+    background-color: rgb(60, 72, 82);
+    
+    width:100vw;
+    height:100vh;
+    overflow-x:auto;
+    overflow-y: hidden;
+}
+
+.BoardCard{
+    display:flex;
+    flex-wrap:nowrap;
+
+}
+
+.Card{
+    background:#EBECF0;
+    min-width:300px;
+    border-radius:4px;
+    margin-left:15px;
+    margin-top:15px;
+    padding:16px;
+
+}
+
+.CardHeader{
+    display:flex;
+    justify-content: space-between;
+}
+
+.CardTitleInput{
+    color:#3C4852;
+    font-weight:bold;
+}
+
+.CardAddCard{
+    color:rgba(90, 77, 77, 0.575);
+    font-family:Helvetica;
+    margin-left:4px;
+
+}
+
+
+.CardList{
+    
+    background:white;
+    width: 280px;
+    box-shadow: 1px 1px 4px rgb(163,177,198,0.6), 
+    -1px -1px 4px  
+    rgba(255,255,255, 0.5);
+    border-radius: 4px;    
+    padding:6px;
+    margin-bottom: 10px;
+}
+
+.CardLabel{
+    display:flex;
+    flex-wrap:wrap;
+   
+}
+
+.CardListColor{
+    background:rgb(247, 203, 6);
+    width:35px;
+    height:6px;
+    border-radius:5px;
+    margin-right:5px;
+}
+
+.ListTitle{
+    margin-top:5px;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+.List_Details_Indicator{
+    color:rgb(73, 73, 73) !important;
+}
+
+.BoardAddmore{
+    background:rgba(255, 255, 255, 0.247);
+    margin-left:15px;
+    margin-top:16px;
+    border-radius:4px;
+    padding:15px;
+    color:white;
+    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
+    width:300px;
+    height:50px;
+}

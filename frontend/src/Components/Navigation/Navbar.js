@@ -92,7 +92,7 @@ class Navbar extends Component {
   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
    aria-expanded="false"
    aria-label="Toggle navigation">
-  <i className="fa fa-bars" aria-hidden="true"></i>
+  <i className="fa fa-bars bar-nav" aria-hidden="true"></i>
   </button>
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -109,7 +109,8 @@ class Navbar extends Component {
     <li className="nav-item">
           <NavLink to="/Cart" className="nav-link board"> 
           <i data-toggle="tooltip" data-placement="top" title="Bookmarked Courses"
-           className="fa fa-dashcube" aria-hidden="true"></i><span className="board-icon-text">Boards</span></NavLink>
+           className="fa fa-dashcube" aria-hidden="true"></i>
+           <span className="board-icon-text">Boards</span></NavLink>
          
     </li>
     
