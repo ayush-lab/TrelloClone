@@ -1,16 +1,22 @@
+.BoardCardParent{
+    height:80vh;
+    overflow-x:auto;
+    overflow-y:hidden;
+   
+}
+
+
+
 .BoardPage{
     background-color: rgb(60, 72, 82);
-    
-    width:100vw;
     height:100vh;
-    overflow-x:auto;
-    overflow-y: hidden;
+ 
 }
 
 .BoardCard{
     display:flex;
     flex-wrap:nowrap;
-
+    
 }
 
 .Card{
@@ -20,7 +26,7 @@
     margin-left:15px;
     margin-top:15px;
     padding:16px;
-
+  
 }
 
 .CardHeader{
@@ -85,6 +91,11 @@
     color:white;
     font-weight: bold;
     font-family:'Times New Roman', Times, serif;
-    width:300px;
+    width:300px !important;
     height:50px;
+}
+
+.ListSection{
+ 
+   
 }

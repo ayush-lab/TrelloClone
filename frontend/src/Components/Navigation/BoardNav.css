@@ -7,7 +7,7 @@
     box-shadow: none !important;
     
     border-bottom: 2px solid #3EECAC;
-    ;
+    
 }
 
 
@@ -58,4 +58,8 @@
 .fa-bars{
     color:white;
 
+}
+
+.fa-long-arrow-right{
+    font-weight: normal !important;
 }

@@ -20,8 +20,13 @@ class BoardCard extends Component{
                     </div>
 
                 </div>
+
+           
                      <BoardList/>
                      <BoardList/>
+                     <BoardList/>
+                  
+              
                     
 
                 <div className={styles.CardFooter}>

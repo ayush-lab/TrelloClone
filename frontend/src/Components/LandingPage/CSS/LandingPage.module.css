@@ -1,0 +1,200 @@
+.navbar{
+    position: static;
+    display:flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    height:50px;
+    background:#101010;
+    z-index:2;
+
+}
+.brand{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 37px;
+    color: #FFFEFE;
+    margin-left:20px;
+   
+}
+.AuthButton{
+    margin-right: 100px;
+}
+
+.AuthButton h3, .AuthButton p{
+    display:inline;
+    border-radius:3px;
+    padding:8px 29px;
+    color:white;
+     font-size:15px;
+     font-weight:bold;
+}
+
+.AuthButton p{
+    color:white;
+    border:1px solid;
+    margin-right:10px;
+    margin-bottom:5px;
+}
+
+.AuthButton h3{
+   
+    background:#6C63FF;
+}
+
+.Content{
+
+    display: flex;
+    background:#212121;
+    color:white;
+    line-height: normal;
+    justify-content: space-around;
+    align-items: center;
+    height:100vh;
+}
+
+.Content_items{
+    display:flex;
+    flex-direction: column;
+    margin-right:20px;
+    font-family: Roboto;
+
+    margin-left:50px;
+}
+
+.Content_bold{
+    color:#F9F7F7;
+    font-size:50px;
+    font-weight: bolder;
+
+    margin-bottom:20px;
+}
+
+.Content_light{
+    font-size:20px;
+
+}
+
+.Content_button{
+    margin-top:30px;
+ 
+
+}
+
+.Content_button p {
+    background-color: #6C63FF;
+    border-radius:3px;
+    text-align:center;
+    padding-top:8px;
+    width:150px;
+    height:40px;
+  
+}
+
+
+.Content_Picture img{
+    max-width:400px;
+    height:400px;
+}
+
+.main1,.main2,.main3{
+    background:white;
+    height:100vh;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+.TeamImage{
+    width:400px;
+    height:400px;
+}
+
+@media (max-width:800px){
+
+    .AuthButton{
+        margin-right: 10px;
+    }
+
+    .Content{
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .Content_items{
+
+        margin-right:30px;
+        margin-top:0px;
+        justify-content: center;
+        align-items:center;
+        text-justify: auto;
+
+    }
+
+    .Content_bold{
+        font-size:35px;
+      
+        
+    }
+
+    .Content_Picture img{
+        max-width:250px;
+        height:250px;
+    }
+
+    .main2{
+        flex-direction:column;
+        margin-top:50px;
+        margin-bottom:70px;
+        height:auto;
+    
+    }
+    .main1{
+        margin-top:50px;
+        margin-bottom:70px;
+        flex-direction: column-reverse;
+        height:auto;
+    }
+    .main3{
+        flex-direction: column-reverse;
+        margin-top:50px;
+        margin-bottom:70px;
+        height:auto;
+    
+    }
+
+    .TeamImage{
+        width:300px;
+        height:300px;
+    }
+
+
+        
+}
+
+
+@media (max-width:570px){
+    .TeamImage{
+        width:200px;
+        height:200px;
+      
+    }
+
+    .Content_bold{
+        font-size:25px;
+ 
+    }
+    .Content_light{
+        font-size:15px;
+    }
+
+    .main1,.main2,.main3{
+        margin-bottom:100px;
+    }
+}

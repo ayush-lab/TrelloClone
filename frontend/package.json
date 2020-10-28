@@ -60,6 +60,7 @@
     "react-dom": "^17.0.1",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
+    "react-sidebar": "^3.0.2",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "8.0.2",

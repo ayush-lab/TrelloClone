@@ -1,0 +1,59 @@
+.main2Text{
+    display:flex;
+    flex-direction:column;
+
+}
+
+.Content_items_text{}
+
+.Content_bold{
+    color:#003554;
+    font-weight:bold;
+    font-size:40px;
+
+}
+
+.Content_light{
+    color:#0D3037;
+    font-size:25px;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+.signButton{
+    background-color: #003554;
+    color:white;
+    border-radius:3px;
+    padding-left:5px;
+    width:250px;
+    height:40px;
+    border:none;
+    font-weight: bolder;
+}
+
+
+@media (max-width:800px){
+
+    .signButton{
+        width:200px;
+    }
+    
+}
+
+@media (max-width:570px){
+
+    .Content_bold{
+        font-size:20px;
+    
+    }
+    
+    .Content_light{
+  
+        font-size:15px;
+
+    }
+
+    .signButton{
+        width:150px;
+    }
+}

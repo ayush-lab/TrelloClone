@@ -42,7 +42,7 @@ const boardNav = (props)=> {
         <li className="nav-item">
             <i className="fa fa-bars bar-nav " aria-hidden="true"></i>
             <span className="more-option-nav"> More options</span>
-            
+         
         </li>
  
     </div>
