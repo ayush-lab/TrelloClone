@@ -10,7 +10,7 @@ class BoardAddmore extends Component{
 
             <div className={styles.BoardAddmore}>
                 
-                <i className="fa fa-plus"> Add another card</i>
+                <i className="fa fa-plus"> Add new list</i>
 
             </div>
 

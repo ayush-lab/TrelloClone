@@ -24,7 +24,7 @@ class BoardList extends Component{
                 </div>
 
                 <div className={styles.ListTitle}>
-                    <p>This is my first Title </p>
+                    {this.props.heading}
                 </div>
 
                 <div className={styles.List_Details_Indicator}>

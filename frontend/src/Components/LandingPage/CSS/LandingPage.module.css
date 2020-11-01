@@ -101,7 +101,7 @@
 
 .main1,.main2,.main3{
     background:white;
-    height:100vh;
+    height:auto;
     display:flex;
     justify-content: space-around;
     align-items: center;
@@ -160,6 +160,7 @@
         margin-bottom:70px;
         flex-direction: column-reverse;
         height:auto;
+      
     }
     .main3{
         flex-direction: column-reverse;
