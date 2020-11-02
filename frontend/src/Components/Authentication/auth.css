@@ -67,16 +67,18 @@
     margin-top:100px;
 }
 .signup-form{
-margin-top:40px;
+    margin-top:40px;
 }
 
 .login-form-otp{
-    margin-top:100px;
+    margin-top:100px !important;
 }
 
 .forgot-password{
+    margin-top:0;
     color: #707070;
-    font:normal normal normal 15px/12px Gilroy;
+    font-family:Gilroy;
     margin-left:3px;
     cursor:pointer;
 }
+

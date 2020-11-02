@@ -97,6 +97,7 @@
 .Content_Picture img{
     max-width:400px;
     height:400px;
+    margin-right:60px;
 }
 
 .main1,.main2,.main3{
@@ -197,5 +198,11 @@
 
     .main1,.main2,.main3{
         margin-bottom:100px;
+    }
+        
+    .Content_Picture img{
+        max-width:400px;
+        height:400px;
+        margin:0px;
     }
 }

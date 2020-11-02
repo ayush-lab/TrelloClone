@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Navbar.css';
 import {NavLink,Redirect} from 'react-router-dom';
-//import { Avatar } from 'antd';
+import { Avatar } from '@material-ui/core';
 
 //import Loggo from '../../../UI/Logo/Logo';
 //import AuthServices from '../../../../ApiServices/auth.service';
@@ -10,7 +10,7 @@ class Navbar extends Component {
     
     state = {
         isLoggedIn:false,
-        userName:"Profile",
+        userName:localStorage.getItem('userName'),
         redirect:null,
     }
 
@@ -26,39 +26,55 @@ class Navbar extends Component {
         
     //  }
 
-    //  logout=() => {
-    //    this.setState({redirect:"/login"})
-    //     AuthServices.logout();
+     logout=() => {
+       this.setState({redirect:"/login"})
+        localStorage.clear();
 
 
-    // }
+    }
 
 
 
     render(){
 
+      let LoginLinks,firstLetter;
+
+      if(this.state.userName){
+         
+         firstLetter = this.state.userName;
+      }
+    
+      else firstLetter = 'A';
 
        if (this.state.redirect) {
             return <Redirect to="/login" />
         }
-
-      
-        let LoginLinks = ( <ul className="navbar-nav ml-auto">
-
-
       
 
+       LoginLinks = ( <ul className="navbar-nav ml-auto">
+  
+        <li className="nav-item">
+        
+      
+        <Avatar style={{background:"#e9c46a", color:"white"}}>{firstLetter[0].toUpperCase()}</Avatar>
+        
+        
+        </li>
 
         <li className="nav-item">
-         
-        <p className="avatar-nav">A</p>
-        
-         
+                
+            <NavLink to="/signup" onClick={this.logout} activeClassName="btnactive"
+             className="nav-link home Signupbtn logout">Logout</NavLink>
+                
         </li>
-      </ul>
-      );
+    </ul>
 
-      if(localStorage.getItem('user') === null){
+    ); 
+
+  
+
+
+      if(localStorage.getItem('access') === null){
 
         LoginLinks =( <ul className="navbar-nav ml-auto">
 
@@ -66,12 +82,12 @@ class Navbar extends Component {
 
                 <li className="nav-item">
                 
-                <NavLink to="/signup" activeClassName="btnactive" className="nav-link Signupbtn">Signup</NavLink>
+                <NavLink to="/signup" activeClassName="btnactive" className="nav-link home Signupbtn">Signup</NavLink>
                 
                 </li>
             
                 <li className="nav-item">
-                <NavLink to="/login" activeClassName="btnactive" className="nav-link Loginbtn">Login</NavLink>
+                <NavLink to="/login" activeClassName="btnactive" className="nav-link  home Loginbtn">Login</NavLink>
                 
                 </li>
 
@@ -79,6 +95,11 @@ class Navbar extends Component {
                
       </ul>
         )}
+
+
+        
+                  
+      
 
        
     return(

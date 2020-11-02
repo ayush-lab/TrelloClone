@@ -1,23 +1,27 @@
 import React, {Component} from 'react';
 import {Link, Redirect } from 'react-router-dom';
-//import Login from '../Login/Login';
+import AuthService from '../../../ApiServices/services.js'
 import '../auth.css';
 import Input from '../../Input/Input';
 import AuthTemplate from '../../Authentication/Template/Template';
-//import SpinnerButton from '../../../components/UI/Spinners/SpinnerButton';
 import SumbitButton from '../../Button/SumbitButton';
 import Navbar from '../../Navigation/Navbar';
 import BoardNav from '../../Navigation/BoardNav';
-//import Alert from '../alert';
+import LoadingButton from '../../Button/Loading';
+import Alerts from '../../Alert/Alert';
+
 
 
 class Signup extends Component {
 
     state = { 
             Form:{
-                 name: {
+                 profile: {
 
                     placeholder: 'First Name',
+                    name: {
+                        value:"",
+                    },
                     value: "",
                     valid: false,
                     type: 'text',
@@ -94,24 +98,8 @@ class Signup extends Component {
 
         loading:false,
         redirect:null,
-        
-        alert: {
-            valid:false,
-            msg:"",
-            alertType:" ",
-        },
-
-        alertPressed:false,
-       
-    }
-
-    AlertError(alertmsg, alertType) {
-        const AlertArray = {...this.state.alert};
-        AlertArray.msg = alertmsg;
-        AlertArray.valid=true;
-        AlertArray.alertType=alertType;
-        this.setState({alert:AlertArray});
-
+        text: "",
+        type: "",
     }
 
 
@@ -155,6 +143,9 @@ inputchangeHandler = (event,inputIdentifier)=> {
     
 
     updatedElement.value = event.target.value;
+    if(inputIdentifier === 'profile'){
+        updatedElement.name.value =event.target.value;
+    }
 
     updatedForm[inputIdentifier] = updatedElement;
     this.setState({Form: updatedForm});
@@ -182,11 +173,11 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
         // msg errrors for username
 
-    if(inputIdentifier ==='name' && !updatedElement.valid){
+    if(inputIdentifier ==='profile' && !updatedElement.valid){
         updatedElement.error = "Minimum:5 and Maximum:15 characters";
         updatedElement.msg="";
     }
-    if(inputIdentifier ==='name' && updatedElement.valid){
+    if(inputIdentifier ==='profile' && updatedElement.valid){
         updatedElement.error="";
         updatedElement.msg="valid";
     }
@@ -247,72 +238,73 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
 
 
-    // formHandler = (event)=> {
-    //     event.preventDefault();
-    //     this.setState({alertPressed:true})
-    //     setTimeout(this.timeout , 3000);
+    formHandler = (event)=> {
+        event.preventDefault();
+      //  this.setState({alertPressed:true})
+     //   setTimeout(this.timeout , 3000);
          
-    //     if(this.OverallValidity()){
-    //         this.setState({loading:true});
+        if(this.OverallValidity()){
+            this.setState({loading:true});
            
-    //         localStorage.setItem('email',this.state.Form["email"].value);
+            localStorage.setItem('email',this.state.Form["email"].value);
          
-    //         const formData ={};
-    //         for(let formElement in this.state.Form){
-    //                 formData[formElement]=this.state.Form[formElement].value;
-    //         }
+            const formData ={};
+            for(let formElement in this.state.Form){
+                    formData[formElement]=this.state.Form[formElement].value;
+                    if(formElement ==='profile'){
+
+                        formData[formElement]={
+                            name:this.state.Form[formElement].value,
+                        }
+                    }
+            }
+            
+            console.log(formData);
            
 
 
             
-    //         AuthService.register(formData) 
-    //         .then(response => {console.log('Response:', response)
+            AuthService.register(formData) 
+            .then(response => {console.log('Response:', response)
 
-    //             if(response.status ===201 || response.status ===200){
-    //                  localStorage.setItem('token', response.data.token) 
-
-    //                  localStorage.setItem("valid",true);
-    //                  localStorage.setItem("type","success");
-    //                  localStorage.setItem("msg",response.data.message);
+                if(response.status ===201 || response.status ===200){
+                     
+                     localStorage.setItem("email",this.state.Form.email.value);
                    
-    //                  this.setState({ redirect: "/signup/otp" });
-    //             }
+                     
+                     this.setState({ redirect: "/signup/otp" });
+                  
+                }
                  
 
-    //             })
-    //               //  alert("Something went wrong")})
+                })
+                  //  alert("Something went wrong")})
 
-    //         .catch(error=>{console.log(error.response);
-    //              this.setState({loading:false})
-    //              //this.AlertError(error.response.data.data[0].msg, "danger")
-    //             } );
+            .catch(error=>{console.log(error.response);
+                 this.setState({loading:false})
+                 console.log(error.response)
+                 this.setState({text:error.response.data.detail, type: "error"})
+                } );
             
             
         
 
-    //     }
+        }
         
-    //     else{ 
-    //    //  this.AlertError("Make sure the Validations are correct", "warning");
-       
+        else{ 
+        
+            this.setState({text:"Make sure the validations are correct", type: "warning"})
 
-    //     }
+        }
 
-    // }
+    }
 
     
 
     render() {
         
 
-        let alertContent = null;
-        
-  
-        // if(this.state.alert.valid){
-        //     alertContent = ( <Alert value={this.state.alertPressed} 
-        //         alertMsg ={this.state.alert.msg} 
-        //         alertType={this.state.alert.alertType} /> )
-        // }
+       
         
         
 
@@ -331,9 +323,9 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
         let SigninSumbitButton= <SumbitButton className={"Sumbit-btn"} Label={"Create Account"}/>;
    
-    //     if(this.state.loading){
-    //         SigninSumbitButton= <SpinnerButton spinnerclass={"Sumbit-btn"}/>;
-    // }
+        if(this.state.loading){
+          SigninSumbitButton= (<LoadingButton />);
+    }
 
         let form = (
           <div className="signup-form">
@@ -362,21 +354,19 @@ inputBlurHandler = (event,inputIdentifier)=> {
                 }
                
                 {SigninSumbitButton}
-              <p className="account-login"> Already have an account?  <Link to="/login"> 
-              Login</Link></p>
-                 {/* <hr/>
-
-                 <p className="Link-teach" onClick={this.product} >Teach on S-help</p>           */}
+              <p className="account-login"> Already have an account? 
+               <Link to="/login"> Login</Link></p>
+               
             </form> 
             </div>
         );
 
         return (
            <>
+
                <Navbar/>
-               <BoardNav/>
-                {alertContent}
-                
+               <Alerts type={this.state.type} text={this.state.text} />
+               
                 <div className="SideContent">
                         <AuthTemplate
                         shelp={true}

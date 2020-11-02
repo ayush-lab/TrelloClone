@@ -7,7 +7,7 @@
     
     background: #89609E 0% 0% no-repeat padding-box !important; 
     box-shadow: 0px 3px 11px #BAD8FD40 !important;
-    height:42px;
+    height:48px;
     
 }
 
@@ -29,18 +29,7 @@
 .Navbar nav{
     height:100%;
 }
-.avatar-nav{
-   background:#fde3cf;
-   color:#89609E;
-   font-weight:bolder;
-   text-align:center;
-    margin-top:20px;
-    padding-top:4px;
-   width:40px;
-   height:30px;
-   border-radius: 50%;
-    
-}
+
 
 .home,.board{
     background:rgba(255, 255, 255, 0.247);
@@ -91,16 +80,15 @@
 
 
 .Signupbtn,.Loginbtn,.logoutlink{
-    font: normal normal 400 17px/20px Gilroy;
-    letter-spacing: 0.47px;
-    color: #FFFFFF;
-    background: #2D81F7 0% 0% no-repeat padding-box;
-    border-radius: 8px;
-    opacity: 1;
-    margin-left:10px;
+    margin-right:10px;
+    color:white;
+    font-weight:bolder;
+
 }
 
-
+.logout{
+    margin-left:10px;
+}
 
 .active-categoryMenu{
     color:black !important;
@@ -111,7 +99,19 @@
 .Loginbtn:hover,
 .Signupbtn:hover{
     opacity:0.7;
+    color:inherit !important;
 }
+
+
+.Loginbtn:active,
+.Signupbtn:active{
+    
+    background:white;
+
+}
+
+
+
 
 .profileName{
     font: normal normal 200 17px/23px Gilroy;
@@ -120,13 +120,9 @@
 }
 
 .btnactive{
-    background: #FCFCFC 0% 0% no-repeat padding-box;
-    border: 0.5px solid #2674E2;
-    border-radius: 8px;
-    font: normal normal 400 17px/20px Gilroy;
-    letter-spacing: 0.47px;
-    color: #2D81F7;
-    margin-left:10px;
+    background:#fff1e6;
+    color:#3C4852;
+
 }
 
 .dropdown-toggle{
@@ -194,24 +190,11 @@
 @media (max-width:998px){
 
     .Signupbtn,.Loginbtn,.logoutlink{
-        font: normal normal 400 17px/20px Gilroy;
-        letter-spacing: 0.47px;
-        color: grey;
-        background: none;
-        border-radius: 8px;
-        opacity: 1;
-        margin-left:0px;
-        border:none;
+        
     }
 
     .btnactive{
-        background:none;       
-        border-radius: 8px;
-        font: normal normal 400 17px/20px Gilroy;
-        letter-spacing: 0.47px;
-        color: #2D81F7;
-        margin-left:0px;
-        border:none;
+      
     }
     
     

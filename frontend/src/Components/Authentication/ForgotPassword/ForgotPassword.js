@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import {Link, Redirect } from 'react-router-dom';
+import AuthService from '../../../ApiServices/services.js'
 //import Login from '../Login/Login';
 import '../auth.css';
 import Input from '../../Input/Input';
 import AuthTemplate from '../../Authentication/Template/Template';
-import AuthService from '../../../ApiServices/services.js'
-//import SpinnerButton from '../../../components/UI/Spinners/SpinnerButton';
 import SumbitButton from '../../Button/SumbitButton';
 import Navbar from '../../Navigation/Navbar';
+import BoardNav from '../../Navigation/BoardNav';
 import LoadingButton from '../../Button/Loading';
 import Alerts from '../../Alert/Alert';
+//import Alert from '../alert';
 
 
-
-class Login extends Component {
+class ForgotPassword extends Component {
 
     state = { 
             Form:{
-                 
+                
                 email: {
 
                     placeholder: 'Email',
@@ -37,37 +37,18 @@ class Login extends Component {
                 
             },
 
-                password: {
-
-                    placeholder: 'Password',
-                    value: "",
-                    valid: false,
-                    type: 'password',
-                    error: " ",
-                    msg: '',
-
-                    validation: {
-                        required: true,
-                        minLength:5,
-                        maxLength:18
-                    },
-                    touched: false,
-                
-            },
-            
-
-
-
+              
         },
 
         loading:false,
         redirect:null,
         text: "",
         type: "",
-       
+        
     }
 
-   
+    
+
 
 
     checkValidity(value,rules){
@@ -109,6 +90,9 @@ inputchangeHandler = (event,inputIdentifier)=> {
     
 
     updatedElement.value = event.target.value;
+    if(inputIdentifier === 'profile'){
+        updatedElement.name.value =event.target.value;
+    }
 
     updatedForm[inputIdentifier] = updatedElement;
     this.setState({Form: updatedForm});
@@ -133,17 +117,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
           updatedElement.error="";  
     }
     
-    
-        
-    // msg error for password
-    if(inputIdentifier === "password" && !updatedElement.valid){
-        updatedElement.error = "At least 5 characters and at most 18";
-        updatedElement.msg="";
-    }
-    if(inputIdentifier === "password" && updatedElement.valid){
-        updatedElement.error="";
-        updatedElement.msg="valid";
-    }
+
     // msg errors for email
     if(inputIdentifier === "email" && !updatedElement.valid){
         updatedElement.error = "Invalid format";
@@ -169,46 +143,66 @@ inputBlurHandler = (event,inputIdentifier)=> {
         return true;
     }
 
+    timeout = ()=> {
+        let temp ={...this.state.alert}
+        temp.msg=''
+        temp.alertType=''
+    
+         this.setState({alert:temp,alertPressed:false}) 
+         
+    }
     
 
 
 
     formHandler = (event)=> {
         event.preventDefault();
-        this.setState({alertPressed:true})
-        setTimeout(this.timeout , 3000);
+      //  this.setState({alertPressed:true})
+     //   setTimeout(this.timeout , 3000);
          
         if(this.OverallValidity()){
             this.setState({loading:true});
            
-            localStorage.setItem('email',this.state.Form["email"].value);
          
             const formData ={};
             for(let formElement in this.state.Form){
                     formData[formElement]=this.state.Form[formElement].value;
+                   
             }
-           
+      
 
 
             
-            AuthService.login(formData) 
+            AuthService.VerifyEmail(formData) 
             .then(response => {console.log('Response:', response)
 
                 if(response.status ===201 || response.status ===200){
-                     localStorage.setItem('access', response.data.access);
-                     localStorage.setItem('refresh', response.data.refresh);
-                     localStorage.setItem('userName',response.data.name); 
+                     
+                     localStorage.setItem("email",this.state.Form.email.value);
+                     localStorage.setItem("type","success");
+                     localStorage.setItem("msg",response.data.message);
+                     
+                     this.setState({ redirect: "/OtpVerify" });
                    
-                     this.setState({ redirect: "/homepage" });
                 }
                  
 
                 })
                   //  alert("Something went wrong")})
 
-            .catch(error=>{console.log(error.response);
+            .catch(error=>{;
                  this.setState({loading:false})
-                 this.setState({text:error.response.data.detail, type: "error"})
+                 console.log(error.response);
+                 if(error.response.request.status === 308){
+
+                    this.setState({ redirect: "/signup/otp" });
+
+                 }
+                 if(error.response.data.detail === 'OTP was sent less than a minute ago.'){
+                    this.setState({text:error.response.data.detail + "Please try again after 1 min", type: "error"})
+                 }
+                 else 
+                    this.setState({text:error.response.data.detail, type: "error"})
                 } );
             
             
@@ -217,6 +211,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
         }
         
         else{ 
+        
             this.setState({text:"Make sure the validations are correct", type: "warning"})
 
         }
@@ -228,8 +223,6 @@ inputBlurHandler = (event,inputIdentifier)=> {
     render() {
         
 
-
-        
 
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
@@ -244,11 +237,12 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
         };
 
-        let SigninSumbitButton= <SumbitButton className={"Sumbit-btn"} Label={"Login"}/>;
+        let SigninSumbitButton= <SumbitButton className={"Sumbit-btn"} Label={"Submit email"}/>;
    
         if(this.state.loading){
-            SigninSumbitButton= (<LoadingButton />);
-      }
+          SigninSumbitButton= (<LoadingButton />);
+    }
+
         let form = (
           <div className="login-form-otp">
               <button className="google-btn"> 
@@ -274,26 +268,27 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
                     ))
                 }
-                  <Link to="ForgotPassword"><p className="forgot-password"> Forgot password?</p></Link>
+               
                 {SigninSumbitButton}
-              <p className="account-login"> Already have an account?  <Link to="/login"> 
-              Login</Link></p>
-
+              <p className="account-login"> Already have an account? 
+               <Link to="/login"> Login</Link></p>
+               
             </form> 
             </div>
         );
 
         return (
            <>
-               <Navbar/>
-               
-               <Alerts type={this.state.type} text={this.state.text} />
 
+               <Navbar/>
+               <Alerts type={this.state.type} text={this.state.text} />
+               
+                
                 <div className="SideContent">
                         <AuthTemplate
-                        shelp={true}
-                        heading1={"Resume your"}
-                        heading2={"learning with"}/>
+                        shelp={false}
+                        heading1={"Enter your"}
+                        heading2={"Email"}/>
 
                             {form}
                 </div>
@@ -304,4 +299,4 @@ inputBlurHandler = (event,inputIdentifier)=> {
 }
 
 
-export default Login;
+export default ForgotPassword;

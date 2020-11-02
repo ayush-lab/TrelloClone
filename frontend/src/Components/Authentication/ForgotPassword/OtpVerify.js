@@ -13,7 +13,7 @@ import LoadingButton from '../../Button/Loading';
 import Alerts from '../../Alert/Alert';
 
 
-class otp extends Component {
+class OtpVerify extends Component {
 
     state = { 
         Form:{
@@ -117,34 +117,38 @@ formHandler = (event)=> {
         formData.email = this.state.email;
        
         
-        AuthService.otp(formData)
+        AuthService.VerifyOtp(formData)
         .then(response => {console.log('Response:', response) 
 
-        if(response.status ===201 || response.status ===200 || response.status ===202) 
+        if(response.status ===201 || response.status ===200) 
           
             { 
              
              this.setState({loading:false})    
 
+
+             localStorage.removeItem('token') 
+             localStorage.removeItem('email')
+
              localStorage.setItem('access',response.data.access);
              localStorage.setItem('userId',response.data.id);
              localStorage.setItem('userName',response.data.name); 
-             this.setState({redirect:'/HomePage'})
+             this.setState({redirect:'/ResetPassword'})
    
         
             }
            
-        else if(response.status===401) alert("Something went wrong")})
+           })
         
-        .catch(error=>{console.log(error.response); this.setState({loading:false});
-        this.setState({text:error.response.data.detail, type: "error"})
+        .catch(error=>{console.log(error.response);
+            this.setState({loading:false});
+            this.setState({text:error.response.data.detail, type: "error"})
 
         
-        
-        })
+        });
+       
     }
-         
-    
+  
 
 
 
@@ -157,12 +161,13 @@ resendotp = ()=>{
 
     AuthService.otpResend(formData)
         .then(response => {console.log('Response:',response)
-        this.AlertError("Please Check Your Email, Otp has been Re-sent to your Email Address", "success");
+        this.setState({text:"Please Check Your Email, Otp has been Re-sent to your Email Address", type:"success"})
+      
         if(response.status ===202 || response.status ===200) 
             {localStorage.removeItem('token') 
              localStorage.removeItem('email') 
             }
-       })
+        else alert("Something went wrong")})
 
         .catch(error=>{console.log(error); 
             this.setState({loading:false})
@@ -170,7 +175,6 @@ resendotp = ()=>{
             this.setState({text:error.response.data.detail, type: "error"})
 
         })
-    
 }
 
 
@@ -179,10 +183,6 @@ resendotp = ()=>{
     render() {
         
 
-        let alertContent = null;
-        
-  
-        
         
 
         if (this.state.redirect) {
@@ -238,7 +238,6 @@ resendotp = ()=>{
            <>
                <Navbar/>
                <Alerts type={this.state.type} text={this.state.text} />
-                {alertContent}
                 
                 <div className="SideContent">
                         <AuthTemplate
@@ -255,4 +254,4 @@ resendotp = ()=>{
 }
 
 
-export default otp;
+export default OtpVerify;
