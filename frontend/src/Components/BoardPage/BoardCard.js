@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styles from './CSS/BoardCardList.module.css';
+
 import BoardList from './BoardList';
 import TextareaAutosize from 'react-textarea-autosize';
 import Button from '@material-ui/core/Button';
@@ -76,8 +77,8 @@ class BoardCard extends Component{
 
         if(!this.state.isFormOpen){
             NewCard = (<div className={styles.CardAddCard}>
-                <i className="fa fa-plus" onClick= {this.handleOpenForm}> New </i>
-                 </div>
+                          <i className="fa fa-plus" onClick= {this.handleOpenForm}> New </i>
+                       </div>
               );
         }
 

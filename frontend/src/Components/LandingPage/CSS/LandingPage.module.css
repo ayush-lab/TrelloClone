@@ -5,8 +5,9 @@
     justify-items: center;
     align-items: center;
     height:50px;
-    background:#101010;
+    background:#212121;
     z-index:2;
+    
 
 }
 .brand{
@@ -16,11 +17,13 @@
     font-size: 24px;
     line-height: 37px;
     color: #FFFEFE;
-    margin-left:20px;
+    margin-left:50px;
+    margin-top:20px;
    
 }
 .AuthButton{
-    margin-right: 100px;
+    margin-right: 70px;
+    margin-top:20px;
 }
 
 .AuthButton h3, .AuthButton p{

@@ -8,25 +8,26 @@ import BoardAddmore from './BoardAddmore';
 
 
 class BoardPage extends Component{
-  
-    render(){
 
-        const {lists }=this.props; 
-        console.log(lists);
+
+  
+    
+    render(){
+        const { lists } = this.props; 
 
 
         return(
 
             <div className={styles.BoardPage}>
                 <Navbar/>
-                <BoardNav/> 
-               
+                <BoardNav/>
              <div className={styles.BoardCardParent}>
                 <div className={styles.BoardCard}>
                   
                     {
                         lists.map(list => <BoardCard 
                             key={list.id}
+                          
                             title={list.title}
                             id={list.id} 
                             cardList={list.cards}/>)
@@ -37,13 +38,15 @@ class BoardPage extends Component{
                 </div>
               </div>
 
+             
+
             
             </div>
 
         );
-    }
 
-}
+
+}}
 
 
 const mapStateToProps = state => ({

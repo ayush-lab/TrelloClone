@@ -1,4 +1,4 @@
-import {CONSTANTS} from './index';
+import {CONSTANTS} from '../actions';
 
 export const addList = (title)=> {
     return {

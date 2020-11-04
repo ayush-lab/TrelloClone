@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link, Redirect } from 'react-router-dom';
 import styles from './CSS/LandingPage.module.css';
 import  './CSS/global.css';
 import Content_Picture from '../../assets/Images/manwithlap.svg';
@@ -9,6 +10,7 @@ import Fast from '../../assets/Images/fast.svg';
 import Planner from '../../assets/Images/Planner.svg';
 import Connect from '../../assets/Images/ConnectingTeam.svg';
 import LandingContent from './LandingContent';
+import Navbar from '../Navigation/Navbar'
 
 
 class LandingPage extends Component{
@@ -25,12 +27,14 @@ class LandingPage extends Component{
 
                     
                     <div className={styles.AuthButton}>
-                        <p> Log in</p>
-                        <h3>Sign up</h3>
+                      <Link to='/login'>  <p> Log in</p></Link>
+                        <Link to='signup'><h3>Sign up</h3></Link>
                     </div>
+                    
 
                     
                 </div>
+                
 
             <div className={styles.Content}>
 

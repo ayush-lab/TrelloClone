@@ -1,0 +1,192 @@
+.modal{
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow:auto;
+    
+   }
+
+.paper{
+    background:#F4F5F7;
+    padding:30px;
+    overflow:auto;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.groupFeatures{
+    display:flex;
+
+}
+
+
+.buttonFeatures{
+    border:solid 1px#003554 !important;
+    color:#003554 !important;
+    margin-right:10px !important;
+    background:white !important;
+    text-transform: none !important;
+}
+
+.buttonFeatures:hover{
+    background:#89609E !important;
+    color:white !important;
+   
+    
+}
+
+.buttonFeatures_dropdown{
+    border:solid 1px #003554 !important;
+    color:#003554 !important;
+    margin-right:10px !important;
+    border-radius:4px !important;
+}
+
+.mainHeadingTitle{
+    display:flex;
+    margin-top:24px;
+}
+
+
+.MainHeading{
+  
+    font-weight:700;
+    font-size: 20px;
+    color: #172B4D;
+    margin-left:8px;
+    margin-top:-2px;
+}
+
+.SubHeading{
+    margin-left:30px;
+    font-weight: normal;
+    font-size: 15px;
+    color: rgb(119, 119, 119);
+}
+
+.members{
+    display:flex;
+    margin-top:24px;
+
+}
+
+.members p, .label p{
+    
+    margin-top:6px;
+    margin-right:24px;
+    font-size: 14px;
+    color:grey;
+}
+
+.label p{
+    margin-right:48px;
+}
+
+
+.addmoreButton{
+    margin-left:16px;
+}
+
+.label{
+    display:flex;
+    margin-top:16px;
+    margin-right:16px;
+    font-size: 14px;
+}
+
+
+
+.labelColor{
+    margin-right:16px;
+    margin-top:6px;
+
+}
+.dueDate{
+    display:flex;
+    margin-top:16px;
+    margin-right:10px;
+    font-size: 14px;
+}
+
+.dueDate p{
+    margin-top:6px;
+    margin-right:30px;
+    font-size: 14px;
+    color:grey;
+}
+
+.Features{
+    margin-top:24px;
+    margin-bottom:24px;
+    margin-left:30px;
+}
+
+.Description{
+    margin-top:24px;
+}
+
+.DescriptionTitle{
+    display:flex;
+    font-family:'Roboto';
+    font-size:20px;
+    color: #172B4D;
+    font-weight:600;
+
+}
+
+.DescriptionTitle p{
+    margin-left:8px;
+    margin-top:3px;
+}
+
+
+.DescriptionTitle span{
+  
+    margin-left:16px;
+    color: #091E42;
+    background:#E1E4E9;
+    padding:4px;
+    padding-left:8px;
+    padding-right:8px;
+    border-radius:3px;
+    font-size:15px;
+    font-weight:lighter;
+}
+
+.desciptionText{
+    color:#172b4d;
+    font-size:17px;
+    font-weight:300;
+    margin-left:30px;
+
+}
+
+.checklist_text{
+    margin-left:30px;
+    display:flex;
+}
+
+.checklist_list{
+    margin-left:20px !important;
+}
+
+.descriptionEdit{
+    margin-left:30px!important;
+}
+
+.saveButton{
+    background:#61BD4F !important;
+    color:white !important;
+    text-transform: none !important;
+}
+
+
+.DeleteSection{
+    margin-left:30px;
+    margin-top:24px;
+}
+
+.deleteButton{
+    Background-color:#EB5A46 !important;
+    color:white !important;
+    text-transform: none !important;
+}
