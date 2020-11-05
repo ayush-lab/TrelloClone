@@ -45,6 +45,7 @@ const listReducers = (state=initialState,action)=> {
         case CONSTANTS.ADD_LIST:
         
             const newList = {
+                
                 title: action.payload,
                 cards:[],
                 id: listId,

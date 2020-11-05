@@ -3,11 +3,12 @@
     align-items: flex-start;
     justify-content: center;
     overflow:auto;
-    
+    margin-top:30px;
+    margin-bottom:30px;
    }
 
 .paper{
-    background:#F4F5F7;
+    background:rgb(255, 255, 255);
     padding:30px;
     overflow:auto;
     font-family: 'Roboto', sans-serif !important;

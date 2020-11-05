@@ -14,13 +14,15 @@ class BoardPage extends Component{
     
     render(){
         const { lists } = this.props; 
-
+        const {board} = this.props;
+        console.log(board[0].title);
 
         return(
 
             <div className={styles.BoardPage}>
                 <Navbar/>
-                <BoardNav/>
+                <BoardNav title={board[0].title}/>
+                
              <div className={styles.BoardCardParent}>
                 <div className={styles.BoardCard}>
                   
@@ -50,7 +52,8 @@ class BoardPage extends Component{
 
 
 const mapStateToProps = state => ({
-    lists:state.lists
+    lists:state.lists,
+    board:state.board,
 })
 
 export default connect(mapStateToProps)(BoardPage);

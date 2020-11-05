@@ -1,0 +1,45 @@
+.BoardSectionName{
+    display:flex;
+    font:'Gilroy';
+}
+
+.BoardNav{
+  
+}
+
+.boardsCardSection{
+    display: flex;
+    flex-direction:column;
+    background:#247ba0;
+    height:100px;
+    width:200px;
+    margin-top:8px;
+    margin-right:24px;
+    margin-bottom:16px;
+    color:white;
+    padding:10px;
+    border-radius:4px;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+    border-left:8px solid #1f6a8a;
+    transform:translateX(0);
+    transition: all 0.4s ease;
+}
+
+.boardsCardSection:hover{
+    transform: translateY(-10px);
+    opacity:0.9;
+}
+
+
+.boardTitle{    
+
+    font-family:'Gilroy';
+    font-size:17px;
+}
+
+.boardCardStar{
+    color:#ffe066;
+    text-align:right;
+}

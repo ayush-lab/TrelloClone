@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import './Navbar.css';
 import {NavLink,Redirect} from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
-
-//import Loggo from '../../../UI/Logo/Logo';
-//import AuthServices from '../../../../ApiServices/auth.service';
+import Tooltip from '@material-ui/core/Tooltip';
 
 class Navbar extends Component {
     
@@ -121,15 +119,15 @@ class Navbar extends Component {
     <ul className="navbar-nav mr-auto">
          
     <li className="nav-item ">
-          <NavLink to="/Cart" className="nav-link home"> 
+          <NavLink to="/home" className="nav-link home"> 
           <i data-toggle="tooltip" data-placement="top" title="Bookmarked Courses"
            className="fa fa-home" aria-hidden="true"></i></NavLink>
          
     </li>
           
     <li className="nav-item">
-          <NavLink to="/Cart" className="nav-link board"> 
-          <i data-toggle="tooltip" data-placement="top" title="Bookmarked Courses"
+          <NavLink to="/boardPage" className="nav-link board"> 
+         <i  
            className="fa fa-dashcube" aria-hidden="true"></i>
            <span className="board-icon-text">Boards</span></NavLink>
          

@@ -47,25 +47,6 @@ class otp extends Component {
 }
 
 
-AlertError(alertmsg, alertType) {
-    const AlertArray = {...this.state.alert};
-    AlertArray.msg = alertmsg;
-    AlertArray.valid=true;
-    AlertArray.alertType=alertType;
-    this.setState({alert:AlertArray});
-
-}
-
-// checkValidity(value,rules){
-//     let isValid = true;
-//     if(rules.required){
-//         isValid =value.trim()!=='' && isValid;
-//     }
-
-//     return isValid;
-    
-//  }
-
 
 //   runs whenever there is any change in the input field
 inputchangeHandler = (event,inputIdentifier)=> {
@@ -178,10 +159,12 @@ resendotp = ()=>{
 
     render() {
         
+        let alert =(<div style={{lineHeight:'3',opacity:'0'}}>a</div>);
 
-        let alertContent = null;
+        if(this.state.text)
+        alert = (<Alerts type={this.state.type} text={this.state.text} />);
+
         
-  
         
         
 
@@ -237,8 +220,8 @@ resendotp = ()=>{
         return (
            <>
                <Navbar/>
-               <Alerts type={this.state.type} text={this.state.text} />
-                {alertContent}
+              {alert}
+               
                 
                 <div className="SideContent">
                         <AuthTemplate

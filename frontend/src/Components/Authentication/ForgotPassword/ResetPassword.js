@@ -229,7 +229,12 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
     render() {
         
+        let alert =(<div style={{lineHeight:'3',opacity:'0'}}>a</div>);
 
+        if(this.state.text)
+        alert = (<Alerts type={this.state.type} text={this.state.text} />);
+
+        
     
         
 
@@ -290,7 +295,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
         return (
            <>
                <Navbar/>
-               <Alerts type={this.state.type} text={this.state.text} />
+               {alert}
                 <div className="SideContent">
                         <AuthTemplate
                         shelp={false}

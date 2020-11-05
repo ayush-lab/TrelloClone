@@ -1,15 +1,83 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import './BoardNav.css';
+import TextareaAutosize from 'react-textarea-autosize';
+import {addTitle} from '../../actions';
+import {connect} from 'react-redux';
 
 
-const boardNav = (props)=> {
+class BoardNav extends Component{
+
+    state = {
+        isFormOpen:false,
+        text: "",
+    }
+
+    handleOpenForm =()=> {
+        this.setState({isFormOpen: !this.state.isFormOpen})
+    }
+
+    handlerInput = (event)=> {
+        this.setState({text:event.target.value})
+    }
+   
+    handlerOnBlur = ()=> {
+        this.setState({isFormOpen: !this.state.isFormOpen})
+    }
+
+    handlerDispatch = (e)=> {
+
+        if(e.key === 'Enter'){
+
+            const {dispatch} =this.props;
+          
+            const {text} = this.state;
+
+            if(text){
+                dispatch(addTitle(text));
+        
+            }
+
+            
+
+    }}
+
+    render(){
+
+
+        let NewCard = (<p  onClick= {this.handleOpenForm} className="navbar-brand-board">{this.props.title}</p>);
+
+       
+        
+        if(this.state.isFormOpen){
+
+            NewCard = (
+                <div>
+                    <TextareaAutosize autoFocus
+                    style = {{resize:"none"}} 
+                    onKeyDown={(event)=> this.handlerDispatch(event)}
+                    onBlur= {()=> {this.handlerOnBlur()}}
+                    onChange={(event)=> {this.handlerInput(event)}}
+                    />
+         
+               </div>
+            );
+        };
+
+
+        if(!this.state.isFormOpen){
+            NewCard = (<p onClick= {this.handleOpenForm}
+                 className="navbar-brand-board">{this.props.title}</p>);
+        }
+
+
+
 
     return(
 
   <nav  className="  navbar navbar-board navbarBoard navbar-expand-lg sticky-top " >
 
-    <NavLink to="/home/all" className="navbar-brand-board">Title of the project</NavLink>
+    {NewCard}
 
     <button className="navbar-toggler" type="button" data-toggle="collapse" 
         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -47,6 +115,6 @@ const boardNav = (props)=> {
  
     </div>
 </nav>
-    )}
+    )}}
 
-export default boardNav;
+export default connect()(BoardNav);

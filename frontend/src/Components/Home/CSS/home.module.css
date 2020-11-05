@@ -1,0 +1,116 @@
+.main{
+    margin-top:60px;
+    margin-left:60px;
+    display:flex;
+}
+
+.section1{
+    display:flex;
+    flex-direction: column;
+    margin-right:50px;
+    width:250px;
+    
+    
+}
+
+.section2{
+    display:flex;
+    flex-direction: column;
+    margin-right:50px;
+}
+
+
+.BoardSectionName{
+    display:flex;
+   
+}
+
+.BoardSection{
+    margin-bottom:40px;
+}
+
+.BoardNavMain{
+    margin-top:44px;
+
+   
+}
+
+.BoardNav{
+    display:flex;
+    margin-bottom:16px;
+    color:#091E42;
+    font-size:15px;
+    padding:5px 20px 5px 3px;
+    font-weight:bold;
+    transform:translateX(0);
+    transition:all 0.3s ease;
+}
+
+.BoardNav:hover{
+
+    border-radius:4px;
+    background:rgb(203, 210, 228);
+    transform: translateX(5px);
+}
+
+
+.BoardCategoryName{
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin-left:5px;
+    
+}
+
+.BoardNavIcon{
+   
+    color:rgba(24, 50, 95, 0.856);
+}
+
+
+.BoardNav:active, .BoardNav:focus{
+    color:rgb(248, 250, 252);
+    border-radius:4px;
+    background:#89609E;
+    
+    
+}
+
+.TeamNavSection{
+    width:100%;
+   
+}
+
+
+.TeamHeading{
+    color:rgb(112, 109, 109);
+    font-size:13px;
+    text-transform: uppercase;
+    display:flex;
+    justify-content: space-between;
+
+}
+
+.star,.PersonIcon, .PeopleIcon{
+    color:#FFC701;
+    font-size:40;
+    margin-top:2px;
+    margin-right:6px;
+}
+.PersonIcon, .PeopleIcon{
+    color:rgba(24, 50, 95, 0.856);
+}
+
+
+.BoardType{
+    color:#3C4852;
+    font-family:'Gilroy';
+    font-size:20px;
+    font-weight:bolder;
+
+}
+
+.HomeBoardComponent{
+    display:flex;
+    flex-wrap:wrap;
+}
+

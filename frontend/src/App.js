@@ -9,7 +9,7 @@ import ForgotPassword from './Components/Authentication/ForgotPassword/ForgotPas
 import OtpVerify from './Components/Authentication/ForgotPassword/OtpVerify';
 import BoardPage from './Components/BoardPage/BoardPage';
 import LandingPage from './Components/LandingPage/LandingPage';
-
+import Home from './Components/Home/Home';
 
 function App() {
   return (
@@ -24,11 +24,13 @@ function App() {
      <Route path="/ForgotPassword" component={ForgotPassword}/>
      <Route path="/Verifyotp" component={OtpVerify}/>
      <Route path="/Login" exact component={Login}/>
+
+
+     <Route path='/home' component={Home}/>
      <Route path='/boardpage'  component={BoardPage}/>
-    
      <Route path='/Homepage' component={LandingPage}/>
 
-     <Redirect to="/Homepage"/> 
+     <Redirect to="/home"/> 
 
 
      </Switch>
