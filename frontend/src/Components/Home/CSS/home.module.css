@@ -67,19 +67,28 @@
 }
 
 
-.BoardNav:active, .BoardNav:focus{
+.activeClass{
+    display:flex;
+    width:100%;
     color:rgb(248, 250, 252);
     border-radius:4px;
     background:#89609E;
-    
+    font-size:15px;
+    padding:5px 20px 5px 3px;
+    text-decoration: none;
     
 }
+
 
 .TeamNavSection{
     width:100%;
    
 }
-
+.add:hover{
+    border-radius:50%;
+    background:rgb(203, 210, 228);
+    cursor:pointer;
+}
 
 .TeamHeading{
     color:rgb(112, 109, 109);

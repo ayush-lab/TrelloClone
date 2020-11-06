@@ -1,0 +1,89 @@
+.Profile{
+    display:flex;
+    justify-content: center;
+    margin-top:50px;
+    margin-bottom:20px;
+}
+
+.Profile img{
+    width:130px;
+    border-radius:50%;
+    margin-right:50px;
+    object-fit: cover;
+
+}
+
+.ProfileText h2{
+    margin-top:5px;
+    color:#003554;
+    line-height:19px;
+}
+
+.ProfileText p{
+    color:#808285;
+}
+
+.EditTeam{
+    font-size:13px;
+    color:#003554;
+    border-radius:4px;
+    background:white;
+    border:1px solid #003554;
+}
+.EditTeam:hover{
+   
+}
+
+.tabs{
+    flex-grow: 1;   
+    width:1000px;
+    margin:auto;
+    background:white !important;
+   
+}
+
+.appbar{
+    background:rgb(253, 253, 253)!important;
+    
+}
+
+.tab{
+   
+
+}
+.HomeCards{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.Indicator{
+    background-color:#89609E !important;
+}
+
+.boardsCardSection{
+    display: flex;
+    background:#E6E9ED;
+    height:100px;
+    width:200px;
+    margin-top:8px;
+    margin-right:24px;
+    margin-bottom:16px;
+    color:#003554;
+    border-radius:4px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform:translateX(0);
+    transition: all 0.4s ease;
+}
+
+.boardsCardSection:hover{
+    opacity:0.7;
+}
+
+
+.boardTitle{
+    font-family:'Gilroy';
+    font-size:17px;
+    margin:auto;
+}

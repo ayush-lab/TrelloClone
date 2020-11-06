@@ -66,6 +66,7 @@
     "react-redux": "^7.2.2",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
+    "react-swipeable-views": "^0.13.9",
     "react-textarea-autosize": "^8.2.0",
     "redux": "^4.0.5",
     "resolve": "1.18.1",

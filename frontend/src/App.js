@@ -10,6 +10,7 @@ import OtpVerify from './Components/Authentication/ForgotPassword/OtpVerify';
 import BoardPage from './Components/BoardPage/BoardPage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/Home/Home';
+import Team from './Components/Team/Team';
 
 function App() {
   return (
@@ -19,16 +20,18 @@ function App() {
     <Switch>
 
      <Route path="/signup" exact component={Signup}/>
-       <Route path="/signup/otp"  component={Otp}/>
+     <Route path="/signup/otp"  component={Otp}/>
      <Route path="/ResetPassword" component={ResetPassword}/>
      <Route path="/ForgotPassword" component={ForgotPassword}/>
      <Route path="/Verifyotp" component={OtpVerify}/>
      <Route path="/Login" exact component={Login}/>
 
-
-     <Route path='/home' component={Home}/>
      <Route path='/boardpage'  component={BoardPage}/>
      <Route path='/Homepage' component={LandingPage}/>
+
+     <Route path='/home' component={Home}/>
+     <Route path='/team' component={Team}/>
+
 
      <Redirect to="/home"/> 
 

@@ -9,7 +9,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TeamModal from  '../../assets/Images/TeamModal.svg';
-
+import {NavLink} from 'react-router-dom';
 class HomeSideNav extends Component{
 
 
@@ -35,6 +35,15 @@ class HomeSideNav extends Component{
             <>
             <div className={styles.BoardNavMain}>
                
+
+               <div className={styles.BoardNav}>
+                
+                   <NavLink to='/home' activeClassName={styles.activeClass}><div className={styles.BoardNavIcon}><HomeIcon fontSize="small"/></div>
+                            <span className={styles.BoardCategoryName}>Home</span></NavLink>
+                
+                </div>
+
+
                 <div className={styles.BoardNav}>
                 
                        <div className={styles.BoardNavIcon}> <ViewArrayIcon fontSize="small"/></div>
@@ -42,13 +51,7 @@ class HomeSideNav extends Component{
                 
                 </div>
 
-                <div className={styles.BoardNav}>
                 
-                    <div className={styles.BoardNavIcon}><HomeIcon fontSize="small"/></div>
-                            <span className={styles.BoardCategoryName}>Home</span>
-                
-                </div>
-
 
                 <div className={styles.BoardNav}>
                     
@@ -66,7 +69,7 @@ class HomeSideNav extends Component{
                     <p>
                     Team</p>
 
-                    <AddIcon  onClick={this.handleOpen} fontSize="small"/>
+                    <AddIcon  className={styles.add} onClick={this.handleOpen} fontSize="small"/>
                 </div>
 
                 <div className={styles.BoardNav}>
