@@ -34,9 +34,8 @@
    
 }
 
-.tabs{
-    flex-grow: 1;   
-    width:1000px;
+.tabs{ 
+    width:800px;
     margin:auto;
     background:white !important;
    

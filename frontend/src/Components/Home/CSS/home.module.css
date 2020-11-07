@@ -43,7 +43,7 @@
     padding:5px 20px 5px 3px;
     font-weight:bold;
     transform:translateX(0);
-    transition:all 0.3s ease;
+    transition:all 0.5s ease;
 }
 
 .BoardNav:hover{

@@ -5,7 +5,7 @@ import {addList} from '../../actions';
 import TextareaAutosize from 'react-textarea-autosize';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
-
+import AddSharpIcon from '@material-ui/icons/AddSharp';
 
 class BoardAddmore extends Component{
 
@@ -43,9 +43,11 @@ class BoardAddmore extends Component{
     render(){ 
         
         let NewCard =(
-        <div className={styles.BoardAddmore}>
+        <div onClick= {this.handleOpenForm} className={styles.BoardAddmore}>
    
-            <i className="fa fa-plus" onClick= {this.handleOpenForm} > Add new list</i>;
+            <AddSharpIcon />
+            <span>Add new list</span>
+            
         </div>);
 
 
@@ -74,8 +76,9 @@ class BoardAddmore extends Component{
       if(!this.state.isFormOpen){
 
         NewCard =(
-            <div className={styles.BoardAddmore}>
-            <i className="fa fa-plus" onClick= {this.handleOpenForm}> Add new list</i>
+            <div onClick= {this.handleOpenForm} className={styles.BoardAddmore}>
+                <AddSharpIcon />
+                <span>Add new list</span>
             </div>);
       }
 

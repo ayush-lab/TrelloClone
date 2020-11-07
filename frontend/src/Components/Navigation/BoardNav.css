@@ -2,17 +2,17 @@
 
 .navbar-board{
     
-    background: rgb(60, 72, 82) 0% 0% no-repeat padding-box !important; 
+    background: #357995 0% 0% no-repeat padding-box !important; 
     height:46px;
     box-shadow: none !important;
     
-    border-bottom: 2px solid #3EECAC;
     
 }
 
 
 .navbar-brand-board{
     color:#F7CE68;
+    color:white;
     font-size:20px;
     font-weight: bolder;
     margin-right:10px;

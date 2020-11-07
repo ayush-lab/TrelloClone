@@ -96,9 +96,9 @@ export default function Team() {
             
         }}
         >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Boards" {...a11yProps(0)} />
+          <Tab label="Members" {...a11yProps(1)} />
+          <Tab label="Setting" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews

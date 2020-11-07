@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styles from './CSS/BoardCardList.module.css';
-
+import AddSharpIcon from '@material-ui/icons/AddSharp';
 import BoardList from './BoardList';
 import TextareaAutosize from 'react-textarea-autosize';
 import Button from '@material-ui/core/Button';
@@ -44,8 +44,9 @@ class BoardCard extends Component{
       
         let cardList = this.props.cardList;
 
-        let NewCard = (<div className={styles.CardAddCard}>
-            <i className="fa fa-plus" onClick= {this.handleOpenForm}> New </i>
+        let NewCard = (<div onClick= {this.handleOpenForm} className={styles.CardAddCard}>
+            <AddSharpIcon />
+             <span className={styles.NewText}>New</span>
              </div>);
 
        
@@ -76,8 +77,9 @@ class BoardCard extends Component{
 
 
         if(!this.state.isFormOpen){
-            NewCard = (<div className={styles.CardAddCard}>
-                          <i className="fa fa-plus" onClick= {this.handleOpenForm}> New </i>
+            NewCard = (<div onClick= {this.handleOpenForm} className={styles.CardAddCard}>
+                          <AddSharpIcon />
+                              <span className={styles.NewText}>New</span>
                        </div>
               );
         }
@@ -89,11 +91,11 @@ class BoardCard extends Component{
                 <div className={styles.CardHeader}>
                     
                     <div className={styles.CardTitleInput}>
-                         <p>{this.props.title}</p>
+                         <p className={styles.List_Title}>{this.props.title}</p>
                     </div>
                    
                     <div className={styles.CardHeaderMenu}>
-                    <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
                     </div>
 
                 </div>
