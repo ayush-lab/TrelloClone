@@ -3,6 +3,7 @@ import styles from './CSS/home.module.css';
 import Navbar from '../Navigation/Navbar';
 import HomeSideNav from './HomeSideNav';
 import HomeCards from './HomeCards';
+import AddTeam from '../Team/addTeam';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleIcon from '@material-ui/icons/People';
@@ -39,6 +40,8 @@ class Home extends Component{
                                 <HomeCards/>
 
                                 <HomeCards/>
+                                
+                                <AddTeam/>
                               
                             </div>
                        </div>

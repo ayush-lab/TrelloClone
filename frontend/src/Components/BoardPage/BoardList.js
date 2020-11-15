@@ -5,6 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import style from './CSS/Modal.module.css';
 import Button from '@material-ui/core/Button';
+import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import SubjectIcon from '@material-ui/icons/Subject';
@@ -69,7 +70,7 @@ class BoardList extends Component{
                 </div>
 
                 <div className={styles.List_Details_Indicator}>
-                    <i onClick={this.handleOpen} className="fa fa-info-circle" aria-hidden="true"></i>
+                    <EditTwoToneIcon style={{fontSize:'medium'}} onClick={this.handleOpen} />
                 </div>
 
                 <Modal

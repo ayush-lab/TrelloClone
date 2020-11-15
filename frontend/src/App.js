@@ -26,7 +26,9 @@ function App() {
      <Route path="/Verifyotp" component={OtpVerify}/>
      <Route path="/Login" exact component={Login}/>
 
-     <Route path='/boardpage'  component={BoardPage}/>
+     <Route path='/b/:BoardId/:BoardName'  
+     render ={props =><BoardPage key={props.location.pathname} {...props}/>} />
+
      <Route path='/Homepage' component={LandingPage}/>
 
      <Route path='/home' component={Home}/>

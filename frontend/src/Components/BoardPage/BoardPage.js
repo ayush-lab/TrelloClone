@@ -1,40 +1,66 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {initCardList} from '../../actions';
 import BoardCard from './BoardCard';
 import styles from './CSS/BoardCardList.module.css';
 import Navbar from '../Navigation/Navbar';
 import BoardNav from '../Navigation/BoardNav';
 import BoardAddmore from './BoardAddmore';
 
-
 class BoardPage extends Component{
 
+    state = {
+        BoardId:this.props.match.params.BoardId,
+        BoardName:this.props.match.params.BoardName,
+        List:'',
+    }
 
-  
+   componentDidMount(){
+        
+        this.props.ShowListCard(this.state.BoardId);
+      
+
+        
+   }
     
     render(){
-        const { lists } = this.props; 
-        const {board} = this.props;
-        console.log(board[0].title);
+        let {LISTS} =this.props; 
+        let title = "";
+        let lists;
+        console.log(LISTS);
+      
+
+       if(LISTS){
+
+        title=LISTS.list.name;
+    
+        lists = LISTS.list.lists.map(list => (<BoardCard 
+            boardId={this.state.BoardId}
+            key={list.id}
+            title={list.name}
+            id={list.id} 
+            cardList={list.cards}/>));
+
+       }
+
+       else{
+           lists =null;
+           title="";
+       }
 
         return(
 
             <div className={styles.BoardPage}>
                 <Navbar/>
-                <BoardNav title={board[0].title}/>
+                <BoardNav title={title}/>
                 
              <div className={styles.BoardCardParent}>
                 <div className={styles.BoardCard}>
                   
-                    {
-                        lists.map(list => <BoardCard 
-                            key={list.id}
-                          
-                            title={list.title}
-                            id={list.id} 
-                            cardList={list.cards}/>)
-                    }
-                    <BoardAddmore/>
+                        {lists}
+
+                    <BoardAddmore
+                    boardId={this.state.BoardId}/>
                   
                    
                 </div>
@@ -52,8 +78,16 @@ class BoardPage extends Component{
 
 
 const mapStateToProps = state => ({
-    lists:state.lists,
+    LISTS:state.lists,
     board:state.board,
 })
 
-export default connect(mapStateToProps)(BoardPage);
+const mapDispatchToProps =dispatch => {
+  
+    return {
+        ShowListCard: (BoardId)=> dispatch(initCardList(BoardId))
+
+           }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(BoardPage);

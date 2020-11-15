@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styles from './CSS/BoardCardList.module.css';
-import {addList} from '../../actions';
+import {AsynAddNewList} from '../../actions';
 import TextareaAutosize from 'react-textarea-autosize';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import AddSharpIcon from '@material-ui/icons/AddSharp';
+//import AuthService from '../../ApiServices/services';
+
 
 class BoardAddmore extends Component{
 
@@ -27,16 +29,22 @@ class BoardAddmore extends Component{
     }
 
     handlerDispatch = ()=> {
-        const {dispatch} =this.props;
- 
+       // const {dispatch} =this.props;
+        const BoardId =this.props.boardId;
      
         const {text} = this.state;
 
-        if(text){
-            dispatch(addList(text));
-     
-        }
+       
+        let formData ={};
+        formData['name'] =text;
 
+        if(text){
+            this.props.addList(BoardId,formData,text);
+        }
+    
+        
+
+         
     }
 
 
@@ -88,7 +96,20 @@ class BoardAddmore extends Component{
              {NewCard}
             </>
         );
+
+       
     }
 
+   
 }
-export default connect()(BoardAddmore);
+
+ const mapDispatchToProps =dispatch => {
+  
+            return {
+                
+            addList: (BoardId,formData,text)=> dispatch(AsynAddNewList(BoardId,formData,text))
+        
+                   }
+}
+
+export default connect(null,mapDispatchToProps)(BoardAddmore);

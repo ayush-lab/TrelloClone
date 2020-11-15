@@ -55,6 +55,43 @@ class AuthServices {
         return userName;
     }
 
+    CreateBoard(data){
+        return axios.post("/boards/",data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            }
+        });
+    }
+
+    BoardList(id,data){
+        return axios.post(`/boards/${id}/lists/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            }
+        });
+    }
+
+    BoardCard(id,data){
+        return axios.post(`/lists/${id}/cards/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            }
+        });
+    }
+
+    GetBoard(id){
+        return axios.get(`/boards/${id}/`,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            }
+        });
+    }
+
+
     //Bookmark
     bookmarkCourses(userName,userId){
         return axios.get(`/users/${userName}/${userId}`,{

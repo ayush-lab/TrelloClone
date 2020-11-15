@@ -6,7 +6,9 @@ import BoardList from './BoardList';
 import TextareaAutosize from 'react-textarea-autosize';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
-import {addCard} from '../../actions';
+import {AsynAddNewCard} from '../../actions';
+import AuthService from '../../ApiServices/services';
+
 
 class BoardCard extends Component{
 
@@ -28,21 +30,32 @@ class BoardCard extends Component{
     }
 
     handlerDispatch = ()=> {
-        const {dispatch} =this.props;
         const CardId=this.props.id;
-     
         const {text} = this.state;
 
+        let formData ={};
+        formData['name'] =text;
+
         if(text){
-            dispatch(addCard(text,CardId));
-            console.log(CardId);
+            this.props.addCard(CardId,formData,text);
         }
+        
 
     }
 
     render(){
       
-        let cardList = this.props.cardList;
+        let cardList=this.props.cardList;
+        let cardRender=null;
+
+       
+        if(cardList!==null){
+          
+           cardRender = cardList.map(item => (<BoardList key={item.id} heading={item.name}/>));
+          
+        }
+
+       
 
         let NewCard = (<div onClick= {this.handleOpenForm} className={styles.CardAddCard}>
             <AddSharpIcon />
@@ -100,9 +113,10 @@ class BoardCard extends Component{
 
                 </div>
 
-           
-                {cardList.map(item => <BoardList key={item.id} heading={item.text}/>)}
-                   
+                <div className={styles.List}>
+          
+                    {cardRender }
+                </div>   
                   
           
                 <div className={styles.CardFooter}>
@@ -119,4 +133,19 @@ class BoardCard extends Component{
     }
 
 }
-export default connect()(BoardCard);
+const mapStateToProps = state => ({
+    LISTS:state.lists,
+    board:state.board,
+})
+
+const mapDispatchToProps =dispatch => {
+  
+    return {
+        
+    addCard: (CardId,formData,text)=> 
+    dispatch(AsynAddNewCard(CardId,formData,text))
+
+           }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(BoardCard);

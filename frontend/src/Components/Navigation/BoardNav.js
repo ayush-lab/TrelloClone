@@ -4,7 +4,8 @@ import './BoardNav.css';
 import TextareaAutosize from 'react-textarea-autosize';
 import {addTitle} from '../../actions';
 import {connect} from 'react-redux';
-
+import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 class BoardNav extends Component{
 
@@ -92,8 +93,8 @@ class BoardNav extends Component{
             
             <li className="nav-item ">
                 <NavLink to="/Cart" className="nav-link star-board-nav"> 
-                <i data-toggle="tooltip" data-placement="top" title="Bookmarked Courses"
-                className="fa fa-star star-icon-nav" aria-hidden="true"></i></NavLink>
+                <StarBorderRoundedIcon
+                className="fa fa-star star-icon-nav" /></NavLink>
                 
             </li>
                 
