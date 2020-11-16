@@ -1,0 +1,47 @@
+.checkList{
+    list-style-type: none;
+    margin-bottom:10px !important;
+    margin-left:0!important; 
+}
+
+.Textarea{
+    margin-left:29px;
+   
+
+}
+
+.textSection:focus{
+    border:solid 1px #89609E;
+
+}
+.textSection{
+    width:100%;
+}
+.Label{
+    padding-left:5px;
+}
+
+.saveButton{
+    background:#61BD4F !important;
+    color:white !important;
+    text-transform: none !important;
+}
+
+.addButton{
+    margin-left:29px;
+    border-radius:4px;
+    color: #091E42;
+    background:#E1E4E9;
+    padding:4px;
+    font-size:15px;
+}
+
+.dropDown{
+    border:solid 1px#003554 !important;
+    color:#003554 !important;
+    text-transform: none !important;
+    background:white !important;
+
+}
+
+

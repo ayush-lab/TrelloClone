@@ -50,8 +50,13 @@ class BoardCard extends Component{
 
        
         if(cardList!==null){
-          
-           cardRender = cardList.map(item => (<BoardList key={item.id} heading={item.name}/>));
+           
+           cardRender = cardList.map(item =>
+             
+            (<BoardList 
+            key={item.id} 
+            heading={item.name}
+            subHeading={this.props.title}/>));
           
         }
 

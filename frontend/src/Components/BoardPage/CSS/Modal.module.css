@@ -1,3 +1,8 @@
+.flex{
+    display:flex;
+   
+}
+
 .modal{
     display:flex;
     align-items: flex-start;
@@ -155,6 +160,7 @@
 
 .desciptionText{
     color:#172b4d;
+    color:rgb(48, 45, 45);
     font-size:17px;
     font-weight:300;
     margin-left:30px;
@@ -174,6 +180,10 @@
     margin-left:30px!important;
 }
 
+.HeadingEdit{
+    margin-left:10px;
+}
+
 .saveButton{
     background:#61BD4F !important;
     color:white !important;
@@ -190,4 +200,22 @@
     Background-color:#EB5A46 !important;
     color:white !important;
     text-transform: none !important;
+}
+
+.progressbarSection{
+    margin-left:29px;
+    margin-bottom:24px;
+}
+
+
+
+.ProgressLabel{
+  
+    font-size:12px;
+    color:rgb(85, 83, 83);
+    padding-bottom:10px;
+}
+
+.Textarea{
+    width:100%;
 }

@@ -20,6 +20,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import LinearDeterminate from './ProgressBar';
+import Checklist from './Checklist';
+import SimpleMenu from './Menu';
+
+
 
 class BoardList extends Component{
 
@@ -27,6 +32,19 @@ class BoardList extends Component{
 
     state = {
         open:false,
+        descriptionForm:{
+            open:false,
+            text:"",
+        },
+        headingForm:{
+            open:false,
+            text:"",
+        },
+
+        Checklist:{
+            open:false,
+
+        }
     }
 
     handleOpen = () => {
@@ -39,6 +57,26 @@ class BoardList extends Component{
        
     };
 
+    handleOpenForm =(type)=> {
+        let dummyForm = {...this.state[type]};
+        dummyForm.open =!dummyForm.open;
+        this.setState({[type]: dummyForm})
+        
+    }
+
+    handlerInput = (event,type)=> {
+        let dummyInput = {...this.state.descriptionForm};
+        dummyInput.text =event.target.value;
+        this.setState({descriptionForm: dummyInput})
+        
+    }
+  
+    handlerChecklist = ()=> {
+        let dummyChecklist = {...this.state.Checklist};
+        dummyChecklist.open = !dummyChecklist.open;
+        this.setState({Checklist:dummyChecklist});
+    }
+
 
     render(){
 
@@ -47,6 +85,75 @@ class BoardList extends Component{
           ];
           const defaultOption = options[0];
 
+        let Heading = null;
+        let Description = null;
+
+        if(!this.state.descriptionForm.open){
+
+            Description =  <p  onClick= {()=>this.handleOpenForm('descriptionForm')} 
+                               className={style.desciptionText}>
+            this is a dummy description, it is about the baord</p>;
+        
+        }
+
+        else{
+            Description = (
+                <div className={style.descriptionEdit}>
+                <TextareaAutosize autoFocus
+                        style = {{resize:"none"}} 
+                        onBlur= {()=> {this.handleOpenForm("descriptionForm")}}
+                        onChange={(event,text)=> {this.handlerInput(event,"descriptionForm")}}
+                        className={style.Textarea}/>
+
+                <div className={styles.ButtonArea}>
+                    <Button 
+                    variant="contained" 
+                    className={style.saveButton}
+                    onMouseDown={this.handlerDispatch}
+                    >Save
+                    </Button>
+                    <CloseIcon onClick={()=>this.handleOpenForm("descriptionForm")}/>
+                </div>
+
+            </div>
+            );
+        }
+
+        
+
+        if(!this.state.headingForm.open){
+
+            Heading = (<div 
+                onClick= {()=>this.handleOpenForm('headingForm')} 
+                className={style.MainHeading}>{this.props.heading}</div>);
+        
+        }
+
+        else{
+            Heading = (
+                <div className={style.HeadingEdit}>
+                <TextareaAutosize autoFocus
+                        style = {{resize:"none"}} 
+                        onBlur= {()=> {this.handleOpenForm('headingForm')}}
+                        onChange={(event,text)=> {this.handlerInput(event,'headingForm')}}
+                        className={style.Textarea}/>
+
+                <div className={styles.ButtonArea}>
+                    <Button 
+                    variant="contained" 
+                    className={style.saveButton}
+                    onMouseDown={this.handlerDispatch}
+                    >Save
+                    </Button>
+                    <CloseIcon onClick={()=>this.handleOpenForm('headingForm')}/>
+                </div>
+
+            </div>
+            );
+        }
+
+
+        
         return(
 
             <div  className={styles.CardList}>
@@ -91,22 +198,17 @@ class BoardList extends Component{
                             <Button variant="outlined" className={style.buttonFeatures}>Members</Button>
                             <Button variant="outlined" className={style.buttonFeatures}>Label</Button>
                             <Button variant="outlined" className={style.buttonFeatures}>Due Date</Button>
-                            <Button variant="outlined" className={style.buttonFeatures}>Attachment</Button>
-                            <Dropdown
-                                      options={options}
-                                      onChange={this._onSelect} 
-                                      value={"More"} 
-                                      className={style.buttonFeatures_dropdown}
-                                      placeholder="Select an option" />   
+                            <Button variant="outlined" onClick={this.handlerChecklist} className={style.buttonFeatures}>Checklist</Button>
+                            <SimpleMenu  Menu={"More"} option1={"Attachment"} option2={"Something"} option3={"Somehting"} />
 
 
                         </div>
 
                         <div className={style.mainHeadingTitle}>
                             <InsertEmoticonIcon/>
-                            <div className={style.MainHeading}>Main description</div>
+                            {Heading}
                         </div>
-                        <div className={style.SubHeading}>Sub Heading about the main card</div>
+                        <div className={style.SubHeading}>{this.props.subHeading}</div>
 
                         <div className={style.Features}>
                             <div className={style.members}>
@@ -155,55 +257,37 @@ class BoardList extends Component{
                         <div className={style.Description}> 
                             <div className={style.DescriptionTitle}>
                                 <div ><SubjectIcon/></div>
-                                <p> Description  <span> Edit </span> </p>
+                                <p> Description 
+                                <span onClick= {()=>this.handleOpenForm('descriptionForm')}> 
+                                Edit </span> </p>
                                 
                             </div>
 
-                            <p className={style.desciptionText}>this is a dummy description, it is about the baord</p>
+                            {Description}
                             
-                            <div className={style.descriptionEdit}>
-                                <TextareaAutosize autoFocus
-                                        style = {{resize:"none"}} 
-                                        // onBlur= {()=> {this.handlerOnBlur()}}
-                                        // onChange={(event)=> {this.handlerInput(event)}}
-                                        className={style.Textarea}/>
-
-                                <div className={styles.ButtonArea}>
-                                    <Button 
-                                    variant="contained" 
-                                    className={style.saveButton}
-                                    onMouseDown={this.handlerDispatch}
-                                    >Save
-                                    </Button>
-                                    <CloseIcon onClick={this.handleOpenForm}/>
-                                </div>
-
-                            </div>
+                          
          
                         </div>
-
-                        <div className={style.Description}> 
+                    
+                        {this.state.Checklist.open ? ( <div className={style.Description}> 
                             <div className={style.DescriptionTitle}>
                                 <div><PlaylistAddCheckIcon/></div>
-                                <p> Checklist <span> Edit </span> </p>
-                           
+                                <p> Checklist <span> Delete </span> </p>
+                        
                             </div>
+                            
+                            <div className={style.progressbarSection}>
+                            
+                                <LinearDeterminate className={style.progressBar} progress={50}/>
 
-                        <div className={style.checklist}>
-                            <div className={style.checklist_text}>
-                                <div><CheckBoxOutlineBlankIcon/></div>
-                                <p>Maths assigment due at this time</p>
                             </div>
+                             <Checklist/>
+                        </div>) : null}
 
                             
 
-                            <FormControlLabel
-                                className={style.checklist_list}
-                                control={<Checkbox checked={true}
-                                name="checkedG" />}
-                                label="SI meeting at 5"/>
 
-                        </div>
+
 
                         <div className={style.DeleteSection}>
                             <Button 
@@ -212,7 +296,7 @@ class BoardList extends Component{
                         </div>
                         
                         
-                        </div>
+                     
 
 
                     </div>

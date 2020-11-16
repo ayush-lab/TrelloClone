@@ -44,7 +44,7 @@ class BoardPage extends Component{
        }
 
        else{
-           lists =null;
+           lists =<p>Loading...</p>;
            title="";
        }
 

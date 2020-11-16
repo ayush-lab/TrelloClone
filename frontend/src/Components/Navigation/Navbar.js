@@ -61,7 +61,7 @@ class Navbar extends Component {
 
         <li className="nav-item">
                 
-            <NavLink to="/signup" onClick={this.logout} activeClassName="btnactive"
+            <NavLink to="/login" onClick={this.logout} activeClassName="btnactive"
              className="nav-link home Signupbtn logout">Logout</NavLink>
                 
         </li>
