@@ -1,17 +1,18 @@
-.BoardCardParent{
-    height:90vh;
-    overflow-x:auto;
-    
+.BoardPage{
+    overflow-y:hidden !important;
+
 }
 
-
-
-.BoardPage{
+.BoardCardParent{
     background-color: rgb(60, 72, 82);
     background:rgb(247, 245, 245);
-    height:100vh;
- 
+    height:500px;
+    overflow-y:hidden !important;
+    overflow-x:visible;
+
 }
+
+
 
 .BoardCard{
     display:flex;
@@ -45,6 +46,7 @@
     color:rgb(63, 64, 65);
     color:rgb(163, 163, 163);
     padding-left:10px;
+    margin-bottom: 7px;
 }
 
 .CardAddCard{
@@ -65,6 +67,11 @@
     margin-left:3px;
 }
 
+.List{
+    max-height:500px;
+    overflow-y:visible !important;
+}
+
 
 .CardList{
     
@@ -78,6 +85,7 @@
     padding-bottom:0;
     margin-bottom: 15px;
     transition: all 0.4s ease;
+    overflow-y:visible !important;
 }
 
 .CardList:hover .List_Details_Indicator {
@@ -97,6 +105,19 @@
     font-size: 15px;
     font-weight:400;
     height:50px ;
+}
+
+.TextHeading{
+    border-radius: 4px;    
+    margin-bottom: 0px;
+    padding:4px;
+    background:white;
+    width: 100%;
+    border:none;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight:400;
+    height:20px;
 }
 
 
@@ -169,7 +190,7 @@
 }
 
 .BoardCard{
-    overflow-y:auto !important;
+    /* overflow-y:auto !important; */
 }
 
 ::-webkit-scrollbar {

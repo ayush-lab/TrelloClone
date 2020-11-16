@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {AsynAddNewCard} from '../../actions';
 import styles from './CSS/BoardCardList.module.css';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -44,7 +46,20 @@ class BoardList extends Component{
         Checklist:{
             open:false,
 
-        }
+        },
+
+        dueDate:{
+            open:false,
+
+        },
+
+        Label:{
+            open:false,
+
+        },
+
+        
+
     }
 
     handleOpen = () => {
@@ -65,9 +80,9 @@ class BoardList extends Component{
     }
 
     handlerInput = (event,type)=> {
-        let dummyInput = {...this.state.descriptionForm};
+        let dummyInput = {...this.state[type]};
         dummyInput.text =event.target.value;
-        this.setState({descriptionForm: dummyInput})
+        this.setState({[type]: dummyInput})
         
     }
   
@@ -77,6 +92,30 @@ class BoardList extends Component{
         this.setState({Checklist:dummyChecklist});
     }
 
+    handlerDueDate = ()=> {
+        let dummyDueDate = {...this.state.dueDate};
+        dummyDueDate.open = !dummyDueDate.open;
+        this.setState({dueDate:dummyDueDate});
+    }
+
+    handlerLabel = ()=> {
+        let dummyLabel = {...this.state.Label};
+        dummyLabel.open = !dummyLabel.open;
+        this.setState({Label:dummyLabel});
+    }
+
+    handlerDispatch=()=> {
+        const text = this.state.headingForm.text;
+        const CardId=this.props.CardId;
+        let formData ={};
+        formData['name'] =text;
+        
+
+        if(text){
+            this.props.addCard(CardId,formData,text);
+            console.log(text)
+        }
+    }
 
     render(){
 
@@ -155,8 +194,8 @@ class BoardList extends Component{
 
         
         return(
-
-            <div  className={styles.CardList}>
+        <div>
+            <div onClick={this.handleOpen}  className={styles.CardList}>
 
                 <div className={styles.CardLabel}>
 
@@ -177,9 +216,9 @@ class BoardList extends Component{
                 </div>
 
                 <div className={styles.List_Details_Indicator}>
-                    <EditTwoToneIcon style={{fontSize:'medium'}} onClick={this.handleOpen} />
+                    <EditTwoToneIcon style={{fontSize:'medium'}}  />
                 </div>
-
+            </div>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
@@ -196,10 +235,10 @@ class BoardList extends Component{
                     <div className={style.paper}>
                         <div className={style.groupFeatures}>
                             <Button variant="outlined" className={style.buttonFeatures}>Members</Button>
-                            <Button variant="outlined" className={style.buttonFeatures}>Label</Button>
-                            <Button variant="outlined" className={style.buttonFeatures}>Due Date</Button>
+                            <Button variant="outlined" onClick={this. handlerLabel} className={style.buttonFeatures}>Label</Button>
+                            <Button variant="outlined" onClick={this.handlerDueDate}  className={style.buttonFeatures}>Due Date</Button>
                             <Button variant="outlined" onClick={this.handlerChecklist} className={style.buttonFeatures}>Checklist</Button>
-                            <SimpleMenu  Menu={"More"} option1={"Attachment"} option2={"Something"} option3={"Somehting"} />
+                            <SimpleMenu  Menu={"More v"} option1={"Attachment"} option2={"Something"} option3={"Somehting"} />
 
 
                         </div>
@@ -226,7 +265,7 @@ class BoardList extends Component{
                             </div>
                         </div>
 
-                        <div className={style.Features}>
+                        {this.state.Label.open? (<div className={style.Features}>
                             <div className={style.label}>
                                 <p>Labels</p>
                                
@@ -240,9 +279,11 @@ class BoardList extends Component{
 
                                 <Avatar className={style.addmoreButton}>+</Avatar>
                             </div>
-                        </div>
+                        </div>) :null}
 
-                        <div className={style.Features}>
+                       {this.state.dueDate.open? (
+                       
+                          <div className={style.Features}>
                             <div className={style.dueDate}>
                                 <p>Due Date</p>
                                
@@ -250,9 +291,9 @@ class BoardList extends Component{
                                   <input type="date" />
                                </div>
 
-                         
+                            
                             </div>
-                        </div>
+                        </div>) : null} 
 
                         <div className={style.Description}> 
                             <div className={style.DescriptionTitle}>
@@ -309,4 +350,19 @@ class BoardList extends Component{
     }
 
 }
-export default BoardList;
+
+const mapStateToProps = state => ({
+    LISTS:state.lists,
+})
+
+const mapDispatchToProps =dispatch => {
+  
+    return {
+        
+    addCard: (CardId,formData,text)=> 
+    dispatch(AsynAddNewCard(CardId,formData,text))
+
+           }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(BoardList);
