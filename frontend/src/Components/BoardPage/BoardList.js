@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {AsynAddNewCard} from '../../actions';
+import {AsynAddNewCard,AsynAddDescription} from '../../actions';
 import styles from './CSS/BoardCardList.module.css';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -14,18 +14,12 @@ import SubjectIcon from '@material-ui/icons/Subject';
 import TextareaAutosize from 'react-textarea-autosize';
 import CloseIcon from '@material-ui/icons/Close';
 import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import LinearDeterminate from './ProgressBar';
 import Checklist from './Checklist';
 import SimpleMenu from './Menu';
-
+import {Draggable} from 'react-beautiful-dnd';
 
 
 class BoardList extends Component{
@@ -104,16 +98,17 @@ class BoardList extends Component{
         this.setState({Label:dummyLabel});
     }
 
-    handlerDispatch=()=> {
-        const text = this.state.headingForm.text;
+    handlerDispatch=(type)=> {
+        const text = this.state[type].text;
+        const ListId=this.props.ListId;
         const CardId=this.props.CardId;
         let formData ={};
         formData['name'] =text;
         
 
-        if(text){
-            this.props.addCard(CardId,formData,text);
-            console.log(text)
+        if(text && type ==="descriptionForm"){
+            this.props.addDescription(ListId,CardId,formData,text);
+            console.log(text,CardId)
         }
     }
 
@@ -126,12 +121,19 @@ class BoardList extends Component{
 
         let Heading = null;
         let Description = null;
+        let desContent=" Add a description here";
 
-        if(!this.state.descriptionForm.open){
+        if(this.props.description!==null)
+            desContent=this.props.description;
+        
+
+
+
+        if(!this.state.descriptionForm.open ){
 
             Description =  <p  onClick= {()=>this.handleOpenForm('descriptionForm')} 
                                className={style.desciptionText}>
-            this is a dummy description, it is about the baord</p>;
+            {desContent}</p>;
         
         }
 
@@ -142,13 +144,14 @@ class BoardList extends Component{
                         style = {{resize:"none"}} 
                         onBlur= {()=> {this.handleOpenForm("descriptionForm")}}
                         onChange={(event,text)=> {this.handlerInput(event,"descriptionForm")}}
+                        placeholder={desContent}
                         className={style.Textarea}/>
 
                 <div className={styles.ButtonArea}>
                     <Button 
                     variant="contained" 
                     className={style.saveButton}
-                    onMouseDown={this.handlerDispatch}
+                    onMouseDown={()=>this.handlerDispatch("descriptionForm")}
                     >Save
                     </Button>
                     <CloseIcon onClick={()=>this.handleOpenForm("descriptionForm")}/>
@@ -181,7 +184,7 @@ class BoardList extends Component{
                     <Button 
                     variant="contained" 
                     className={style.saveButton}
-                    onMouseDown={this.handlerDispatch}
+                    onMouseDown={()=>this.handlerDispatch("headingForm")}
                     >Save
                     </Button>
                     <CloseIcon onClick={()=>this.handleOpenForm('headingForm')}/>
@@ -194,157 +197,164 @@ class BoardList extends Component{
 
         
         return(
-        <div>
-            <div onClick={this.handleOpen}  className={styles.CardList}>
+        <Draggable draggableId={String(this.props.CardId)} index={this.props.index}>
+            {provided=>(
+                    <div ref={provided.innerRef} 
+                    {...provided.draggableProps} {...provided.dragHandleProps}>
+                    <div onClick={this.handleOpen}  className={styles.CardList}>
 
-                <div className={styles.CardLabel}>
+                        <div className={styles.CardLabel}>
 
-                    <div className={styles.CardListColor}>
-                        
-                    </div>
-
-                    <div className={styles.CardListColor}>
-                        
-                    </div>
-
-
-
-                </div>
-
-                <div className={styles.ListTitle}>
-                    {this.props.heading}
-                </div>
-
-                <div className={styles.List_Details_Indicator}>
-                    <EditTwoToneIcon style={{fontSize:'medium'}}  />
-                </div>
-            </div>
-                <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    open={this.state.open}
-                    className={style.modal}
-                    onClose={this.handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                        timeout: 500,
-                }}
-            >
-                <Fade in={this.state.open}>
-                    <div className={style.paper}>
-                        <div className={style.groupFeatures}>
-                            <Button variant="outlined" className={style.buttonFeatures}>Members</Button>
-                            <Button variant="outlined" onClick={this. handlerLabel} className={style.buttonFeatures}>Label</Button>
-                            <Button variant="outlined" onClick={this.handlerDueDate}  className={style.buttonFeatures}>Due Date</Button>
-                            <Button variant="outlined" onClick={this.handlerChecklist} className={style.buttonFeatures}>Checklist</Button>
-                            <SimpleMenu  Menu={"More v"} option1={"Attachment"} option2={"Something"} option3={"Somehting"} />
-
-
-                        </div>
-
-                        <div className={style.mainHeadingTitle}>
-                            <InsertEmoticonIcon/>
-                            {Heading}
-                        </div>
-                        <div className={style.SubHeading}>{this.props.subHeading}</div>
-
-                        <div className={style.Features}>
-                            <div className={style.members}>
-                                <p>Members</p>
-                                <AvatarGroup max={4}>
-                                    <Avatar alt="Remy Sharp" />
-                                    <Avatar alt="Travis Howard" />
-                                    <Avatar alt="Cindy Baker"  />
-                                    <Avatar alt="Agnes Walker"  />
-                                    <Avatar alt="Trevor Henderson"/>
-                            
-                                </AvatarGroup>
-
-                                <Avatar className={style.addmoreButton}>+</Avatar>
-                            </div>
-                        </div>
-
-                        {this.state.Label.open? (<div className={style.Features}>
-                            <div className={style.label}>
-                                <p>Labels</p>
-                               
-                               <div className={style.labelColor}>
-                                   Red
-                               </div>
-
-                               <div className={style.labelColor}>
-                                   Blue
-                               </div>
-
-                                <Avatar className={style.addmoreButton}>+</Avatar>
-                            </div>
-                        </div>) :null}
-
-                       {this.state.dueDate.open? (
-                       
-                          <div className={style.Features}>
-                            <div className={style.dueDate}>
-                                <p>Due Date</p>
-                               
-                               <div className={style.labelColor}>
-                                  <input type="date" />
-                               </div>
-
-                            
-                            </div>
-                        </div>) : null} 
-
-                        <div className={style.Description}> 
-                            <div className={style.DescriptionTitle}>
-                                <div ><SubjectIcon/></div>
-                                <p> Description 
-                                <span onClick= {()=>this.handleOpenForm('descriptionForm')}> 
-                                Edit </span> </p>
+                            <div className={styles.CardListColor}>
                                 
                             </div>
 
-                            {Description}
-                            
-                          
-         
-                        </div>
-                    
-                        {this.state.Checklist.open ? ( <div className={style.Description}> 
-                            <div className={style.DescriptionTitle}>
-                                <div><PlaylistAddCheckIcon/></div>
-                                <p> Checklist <span> Delete </span> </p>
-                        
+                            <div className={styles.CardListColor}>
+                                
                             </div>
+
+
+
+                        </div>
+
+                        <div className={styles.ListTitle}>
+                            {this.props.heading}
+                        </div>
+
+                        <div className={styles.List_Details_Indicator}>
+                            <EditTwoToneIcon style={{fontSize:'medium'}}  />
+                        </div>
+                    </div>
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            open={this.state.open}
+                            className={style.modal}
+                            onClose={this.handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                        }}
+                    >
+                        <Fade in={this.state.open}>
+                            <div className={style.paper}>
+                                <div className={style.groupFeatures}>
+                                    <Button variant="outlined" className={style.buttonFeatures}>Members</Button>
+                                    <Button variant="outlined" onClick={this. handlerLabel} className={style.buttonFeatures}>Label</Button>
+                                    <Button variant="outlined" onClick={this.handlerDueDate}  className={style.buttonFeatures}>Due Date</Button>
+                                    <Button variant="outlined" onClick={this.handlerChecklist} className={style.buttonFeatures}>Checklist</Button>
+                                    <SimpleMenu  Menu={"More v"} option1={"Attachment"} option2={"Something"} option3={"Somehting"} />
+
+
+                                </div>
+
+                                <div className={style.mainHeadingTitle}>
+                                    <InsertEmoticonIcon/>
+                                    {Heading}
+                                </div>
+                                <div className={style.SubHeading}>{this.props.subHeading}</div>
+
+                                <div className={style.Features}>
+                                    <div className={style.members}>
+                                        <p>Members</p>
+                                        <AvatarGroup max={4}>
+                                            <Avatar alt="Remy Sharp" />
+                                            <Avatar alt="Travis Howard" />
+                                            <Avatar alt="Cindy Baker"  />
+                                            <Avatar alt="Agnes Walker"  />
+                                            <Avatar alt="Trevor Henderson"/>
+                                    
+                                        </AvatarGroup>
+
+                                        <Avatar className={style.addmoreButton}>+</Avatar>
+                                    </div>
+                                </div>
+
+                                {this.state.Label.open? (<div className={style.Features}>
+                                    <div className={style.label}>
+                                        <p>Labels</p>
+                                        
+                                        <div className={style.labelColor}>
+                                            Red
+                                        </div>
+
+                                        <div className={style.labelColor}>
+                                            Blue
+                                        </div>
+
+                                        <Avatar className={style.addmoreButton}>+</Avatar>
+                                    </div>
+                                </div>) :null}
+
+                                {this.state.dueDate.open? (
+                                
+                                <div className={style.Features}>
+                                    <div className={style.dueDate}>
+                                        <p>Due Date</p>
+                                        
+                                        <div className={style.labelColor}>
+                                        <input type="date" />
+                                        </div>
+
+                                    
+                                    </div>
+                                </div>) : null} 
+
+                                <div className={style.Description}> 
+                                    <div className={style.DescriptionTitle}>
+                                        <div ><SubjectIcon/></div>
+                                        <p> Description 
+                                        <span onClick= {()=>this.handleOpenForm('descriptionForm')}> 
+                                        Edit </span> </p>
+                                        
+                                    </div>
+
+                                    {Description}
+                                    
+                                
+
+                                </div>
                             
-                            <div className={style.progressbarSection}>
+                                {this.state.Checklist.open ? ( <div className={style.Description}> 
+                                    <div className={style.DescriptionTitle}>
+                                        <div><PlaylistAddCheckIcon/></div>
+                                        <p> Checklist <span> Delete </span> </p>
+                                
+                                    </div>
+                                    
+                                    <div className={style.progressbarSection}>
+                                    
+                                        <LinearDeterminate className={style.progressBar} progress={50}/>
+
+                                    </div>
+                                    <Checklist/>
+                                </div>) : null}
+
+                                    
+
+
+
+
+                                <div className={style.DeleteSection}>
+                                    <Button 
+                                    className={style.deleteButton}>Delete
+                                    </Button>
+                                </div>
+                                
+                                
                             
-                                <LinearDeterminate className={style.progressBar} progress={50}/>
+
 
                             </div>
-                             <Checklist/>
-                        </div>) : null}
-
-                            
-
-
-
-
-                        <div className={style.DeleteSection}>
-                            <Button 
-                            className={style.deleteButton}>Delete
-                            </Button>
-                        </div>
-                        
-                        
-                     
-
+                        </Fade>
+                    </Modal>
 
                     </div>
-                </Fade>
-            </Modal>
+            )}
+         
 
-            </div>
+          </Draggable>
 
         );
     }
@@ -360,7 +370,10 @@ const mapDispatchToProps =dispatch => {
     return {
         
     addCard: (CardId,formData,text)=> 
-    dispatch(AsynAddNewCard(CardId,formData,text))
+    dispatch(AsynAddNewCard(CardId,formData,text)),
+
+    addDescription:(ListId,CardId,formData,text)=>
+    dispatch(AsynAddDescription(ListId,CardId,formData,text))
 
            }
 }

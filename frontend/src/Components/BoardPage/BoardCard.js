@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Droppable} from 'react-beautiful-dnd';
 import {AsynAddNewCard} from '../../actions';
 import styles from './CSS/BoardCardList.module.css';
 import AddSharpIcon from '@material-ui/icons/AddSharp';
@@ -65,6 +66,7 @@ class BoardCard extends Component{
     render(){
       
         let cardList=this.props.cardList;
+       
         let cardRender=null;
         let cardtitle=null;
 
@@ -91,13 +93,17 @@ class BoardCard extends Component{
        
         if(cardList!==null){
            
-           cardRender = cardList.map(item =>
+           cardRender = cardList.map((item,index) =>
              
             (<BoardList 
-            key={item.id} 
-            CardId={this.props.id}
+            key={item.id}
+            index={index}
+            CardId={item.id} 
+            ListId={this.props.id}
             heading={item.name}
-            subHeading={this.props.title}/>));
+            subHeading={this.props.title}
+            description={item.desc}
+            />));
           
         }
 
@@ -116,6 +122,7 @@ class BoardCard extends Component{
                 <div>
                     <TextareaAutosize autoFocus
                     style = {{resize:"none"}} 
+                    placeholder={"Add a new card .."}
                     onBlur= {()=> {this.handlerOnBlur()}}
                     onChange={(event)=> {this.handlerInput(event)}}
                     className={styles.Textarea}/>
@@ -146,34 +153,37 @@ class BoardCard extends Component{
 
 
         return(
-            <div className={styles.Card}>
-                <div className={styles.CardHeader}>
+            <Droppable droppableId={String(this.props.id)}>
+                {
+                    provided=>(
+            <div {...provided.droppableProps} ref={provided.innerRef} className={styles.Card}>
+                    <div className={styles.CardHeader}>
+                        
+                        <div className={styles.CardTitleInput}>
+                            {cardtitle}
+                        </div>
                     
-                    <div className={styles.CardTitleInput}>
-                        {cardtitle}
+                        <div className={styles.CardHeaderMenu}>
+                            <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        </div>
+
                     </div>
-                   
-                    <div className={styles.CardHeaderMenu}>
-                        <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
-                    </div>
-
+                <div className={styles.List}>
+                            <div >
+                    
+                                {cardRender }
+                            </div>   
+                            
+                    
+                            <div className={styles.CardFooter}>
+                                {NewCard}
+                            </div>
+                        </div>
+                    {provided.placeholder}
                 </div>
-            <div className={styles.List}>
-                <div >
-          
-                    {cardRender }
-                </div>   
-                  
-          
-                <div className={styles.CardFooter}>
-                    {NewCard}
-                </div>
-            </div>
-
-                
-
-
-            </div>
+                    )}
+            
+            </Droppable>
 
         );
     }

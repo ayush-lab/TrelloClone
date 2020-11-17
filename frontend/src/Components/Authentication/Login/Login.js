@@ -278,8 +278,8 @@ inputBlurHandler = (event,inputIdentifier)=> {
                 }
                   <Link to="ForgotPassword"><p className="forgot-password"> Forgot password?</p></Link>
                 {SigninSumbitButton}
-              <p className="account-login"> Already have an account?  <Link to="/login"> 
-              Login</Link></p>
+              <p className="account-login"> Don't have an account?  <Link to="/signup"> 
+              Signup</Link></p>
 
             </form> 
             </div>

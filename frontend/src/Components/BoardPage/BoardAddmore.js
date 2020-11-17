@@ -66,6 +66,7 @@ class BoardAddmore extends Component{
                 style = {{resize:"none"}} 
                 onBlur= {()=> {this.handlerOnBlur()}}
                 onChange={(event)=> {this.handlerInput(event)}}
+                placeholder={"Add a new list .."}
                 className={styles.BoardTextarea}/>
      
 

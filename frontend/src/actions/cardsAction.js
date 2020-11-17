@@ -40,3 +40,41 @@ export const AsynAddNewCard = (ListId,formData,text)=> {
         })
     }
 }
+
+export const addDescription = (text,listId,cardId)=> {
+
+    return {
+        type:CONSTANTS.ADD_CARD_DESC,
+        payload:{text,listId,cardId},
+        
+    }
+};
+
+
+
+export const AsynAddDescription = (ListId,CardId,formData,text)=> {
+    
+    return dispatch => {
+
+       // AuthService.BoardCard(ListId,formData)
+        //.then(response => {console.log('Response:', response) 
+
+        //if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+          //  { 
+               
+                dispatch(addDescription(text,ListId,CardId));
+        
+     //       }
+           
+      //  else if(response.status===401) alert("Something went wrong")})
+        
+     //   .catch(error=>{console.log(error.response); 
+            //this.setState({loading:false});
+        //this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+      //  })
+    }
+}

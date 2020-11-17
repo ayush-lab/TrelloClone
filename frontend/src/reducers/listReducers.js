@@ -36,6 +36,7 @@ const listReducers = (state=initialState,action)=> {
             const newCard = {
                 name:action.payload.text,
                 id:cardId,
+                desc:"",
             };
             
             cardId+=1;
@@ -49,10 +50,32 @@ const listReducers = (state=initialState,action)=> {
                     console.log(list)
             }})
 
-            console.log("====>",newState)
+            
             return {...newState}
             break;
         
+            case CONSTANTS.ADD_CARD_DESC:
+            
+            
+                
+                newState = {...state};
+                 console.log(action.payload.cardId, action.payload.listId)
+    
+                newState.list.lists.map(list=> {
+                    if(list.id === action.payload.listId){
+                        
+                        list.cards.map(card=>{
+                            if(card.id === action.payload.cardId){
+                                card.desc=action.payload.text;
+                               
+                            }
+                        })
+                }})
+    
+                console.log("====>",newState)
+                return {...newState}
+                break;
+            
             
 
         

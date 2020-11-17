@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {DragDropContext} from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
 import {initCardList} from '../../actions';
 import BoardCard from './BoardCard';
@@ -7,12 +8,19 @@ import Navbar from '../Navigation/Navbar';
 import BoardNav from '../Navigation/BoardNav';
 import BoardAddmore from './BoardAddmore';
 
+
+
 class BoardPage extends Component{
 
     state = {
         BoardId:this.props.match.params.BoardId,
         BoardName:this.props.match.params.BoardName,
         List:'',
+    }
+
+    onDragEnd =()=> {
+        // reordering logic
+
     }
 
    componentDidMount(){
@@ -49,8 +57,8 @@ class BoardPage extends Component{
        }
 
         return(
-
-            <div className={styles.BoardPage}>
+            <DragDropContext onDragEnd={this.onDragEnd}>        
+                <div className={styles.BoardPage}>
                 <Navbar/>
                 <BoardNav title={title}/>
                 
@@ -65,12 +73,9 @@ class BoardPage extends Component{
                    
                 </div>
               </div>
-
-             
-
-            
+           
             </div>
-
+           </DragDropContext>
         );
 
 
