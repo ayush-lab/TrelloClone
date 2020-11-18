@@ -7,7 +7,8 @@ import styles from './CSS/BoardCardList.module.css';
 import Navbar from '../Navigation/Navbar';
 import BoardNav from '../Navigation/BoardNav';
 import BoardAddmore from './BoardAddmore';
-
+import {sort} from '../../actions';
+import Gif from '../../assets/Images/143.gif';
 
 
 class BoardPage extends Component{
@@ -18,8 +19,20 @@ class BoardPage extends Component{
         List:'',
     }
 
-    onDragEnd =()=> {
-        // reordering logic
+    onDragEnd =(result)=> {
+        const {destination,source,draggableId} = result;
+
+        if(!destination){
+            return;
+        }
+
+        this.props.sort(
+            source.droppableId,
+            destination.droppableId,
+            source.index,
+            destination.index,
+            draggableId
+        )
 
     }
 
@@ -42,17 +55,36 @@ class BoardPage extends Component{
 
         title=LISTS.list.name;
     
-        lists = LISTS.list.lists.map(list => (<BoardCard 
+        lists = 
+            (<div className={styles.BoardCardParent}>
+                <div className={styles.BoardCard}>
+                
+                        { LISTS.list.lists.map(list => (<BoardCard 
             boardId={this.state.BoardId}
             key={list.id}
             title={list.name}
-            id={list.id} 
-            cardList={list.cards}/>));
+            List_id={list.id} 
+            cardList={list.cards}/>))}
+
+            <BoardAddmore
+                    boardId={this.state.BoardId}/>
+
+                
+                </div>
+            </div>);
+        
+           
+                  
 
        }
 
-       else{
-           lists =<p>Loading...</p>;
+      else{
+           lists =(
+           <div className={styles.loader}>
+                <img src={Gif}  alt={"loading"}/>
+           </div>);
+
+
            title="";
        }
 
@@ -61,18 +93,9 @@ class BoardPage extends Component{
                 <div className={styles.BoardPage}>
                 <Navbar/>
                 <BoardNav title={title}/>
-                
-             <div className={styles.BoardCardParent}>
-                <div className={styles.BoardCard}>
-                  
+
                         {lists}
 
-                    <BoardAddmore
-                    boardId={this.state.BoardId}/>
-                  
-                   
-                </div>
-              </div>
            
             </div>
            </DragDropContext>
@@ -90,9 +113,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps =dispatch => {
   
     return {
-        ShowListCard: (BoardId)=> dispatch(initCardList(BoardId))
-
+        ShowListCard: (BoardId)=> dispatch(initCardList(BoardId)),
+        sort: (a,b,c,d)  => dispatch(sort(a,b,c,d)),
            }
-}
+
+
+    } 
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(BoardPage);

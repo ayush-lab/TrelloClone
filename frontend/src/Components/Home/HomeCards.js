@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import styles from './CSS/HomeCards.module.css';
+import {Link,Redirect} from 'react-router-dom';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import AuthService from '../../ApiServices/services';
+
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
   }
 
-function HomeCards(){
+function HomeCards(props){
    
     const [open, setOpen] = useState(false);
 
@@ -34,14 +35,15 @@ function HomeCards(){
 
       return(
             <>
-               
+             
                 <div className={styles.boardsCardSection}>
 
-                    <p className={styles.boardTitle}>Flow the new Trello </p>        
+                <Link className={styles.Link} to={`/b/${props.BoardId}/${props.Title}`} ><p className={styles.boardTitle}>{props.Title}</p> </Link>        
                     <div className={styles.boardCardStar}> 
                     {star ? <StarRoundedIcon onClick={handleClick}/> : <StarBorderRoundedIcon onClick={handleClick} /> }</div>
 
                 </div>
+           
 
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     {

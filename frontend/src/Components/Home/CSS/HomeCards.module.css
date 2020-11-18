@@ -1,3 +1,12 @@
+.Link{
+    text-decoration: none !important;
+    color:white;
+}
+
+.Link:hover{
+    text-decoration:none;
+}
+
 .BoardSectionName{
     display:flex;
     font:'Gilroy';

@@ -48,7 +48,8 @@ class BoardCard extends Component{
     }
 
     handlerDispatch = ()=> {
-        const CardId=this.props.id;
+        const CardId=this.props.List_id;
+        console.log(CardId);
         const {text} = this.state;
 
         let formData ={};
@@ -99,10 +100,11 @@ class BoardCard extends Component{
             key={item.id}
             index={index}
             CardId={item.id} 
-            ListId={this.props.id}
+            ListId={this.props.List_id}
             heading={item.name}
             subHeading={this.props.title}
             description={item.desc}
+            dueDate={item.due_date}
             />));
           
         }
@@ -153,7 +155,7 @@ class BoardCard extends Component{
 
 
         return(
-            <Droppable droppableId={String(this.props.id)}>
+            <Droppable droppableId={String(this.props.List_id)}>
                 {
                     provided=>(
             <div {...provided.droppableProps} ref={provided.innerRef} className={styles.Card}>
@@ -198,8 +200,8 @@ const mapDispatchToProps =dispatch => {
   
     return {
         
-    addCard: (CardId,formData,text)=> 
-    dispatch(AsynAddNewCard(CardId,formData,text))
+    addCard: (ListId,formData,text)=> 
+    dispatch(AsynAddNewCard(ListId,formData,text))
 
            }
 }

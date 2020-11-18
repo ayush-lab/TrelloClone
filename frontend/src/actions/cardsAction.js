@@ -50,31 +50,107 @@ export const addDescription = (text,listId,cardId)=> {
     }
 };
 
+export const editCardName = (text,listId,cardId)=> {
+
+    return {
+        type:CONSTANTS.EDIT_CARD_NAME,
+        payload:{text,listId,cardId},
+        
+    }
+};
+
+export const editCardDueDate = (text,listId,cardId)=> {
+
+    return {
+        type:CONSTANTS.EDIT_CARD_DUEDATE,
+        payload:{text,listId,cardId},
+        
+    }
+};
 
 
 export const AsynAddDescription = (ListId,CardId,formData,text)=> {
     
     return dispatch => {
 
-       // AuthService.BoardCard(ListId,formData)
-        //.then(response => {console.log('Response:', response) 
+       AuthService.EditCard(CardId,formData)
+        .then(response => {console.log('Response:', response) 
 
-        //if(response.status ===201 || response.status ===200 || response.status ===202) 
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
           
-          //  { 
+          { 
                
                 dispatch(addDescription(text,ListId,CardId));
         
-     //       }
+           }
            
-      //  else if(response.status===401) alert("Something went wrong")})
+        else if(response.status===401) alert("Something went wrong")})
         
-     //   .catch(error=>{console.log(error.response); 
-            //this.setState({loading:false});
-        //this.setState({text:error.response.data.detail, type: "error"})
+        .catch(error=>{console.log(error.response); 
+        //     this.setState({loading:false});
+        // this.setState({text:error.response.data.detail, type: "error"})
 
         
         
-      //  })
+        })
     }
 }
+
+
+
+export const AsynEditCardName = (ListId,CardId,formData,text)=> {
+    
+    return dispatch => {
+
+       AuthService.EditCard(CardId,formData)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+          { 
+               
+                dispatch(editCardName(text,ListId,CardId));
+        
+           }
+           
+        else if(response.status===401) alert("Something went wrong")})
+        
+        .catch(error=>{console.log(error.response); 
+        //     this.setState({loading:false});
+        // this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+        })
+    }
+}
+
+
+export const AsynEditCardDueDate = (ListId,CardId,formData,text)=> {
+    
+    return dispatch => {
+
+       AuthService.EditCard(CardId,formData)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+          { 
+               
+                dispatch(editCardDueDate(text,ListId,CardId));
+        
+           }
+           
+        else if(response.status===401) alert("Something went wrong")})
+        
+        .catch(error=>{console.log(error.response); 
+        //     this.setState({loading:false});
+        // this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+        })
+    }
+}
+
+

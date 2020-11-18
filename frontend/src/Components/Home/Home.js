@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {AsynBoards} from '../../actions';
 import styles from './CSS/home.module.css';
 import Navbar from '../Navigation/Navbar';
 import HomeSideNav from './HomeSideNav';
@@ -10,7 +12,50 @@ import PeopleIcon from '@material-ui/icons/People';
 
 class Home extends Component{
 
+    componentDidMount(){
+            this.props.Boards();
+        }
+
     render(){
+
+        let {Home} = this.props;
+        console.log(Home);
+        
+
+        let personal_boards=null;
+        let starred_boards=null;
+        let team_boards=null;
+
+
+        if(Home!==null){
+            
+            personal_boards=Home.Boards.personal_boards
+            .map(board=> (
+                <HomeCards
+                key={board.id}
+                BoardId={board.id}
+                Title={board.name}
+                />
+            ));
+
+            starred_boards=Home.Boards.starred_boards
+            .map(board=> (
+                <HomeCards 
+                key={board.id}
+                BoardId={board.id}
+                Title={board.name}/>
+            ));
+
+            team_boards=Home.Boards.team_baords
+            .map(board=> (
+                <HomeCards
+                key={board.id}
+                BoardId={board.id}
+                Title={board.name}/>
+            ));
+        }
+           
+
 
         return(
             <>
@@ -35,11 +80,8 @@ class Home extends Component{
 
 
                              <div className={styles.HomeBoardComponent}>   
-                                <HomeCards/>
-
-                                <HomeCards/>
-
-                                <HomeCards/>
+                                
+                                {starred_boards}
                                 
                                 <AddTeam/>
                               
@@ -57,9 +99,7 @@ class Home extends Component{
 
 
                              <div className={styles.HomeBoardComponent}>   
-                                <HomeCards/>
-
-                                <HomeCards/>
+                                {personal_boards}
                             </div>
                        </div>
 
@@ -74,7 +114,7 @@ class Home extends Component{
 
 
                              <div className={styles.HomeBoardComponent}>   
-                                <HomeCards/>
+                                {team_boards}
 
                             </div>
                        
@@ -90,4 +130,19 @@ class Home extends Component{
 
 } 
 
-export default Home;
+
+const mapStateToProps = state => ({
+    Home:state.Home,
+    
+})
+
+const mapDispatchToProps =dispatch => {
+  
+    return {
+       Boards: ()=> dispatch(AsynBoards()),
+           }
+
+
+    } 
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

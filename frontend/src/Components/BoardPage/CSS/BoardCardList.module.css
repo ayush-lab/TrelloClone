@@ -1,6 +1,6 @@
 .BoardPage{
     overflow-y:hidden !important;
-
+    
 }
 
 .BoardCardParent{
@@ -83,7 +83,7 @@
     border-radius: 6px;    
     padding:6px;
     padding-bottom:0;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     transition: all 0.4s ease;
     overflow-y:visible !important;
 }
@@ -210,4 +210,19 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background: #89609E;
+}
+
+.loader{
+   
+    
+    
+}
+
+.loader img{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
 }

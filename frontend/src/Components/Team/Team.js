@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styles from './CSS/TeamHome.module.css';
+import Members from './Members';
 import Navbar from '../Navigation/Navbar';
 import HomeCards from '../Home/HomeCards';
 import Profile from './TeamProfile';
@@ -115,15 +116,18 @@ export default function Team() {
             <HomeCards/>
             <HomeCards/>
             <AddTeam/>
-        </div>
+          </div>
             
         </TabPanel>
+
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
+            <Members/>
         </TabPanel>
+
         <TabPanel value={value} index={2} dir={theme.direction}>
           Item Three
         </TabPanel>
+
       </SwipeableViews>
     </div>
                 

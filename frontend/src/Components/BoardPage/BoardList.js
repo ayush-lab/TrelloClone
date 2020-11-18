@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {AsynAddNewCard,AsynAddDescription} from '../../actions';
+import {AsynAddNewCard,AsynAddDescription,AsynEditCardName,AsynEditCardDueDate} from '../../actions';
 import styles from './CSS/BoardCardList.module.css';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -24,6 +24,7 @@ import {Draggable} from 'react-beautiful-dnd';
 
 class BoardList extends Component{
 
+    
 
 
     state = {
@@ -44,6 +45,7 @@ class BoardList extends Component{
 
         dueDate:{
             open:false,
+            text:'',
 
         },
 
@@ -103,30 +105,48 @@ class BoardList extends Component{
         const ListId=this.props.ListId;
         const CardId=this.props.CardId;
         let formData ={};
-        formData['name'] =text;
+        
         
 
         if(text && type ==="descriptionForm"){
+            formData['desc'] =text;
             this.props.addDescription(ListId,CardId,formData,text);
+            console.log(text,CardId)
+        }
+
+        if(text && type ==="headingForm"){
+            formData['name'] =text
+            this.props.editCardName(ListId,CardId,formData,text);
             console.log(text,CardId)
         }
     }
 
-    render(){
+    dueDate = (e)=>{
+        let dueDateValue = e.target.value;
+        let a = new Date()
 
-        const options = [
-            'one', 'two', 'three'
-          ];
-          const defaultOption = options[0];
+        let formData = {};
+        formData['due_date']=dueDateValue + "T"+ a.getHours()+':'+a.getMinutes()+':'+a.getSeconds()+"+"+'05:30';
+        this.props.editCardDueDate(this.props.ListId,this.props.CardId,formData,formData['dueDate']);
+        console.log(formData['due_date'])
+    }
+
+
+    render(){
 
         let Heading = null;
         let Description = null;
         let desContent=" Add a description here";
+        let dueDate=null;
 
         if(this.props.description!==null)
             desContent=this.props.description;
         
-
+        if(this.props.dueDate){
+            let a=this.props.dueDate;
+            a = a.split('T')[0];
+            dueDate=a;
+        }
 
 
         if(!this.state.descriptionForm.open ){
@@ -192,9 +212,9 @@ class BoardList extends Component{
 
             </div>
             );
+
         }
-
-
+        
         
         return(
         <Draggable draggableId={String(this.props.CardId)} index={this.props.index}>
@@ -294,7 +314,9 @@ class BoardList extends Component{
                                         <p>Due Date</p>
                                         
                                         <div className={style.labelColor}>
-                                        <input type="date" />
+                                            
+                                        <input type="date" value={dueDate} onChange={(event)=>this.dueDate(event)}/>
+                                       
                                         </div>
 
                                     
@@ -373,8 +395,15 @@ const mapDispatchToProps =dispatch => {
     dispatch(AsynAddNewCard(CardId,formData,text)),
 
     addDescription:(ListId,CardId,formData,text)=>
-    dispatch(AsynAddDescription(ListId,CardId,formData,text))
+    dispatch(AsynAddDescription(ListId,CardId,formData,text)),
 
+    editCardName: (ListId,CardId,formData,text)=>
+    dispatch(AsynEditCardName(ListId,CardId,formData,text)),
+
+    editCardDueDate: (ListId,CardId,formData,text)=>
+    dispatch(AsynEditCardDueDate(ListId,CardId,formData,text)),
+
+    
            }
 }
 

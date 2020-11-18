@@ -1,0 +1,103 @@
+.flexRow{
+    display:flex;
+
+}
+
+.MembersCount{
+    display:flex;
+    flex-direction:column;
+    margin-right:50px;
+    flex-grow:0;
+    
+}
+
+.MembersCount h3{
+    color: #003554;
+    font-size:19px;
+    margin-bottom: 23px;
+}
+
+.MembersCount p{
+    color: #003554;
+    background:rgb(223, 216, 216);
+    border-radius:3px;
+    padding:3px;
+    text-align:center;
+}
+
+.HeadingMain{
+    display:flex;
+    flex-direction: column;
+    
+    flex-grow:1;
+}
+
+
+.HeadingBar{
+    display:flex;
+    justify-content: space-between;
+  
+    
+}
+
+.HeadingBar h3{
+    font-size:19px;
+    font-weight:bolder;    
+    color: #003554;
+    align-self:center;
+}
+
+.HeadingBar button{
+    background: #61BD4F;
+    color:white;
+    padding:4px;
+    border-radius:5px;
+}
+
+.GroupIcon{
+    margin-right:5px;
+    margin-left:5px;
+    font-size:15px;
+}
+
+
+.memBar{
+    display:flex;
+    justify-content:space-between;
+}
+
+.memBar button{
+   text-align:center;
+   justify-content: center;
+   height:30px;
+   margin-right:20px;
+   margin-top:10px;
+   color: #003554;
+   background:rgb(223, 216, 216);
+   border-radius:3px;
+}
+
+
+.memBarRow{
+    display:flex;
+}
+.Name{
+    margin-left:10px;
+    margin-top:15px;
+    line-height:7px;
+}
+
+.UserName{
+    
+}
+
+.NameId{
+    color: #625F5F;
+}
+
+
+.memBarRow img{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+}
