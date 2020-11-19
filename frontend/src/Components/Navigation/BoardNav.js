@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import './BoardNav.css';
 import TextareaAutosize from 'react-textarea-autosize';
-import {addTitle} from '../../actions';
+import {AsynStarringBoard} from '../../actions';
 import {connect} from 'react-redux';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import Visibility from './visibility';
+import BoardMembers from './Boardmembers';
+import  TransitionsModal  from '../BoardPage/Modal';
 
 class BoardNav extends Component{
 
@@ -35,18 +38,33 @@ class BoardNav extends Component{
             const {text} = this.state;
 
             if(text){
-                dispatch(addTitle(text));
+                //dispatch(addTitle(text));
         
             }
 
             
-
     }}
+
+    star=()=>{
+        this.props.StarringBoard(this.props.boardId);
+    }
 
     render(){
 
+        let {Home} = this.props;
+        let star =false;
 
-        let NewCard = (<p  onClick= {this.handleOpenForm} className="navbar-brand-board">{this.props.title}</p>);
+        if(Home){
+        Home.Boards.personal_boards.map((
+            board,index)=> { 
+                if(board.id == this.props.boardId) 
+                    { star=board.starred; console.log(board.id)}}
+        )}
+
+        console.log("star Status:",star,this.props.boardId)
+
+        let NewCard = (<p  onClick= {this.handleOpenForm} className="navbar-brand-board">
+                           {this.props.title}</p>);
 
        
         
@@ -71,8 +89,7 @@ class BoardNav extends Component{
                  className="navbar-brand-board">{this.props.title}</p>);
         }
 
-
-
+        
 
     return(
 
@@ -92,17 +109,27 @@ class BoardNav extends Component{
         <ul className="navbar-nav mr-auto">
             
             <li className="nav-item ">
-                <NavLink to="/Cart" className="nav-link star-board-nav"> 
-                <StarBorderRoundedIcon
-                className="fa fa-star star-icon-nav" /></NavLink>
+                <div onClick={this.star}className="nav-link star-board-nav"> 
+                   {star?(<StarBorderRoundedIcon
+                    className="fa fa-star star-icon-nav star"  />)
+                    :(<StarBorderRoundedIcon
+                    className="fa fa-star star-icon-nav" />)}
+                </div>
                 
             </li>
                 
             <li className="nav-item">
-                <NavLink to="/Cart" className="nav-link team-board-visibility-nav"> 
-                <i data-toggle="tooltip" data-placement="top" title="Bookmarked Courses"
-                className="fa fa-users users-nav" aria-hidden="true"></i>
-                <span className="users-visibility-nav">Team visibility</span></NavLink>
+
+                <Visibility/>
+                
+            </li>
+        
+        <li className="nav-item">
+            <BoardMembers/>
+        </li>
+
+        <li className="nav-item ml-3">
+            <TransitionsModal button={"board"} BoardId={this.props.boardId}/>
                 
             </li>
         
@@ -118,4 +145,19 @@ class BoardNav extends Component{
 </nav>
     )}}
 
-export default connect()(BoardNav);
+    const mapStateToProps = state => ({
+    Home:state.Home,
+        
+    })
+
+    const mapDispatchToProps =dispatch => {
+    
+    return {
+       StarringBoard: (id)=> dispatch(AsynStarringBoard(id)),
+           }
+
+
+    } 
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(BoardNav);

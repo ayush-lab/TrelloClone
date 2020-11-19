@@ -48,13 +48,14 @@ class BoardPage extends Component{
         let {LISTS} =this.props; 
         let title = "";
         let lists;
+        let star=false;
         console.log(LISTS);
       
 
        if(LISTS){
 
         title=LISTS.list.name;
-    
+        star=LISTS.list.starred;
         lists = 
             (<div className={styles.BoardCardParent}>
                 <div className={styles.BoardCard}>
@@ -92,7 +93,7 @@ class BoardPage extends Component{
             <DragDropContext onDragEnd={this.onDragEnd}>        
                 <div className={styles.BoardPage}>
                 <Navbar/>
-                <BoardNav title={title}/>
+                <BoardNav title={title} boardId={this.state.BoardId} />
 
                         {lists}
 

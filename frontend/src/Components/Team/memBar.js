@@ -3,7 +3,7 @@ import styles from './CSS/Members.module.css';
 import profilePic from '../../assets/Images/TeamProfile.jpg';
 
 
-function memBar() {
+function memBar(props) {
 
     return(
         <div >
@@ -12,7 +12,7 @@ function memBar() {
                 <div className={styles.memBarRow}>
                     <img src={profilePic} alt={"ptofile picture"}/>
                     <div className={styles.Name}>
-                        <p className={styles.UserName}>ayush verma</p>
+                        <p className={styles.UserName}>{props.Name}</p>
                         <p className={styles.NameId}>@121223</p>
                     </div>
                 </div>

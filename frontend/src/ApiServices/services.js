@@ -32,12 +32,14 @@ class AuthServices {
     }
 
     ResetPassword(data,id){
-        return axios.post(`/auth/user/${id}`,data);
+        return axios.post(`/auth/user/${id}/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            
+            }});
     }
     
-    UpdatedCourse(data){
-        return axios.put('home/courseUpdate',data);
-    }
 
     logout(){
        localStorage.clear();
@@ -73,6 +75,19 @@ class AuthServices {
             }
         })
     }
+
+     StarringBoards(BoardId,data){
+        return axios.put(`boards/${BoardId}/star/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            
+            }
+        })
+    }
+
+
+
 
     BoardList(id,data){
         return axios.post(`/boards/${id}/lists/`,data,{
@@ -110,11 +125,73 @@ class AuthServices {
         })
     }
 
+    EditList(ListId,data){
+        return axios.put(`lists/${ListId}/edit/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+    // To add and remove members in the board
 
+    AddMembers(BoardId,data){
+        return axios.post(`/boards/${BoardId}/edit/members/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
 
+    AddMembersCard(BoardId,data){
+        return axios.post(`/cards/${BoardId}/members/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
 
+    // To leave a board
+   
+    LeaveBoard(BoardId,data){
+        return axios.put(`boards/${BoardId}/members`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
 
+    CreateTeam(data){
+        return axios.post(`/teams/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
 
+    // view the list of team of a user
+
+    ViewTeam(){
+        return axios.get(`/teams/`,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+
+    ViewTeamDetails(id){
+        return axios.get(`/teams/${id}`,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
 
     
 }

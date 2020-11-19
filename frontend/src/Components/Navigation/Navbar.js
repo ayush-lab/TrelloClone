@@ -54,7 +54,7 @@ class Navbar extends Component {
         <li className="nav-item">
         
       
-        <Avatar style={{background:"#e9c46a", color:"white"}}>{firstLetter[0].toUpperCase()}</Avatar>
+        <Avatar style={{background:"white", color:"#89609E"}}>{firstLetter[0].toUpperCase()}</Avatar>
         
         
         </li>

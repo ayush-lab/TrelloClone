@@ -110,7 +110,7 @@ formHandler = (event)=> {
              localStorage.setItem('access',response.data.access);
              localStorage.setItem('userId',response.data.id);
              localStorage.setItem('userName',response.data.name); 
-             this.setState({redirect:'/HomePage'})
+             this.setState({redirect:'/Home'})
    
         
             }

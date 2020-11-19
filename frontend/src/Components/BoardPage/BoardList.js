@@ -20,7 +20,7 @@ import LinearDeterminate from './ProgressBar';
 import Checklist from './Checklist';
 import SimpleMenu from './Menu';
 import {Draggable} from 'react-beautiful-dnd';
-
+import TransitionsModal from './Modal';
 
 class BoardList extends Component{
 
@@ -134,10 +134,37 @@ class BoardList extends Component{
 
     render(){
 
+        
+        let {Members} =this.props;
+        console.log(Members)
+
         let Heading = null;
         let Description = null;
         let desContent=" Add a description here";
         let dueDate=null;
+        let members = null;
+
+
+        if(Members){
+        if(Members.Boards.members!==[]){
+            members = (
+                <div className={style.Features}>
+                                    <div className={style.members}>
+                                        <p>Members</p>
+                                        <AvatarGroup max={4}>
+                                        {
+                                          Members.Boards.members.map((
+                                              avatar,index)=> (<Avatar key={index} alt={avatar}>{avatar[0].toUpperCase()}</Avatar>)
+                                          )
+                                        }
+                                     
+                                        </AvatarGroup>
+
+                                        <Avatar className={style.addmoreButton}>+</Avatar>
+                                    </div>
+                                </div>
+            )
+        }}
 
         if(this.props.description!==null)
             desContent=this.props.description;
@@ -260,7 +287,8 @@ class BoardList extends Component{
                         <Fade in={this.state.open}>
                             <div className={style.paper}>
                                 <div className={style.groupFeatures}>
-                                    <Button variant="outlined" className={style.buttonFeatures}>Members</Button>
+                                    <TransitionsModal button={"card"} cardId={this.props.CardId}/>
+                                    
                                     <Button variant="outlined" onClick={this. handlerLabel} className={style.buttonFeatures}>Label</Button>
                                     <Button variant="outlined" onClick={this.handlerDueDate}  className={style.buttonFeatures}>Due Date</Button>
                                     <Button variant="outlined" onClick={this.handlerChecklist} className={style.buttonFeatures}>Checklist</Button>
@@ -275,21 +303,7 @@ class BoardList extends Component{
                                 </div>
                                 <div className={style.SubHeading}>{this.props.subHeading}</div>
 
-                                <div className={style.Features}>
-                                    <div className={style.members}>
-                                        <p>Members</p>
-                                        <AvatarGroup max={4}>
-                                            <Avatar alt="Remy Sharp" />
-                                            <Avatar alt="Travis Howard" />
-                                            <Avatar alt="Cindy Baker"  />
-                                            <Avatar alt="Agnes Walker"  />
-                                            <Avatar alt="Trevor Henderson"/>
-                                    
-                                        </AvatarGroup>
-
-                                        <Avatar className={style.addmoreButton}>+</Avatar>
-                                    </div>
-                                </div>
+                                {members}
 
                                 {this.state.Label.open? (<div className={style.Features}>
                                     <div className={style.label}>
@@ -385,6 +399,7 @@ class BoardList extends Component{
 
 const mapStateToProps = state => ({
     LISTS:state.lists,
+    Members:state.Members,
 })
 
 const mapDispatchToProps =dispatch => {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {AsynBoards} from '../../actions';
+import {Redirect} from 'react-router-dom';
 import styles from './CSS/home.module.css';
 import Navbar from '../Navigation/Navbar';
 import HomeSideNav from './HomeSideNav';
@@ -26,15 +27,19 @@ class Home extends Component{
         let starred_boards=null;
         let team_boards=null;
 
-
+        
         if(Home!==null){
             
+            if(Home.redirect){
+                return <Redirect to={Home.redirect}/>
+            }
             personal_boards=Home.Boards.personal_boards
             .map(board=> (
                 <HomeCards
                 key={board.id}
                 BoardId={board.id}
                 Title={board.name}
+                star={board.starred}
                 />
             ));
 
@@ -43,7 +48,8 @@ class Home extends Component{
                 <HomeCards 
                 key={board.id}
                 BoardId={board.id}
-                Title={board.name}/>
+                Title={board.name}
+                star={board.starred}/>
             ));
 
             team_boards=Home.Boards.team_baords
@@ -51,7 +57,8 @@ class Home extends Component{
                 <HomeCards
                 key={board.id}
                 BoardId={board.id}
-                Title={board.name}/>
+                Title={board.name}
+                star={board.starred}/>
             ));
         }
            

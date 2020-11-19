@@ -251,7 +251,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
         };
 
-        let SigninSumbitButton= <SumbitButton className={"Sumbit-btn"} Label={"Create Account"}/>;
+        let SigninSumbitButton= <SumbitButton className={"Sumbit-btn"} Label={"Reset Password"}/>;
    
     
         if(this.state.loading){

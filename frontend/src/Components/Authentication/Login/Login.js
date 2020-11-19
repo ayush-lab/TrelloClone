@@ -199,7 +199,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
                      localStorage.setItem('refresh', response.data.refresh);
                      localStorage.setItem('userName',response.data.name); 
                    
-                     this.setState({ redirect: "/homepage" });
+                     this.setState({ redirect: "/home" });
                 }
                  
 
@@ -208,7 +208,11 @@ inputBlurHandler = (event,inputIdentifier)=> {
 
             .catch(error=>{console.log(error.response);
                  this.setState({loading:false})
+                 
                  this.setState({text:error.response.data.detail, type: "error"})
+                 if(error.response.request.statusText === "Forbidden"){
+                    this.setState({ redirect: "/signup/otp" });
+                 }
                 } );
             
             

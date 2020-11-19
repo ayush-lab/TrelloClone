@@ -15,7 +15,31 @@ import Navbar from '../Navigation/Navbar'
 
 class LandingPage extends Component{
 
+  logout = ()=> {
+    localStorage.removeItem('access');
+  }
+
     render(){
+
+       let AuthButton = null;
+
+       if(localStorage.getItem('access') === null){
+         AuthButton = (
+          <div className={styles.AuthButton}>
+          <Link to='/login'>  <p> Log in</p></Link>
+            <Link to='signup'><h3>Sign up</h3></Link>
+        </div>
+         )
+       }
+
+       else if(localStorage.getItem('access')){
+        AuthButton = (
+          <div className={styles.AuthButton}>
+          <Link to='/login'>  <p onClick={this.logout}> Logout </p></Link>
+           
+        </div>
+         )
+       }
 
         return(
             <>
@@ -26,10 +50,7 @@ class LandingPage extends Component{
                     </div>
 
                     
-                    <div className={styles.AuthButton}>
-                      <Link to='/login'>  <p> Log in</p></Link>
-                        <Link to='signup'><h3>Sign up</h3></Link>
-                    </div>
+                   {AuthButton}
                     
 
                     

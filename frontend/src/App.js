@@ -32,7 +32,8 @@ function App() {
      <Route path='/Homepage' component={LandingPage}/>
 
      <Route path='/home' component={Home}/>
-     <Route path='/team' component={Team}/>
+     <Route path='/team/:teamId' 
+     render ={props =><Team key={props.location.pathname} {...props}/>}/>
 
 
      <Redirect to="/home"/> 

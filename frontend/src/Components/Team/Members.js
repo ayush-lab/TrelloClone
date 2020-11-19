@@ -4,7 +4,16 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import MemBar from './memBar';
 
 
-function members() {
+function members(props) {
+
+    let users = null;
+
+    if(props.users!==null){
+        console.log(props.users.team)
+       users= props.users.team.members.map(user=>
+            (<MemBar Name={user.name} key={user.id}/>
+        ))
+    }
 
     return(
         <div>
@@ -31,13 +40,7 @@ function members() {
 
 
                     <hr/>
-
-
-                  
-                    <MemBar/>
-                     <MemBar/>
-                      <MemBar/>
-                      <MemBar/>
+                        {users}
 
 
                 </div>

@@ -1,0 +1,23 @@
+.Member{
+    display:flex;
+    flex-direction: column;
+
+}
+
+.Member h3{
+    text-transform: uppercase;
+    font:Gilroy;
+}
+
+
+.input{
+    padding:2px;
+    margin-top:20px;
+    margin-bottom:10px;
+    border-radius:3px;
+}
+
+.button{
+    background-color:#61BD4F !important;
+    color:white !important;
+}

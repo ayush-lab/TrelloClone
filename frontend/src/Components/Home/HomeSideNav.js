@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import styles from './CSS/home.module.css';
 import style from './CSS/TeamModal.module.css';
+import {connect} from 'react-redux';
+import {AsynCreateTeam,AsynViewTeam} from '../../actions'
 import ViewArrayIcon from '@material-ui/icons/ViewArray';
 import HomeIcon from '@material-ui/icons/Home';
-import GroupIcon from '@material-ui/icons/Group';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TeamModal from  '../../assets/Images/TeamModal.svg';
 import {NavLink} from 'react-router-dom';
-
+import ListTeam from './ListTeam';
 
 class HomeSideNav extends Component{
 
@@ -18,6 +19,8 @@ class HomeSideNav extends Component{
 
     state = {
         open:false,
+        name:"",
+        desc:'',
     }
 
     handleOpen = () => {
@@ -30,8 +33,46 @@ class HomeSideNav extends Component{
        
     };
 
+     inputchangeHandler = (event,inputIdentifier)=> {
+
+        
+        let text= event.target.value;
+    
+
+        this.setState({[inputIdentifier]: text});
+    
+    }
+
+    sumbitTeam=()=>{
+        let formData ={};
+        formData['name']=this.state.name;
+        formData['desc']=this.state.desc;
+        this.props.CreateTeam(formData);
+    }
+
+    componentDidMount(){
+        this.props.ViewTeam();
+    }
+
 
     render(){
+
+        let {Team} = this.props;
+        let TeamList =null;
+       
+        if(Team!==null){
+             console.log(Team.Team)
+            TeamList = (
+                Team.Team.map(item=>{
+                    
+                    return(
+                    <NavLink exact to={`/team/${item.id}/`}>
+                        <ListTeam name={item.name} key={item.id} id={item.id}/>
+                    </NavLink>
+                 ) })
+            )
+        }
+
 
         return(
             <>
@@ -74,20 +115,7 @@ class HomeSideNav extends Component{
                     <AddIcon  className={styles.add} onClick={this.handleOpen} fontSize="small"/>
                 </div>
 
-                <div className={styles.BoardNav}>
-               
-                <div className={styles.BoardNavIcon}><GroupIcon fontSize="small"/></div>
-                    <span className={styles.BoardCategoryName}>Coursera</span>
-       
-               </div>
-
-                <div className={styles.BoardNav}>
-                    
-                <div className={styles.BoardNavIcon}><GroupIcon fontSize="small"/></div>
-                    <span className={styles.BoardCategoryName}>
-                      Badminton Game</span>
-            
-                </div>
+                {TeamList}
 
 
             </div>
@@ -131,6 +159,7 @@ class HomeSideNav extends Component{
 
                                     <input 
                                     placeholder="Ayush's Flow"
+                                    onChange={(event)=> this.inputchangeHandler(event,'name')}
                                     className={style.FormText1}/>
                                     
 
@@ -149,6 +178,7 @@ class HomeSideNav extends Component{
                                 rows="5"
                                 cols="25"
                                 placeholder="We are here to sort your life up"
+                                onChange={(event)=> this.inputchangeHandler(event,'desc')}
                                 className={style.FormText2}
                                 />
 
@@ -156,7 +186,7 @@ class HomeSideNav extends Component{
 
                             </div>
 
-                            <div className={style.ContinueButton}>
+                            <div onClick={this.sumbitTeam}className={style.ContinueButton}>
                                 Continue
                             </div>
                             
@@ -179,5 +209,21 @@ class HomeSideNav extends Component{
     }
 
 } 
+const mapStateToProps = state => ({
+    Team:state.Team,
+    
+})
 
-export default HomeSideNav;
+const mapDispatchToProps =dispatch => {
+  
+    return {
+       CreateTeam: (data)=> dispatch(AsynCreateTeam(data)),
+       ViewTeam: (data)=> dispatch(AsynViewTeam()),
+           }
+        
+        
+        
+
+    } 
+
+export default connect(mapStateToProps,mapDispatchToProps)(HomeSideNav);

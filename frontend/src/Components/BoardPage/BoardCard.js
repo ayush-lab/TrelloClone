@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Droppable} from 'react-beautiful-dnd';
-import {AsynAddNewCard} from '../../actions';
+import {AsynAddNewCard,AsynEditListName} from '../../actions';
 import styles from './CSS/BoardCardList.module.css';
 import AddSharpIcon from '@material-ui/icons/AddSharp';
 import BoardList from './BoardList';
@@ -36,6 +36,16 @@ class BoardCard extends Component{
         let input = {...this.state.heading};
         input.text= event.target.value;
         this.setState({heading:input});
+        
+        
+    }
+
+    handleSumbitHeading = (event)=> {
+        if(event.key ==="Enter"){
+            let formData ={};
+            formData['name']=this.state.heading.text;
+            console.log(formData);
+            this.props.editListName(this.props.List_id,formData,this.state.heading.text)}
     }
 
 
@@ -78,6 +88,7 @@ class BoardCard extends Component{
                     style = {{resize:"none"}} 
                     onBlur= {this.handleOpenHeading}
                     onChange={(event)=> {this.handleInputHeading(event)}}
+                    onKeyDown={this.handleSumbitHeading}
                     placeholder={this.props.title}
                     className={styles.TextHeading}/>
          
@@ -201,7 +212,10 @@ const mapDispatchToProps =dispatch => {
     return {
         
     addCard: (ListId,formData,text)=> 
-    dispatch(AsynAddNewCard(ListId,formData,text))
+    dispatch(AsynAddNewCard(ListId,formData,text)),
+
+    editListName: (ListId,formData,text)=>
+    dispatch(AsynEditListName(ListId,formData,text)),
 
            }
 }

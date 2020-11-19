@@ -13,8 +13,8 @@ function Profile(props){
                 <img src={TeamProfile} alt="Profile image"/>
 
                 <div className={styles.ProfileText}>
-                    <h2>Team Name</h2>
-                    <p>Short Description about the team</p>
+                    <h2>{props.name}</h2>
+                    <p>{props.desc}</p>
                     <button className={styles.EditTeam}>
                         <EditIcon style={{fontSize:'medium'}} /> Edit Details</button>
                     

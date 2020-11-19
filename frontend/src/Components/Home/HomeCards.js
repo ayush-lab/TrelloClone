@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import styles from './CSS/HomeCards.module.css';
+import {connect} from 'react-redux';
+import {AsynStarringBoard} from '../../actions';
 import {Link,Redirect} from 'react-router-dom';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
@@ -12,14 +14,19 @@ function Alert(props) {
   }
 
 function HomeCards(props){
-   
+    
     const [open, setOpen] = useState(false);
 
-    const [star, setStar] =useState(false);
+    const [star, setStar] =useState(props.star);
 
     function handleClick(){
         setStar(!star);
         setOpen(true);
+        let formData ={};
+        console.log(props.BoardId);
+        
+        props.StarringBoard(props.BoardId);
+        
     }
 
     const handleClose = (event, reason) => {
@@ -31,8 +38,6 @@ function HomeCards(props){
       };
 
 
-  
-
       return(
             <>
              
@@ -40,7 +45,8 @@ function HomeCards(props){
 
                 <Link className={styles.Link} to={`/b/${props.BoardId}/${props.Title}`} ><p className={styles.boardTitle}>{props.Title}</p> </Link>        
                     <div className={styles.boardCardStar}> 
-                    {star ? <StarRoundedIcon onClick={handleClick}/> : <StarBorderRoundedIcon onClick={handleClick} /> }</div>
+                    {star ? <StarRoundedIcon onClick={handleClick}/> : 
+                    <StarBorderRoundedIcon onClick={handleClick} /> }</div>
 
                 </div>
            
@@ -65,4 +71,19 @@ function HomeCards(props){
 
 }
 
-export default HomeCards;
+const mapStateToProps = state => ({
+    Home:state.Home,
+    
+})
+
+const mapDispatchToProps =dispatch => {
+  
+    return {
+       StarringBoard: (id)=> dispatch(AsynStarringBoard(id)),
+           }
+
+
+    } 
+
+
+export default  connect(mapStateToProps,mapDispatchToProps)(HomeCards);

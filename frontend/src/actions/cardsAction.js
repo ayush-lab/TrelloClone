@@ -68,6 +68,26 @@ export const editCardDueDate = (text,listId,cardId)=> {
     }
 };
 
+export const editListName = (text,listId)=> {
+
+    return {
+        type:CONSTANTS.EDIT_LIST_NAME,
+        payload:{text,listId},
+        
+    }
+};
+
+export const Error = (response)=> {
+
+    return {
+        type:CONSTANTS.ERROR,
+        payload:response,
+        
+    }
+};
+
+
+
 
 export const AsynAddDescription = (ListId,CardId,formData,text)=> {
     
@@ -154,3 +174,30 @@ export const AsynEditCardDueDate = (ListId,CardId,formData,text)=> {
 }
 
 
+
+export const AsynEditListName = (ListId,formData,text)=> {
+    
+    return dispatch => {
+
+       AuthService.EditList(ListId,formData)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+          { 
+               
+                dispatch(editListName(text,ListId));
+        
+           }
+           
+        else if(response.status===401) alert("Something went wrong")})
+        
+        .catch(error=>{console.log(error.response); 
+        //     this.setState({loading:false});
+        // this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+        })
+    }
+}

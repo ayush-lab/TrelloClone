@@ -182,7 +182,7 @@ inputBlurHandler = (event,inputIdentifier)=> {
                      localStorage.setItem("type","success");
                      localStorage.setItem("msg",response.data.message);
                      
-                     this.setState({ redirect: "/OtpVerify" });
+                     this.setState({ redirect: "/Verifyotp" });
                    
                 }
                  
