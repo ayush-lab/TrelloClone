@@ -10,7 +10,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TeamModal from  '../../assets/Images/TeamModal.svg';
-import {NavLink} from 'react-router-dom';
+import {NavLink,Redirect} from 'react-router-dom';
 import ListTeam from './ListTeam';
 
 class HomeSideNav extends Component{
@@ -48,6 +48,7 @@ class HomeSideNav extends Component{
         formData['name']=this.state.name;
         formData['desc']=this.state.desc;
         this.props.CreateTeam(formData);
+        
     }
 
     componentDidMount(){
@@ -56,9 +57,15 @@ class HomeSideNav extends Component{
 
 
     render(){
-
+        
         let {Team} = this.props;
         let TeamList =null;
+        console.log("TEAM",Team)
+        if(Team!==null){
+            if(Team.redirect){
+                return <Redirect to={Team.redirect} />
+            }
+        }
        
         if(Team!==null){
              console.log(Team.Team)
@@ -66,7 +73,7 @@ class HomeSideNav extends Component{
                 Team.Team.map(item=>{
                     
                     return(
-                    <NavLink exact to={`/team/${item.id}/`}>
+                    <NavLink style={{ textDecoration: 'none' }} exact to={`/team/${item.id}/`}>
                         <ListTeam name={item.name} key={item.id} id={item.id}/>
                     </NavLink>
                  ) })
@@ -78,18 +85,23 @@ class HomeSideNav extends Component{
             <>
             <div className={styles.BoardNavMain}>
                
-
+           
                <div className={styles.BoardNav}>
                 
-                   <NavLink to='/home' activeClassName={styles.activeClass}><div className={styles.BoardNavIcon}><HomeIcon fontSize="small"/></div>
-                            <span className={styles.BoardCategoryName}>Home</span></NavLink>
-                
+                       <div className={styles.BoardNavIcon}>
+                            <HomeIcon className={styles.NavIcons} fontSize="small"/>
+                      </div>
+                            <span className={styles.BoardCategoryName}>Home</span>
+                   
+                     
                 </div>
-
+            
 
                 <div className={styles.BoardNav}>
                 
-                       <div className={styles.BoardNavIcon}> <ViewArrayIcon fontSize="small"/></div>
+                       <div className={styles.BoardNavIcon}> 
+                            <ViewArrayIcon className={styles.NavIcons} fontSize="small"/>
+                       </div>
                         <span className={styles.BoardCategoryName}>Board</span>
                 
                 </div>
@@ -98,9 +110,9 @@ class HomeSideNav extends Component{
 
                 <div className={styles.BoardNav}>
                     
-                    <div className={styles.BoardNavIcon}> <ViewArrayIcon fontSize="small"/></div>
+                    <div className={styles.BoardNavIcon}> <ViewArrayIcon className={styles.NavIcons} fontSize="small"/></div>
                             <span className={styles.BoardCategoryName} >
-                            Badminton Game 
+                            Template
                             </span>
                     
                     </div>

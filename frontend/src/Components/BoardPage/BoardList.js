@@ -136,7 +136,7 @@ class BoardList extends Component{
 
         
         let {Members} =this.props;
-        console.log(Members)
+       // console.log(Members)
 
         let Heading = null;
         let Description = null;

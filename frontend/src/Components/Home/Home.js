@@ -10,6 +10,8 @@ import AddTeam from '../Team/addTeam';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleIcon from '@material-ui/icons/People';
+import TeamCards from './TeamCards';
+
 
 class Home extends Component{
 
@@ -19,15 +21,29 @@ class Home extends Component{
 
     render(){
 
-        let {Home} = this.props;
-        console.log(Home);
+        const {Home,Team} = this.props;
+        console.log(Team);
         
 
         let personal_boards=null;
         let starred_boards=null;
         let team_boards=null;
+        let Team_section = null;
 
+        if(Team!==null){
+            Team_section = Team.Team.map(board=>{
+                return (
+                    <TeamCards 
+                      key={board.id}
+                      id={board.id}
+                      name={board.name}
+                      members={board.members}
+                    />
+                )
+            })
+        }
         
+
         if(Home!==null){
             
             if(Home.redirect){
@@ -90,14 +106,12 @@ class Home extends Component{
                                 
                                 {starred_boards}
                                 
-                                <AddTeam/>
-                              
                             </div>
                        </div>
 
 
                        <div className={styles.BoardSection}>
-                        <div className={styles.BoardSectionName}>
+                            <div className={styles.BoardSectionName}>
 
                                 <div><PersonIcon className={styles.PersonIcon}/></div>
                                 <span className={styles.BoardType}> Personal Boards </span>
@@ -107,6 +121,7 @@ class Home extends Component{
 
                              <div className={styles.HomeBoardComponent}>   
                                 {personal_boards}
+                                <AddTeam/>
                             </div>
                        </div>
 
@@ -117,7 +132,7 @@ class Home extends Component{
                                 <div><PeopleIcon className={styles.PeopleIcon}/></div>
                                 <span className={styles.BoardType}> Team Boards </span>
                                         
-                            </div>
+                    </div>
 
 
                              <div className={styles.HomeBoardComponent}>   
@@ -125,8 +140,21 @@ class Home extends Component{
 
                             </div>
                        
-                        </div>
-                    </div>  
+                </div>
+
+
+                {Team_section}
+
+
+                
+
+
+                
+                </div>  
+
+
+
+                    
 
             </div>
 
@@ -140,6 +168,7 @@ class Home extends Component{
 
 const mapStateToProps = state => ({
     Home:state.Home,
+    Team:state.Team,
     
 })
 

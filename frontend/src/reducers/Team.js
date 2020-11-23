@@ -9,10 +9,18 @@ const Team = (state=initialState,action)=> {
 
        
            
+      
+
+        case CONSTANTS.CREATE_TEAM:
+
+            return {...state,redirect:action.payload}
+            break;
+        
         case CONSTANTS.VIEW_TEAM:
         
-            return {...state, Team:action.payload}
-       
+            return {...state, Team:action.payload, redirect:null}
+            break;
+
         default:
             
             return state;

@@ -10,10 +10,12 @@ const Members = (state=initialState,action)=> {
         case CONSTANTS.ADD_MEMBERS:
         
             return {...state, Boards:action.payload}
+            break;
             
         case CONSTANTS.ADD_MEMBERS_LIST:
         
             return {...state, Boards:action.payload}
+            break;
             
 
         

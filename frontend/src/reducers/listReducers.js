@@ -3,6 +3,7 @@ import {CONSTANTS } from '../actions';
 
 let listId =1;
 let cardId =4;
+let id=10000; 
 
 const initialState = null;
 let newState;
@@ -166,10 +167,50 @@ const listReducers = (state=initialState,action)=> {
                 listEnd.cards.splice(droppableIndexEnd,0,...card);
             }
 
-            return {...newState};
 
+
+            return {...newState};
+            break;
         }
+
+
+        case CONSTANTS.ADD_MEMBERS_LIST:{
+
+            newState= {...state}
+            let member={};
             
+            member["name"]=action.payload["members"];
+            member["id"]=id;
+            id+=1;
+
+            newState.list.members.push(member)
+        
+
+        
+
+            return {...newState}
+            break;
+        }                    
+
+
+        case CONSTANTS.ADD_MEMBERS_CARD:{
+
+           
+            newState= {...state}
+            let member={};
+            let length = action.payload['members'].length();
+            member["name"]=action.payload["members"][length-1];
+            member["id"]=id;
+            id+=1;
+
+            newState.list.members.push(member)
+        
+
+        
+
+            return {...newState}
+            break;
+        }     
 
         default:
             

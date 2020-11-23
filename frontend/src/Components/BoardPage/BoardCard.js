@@ -76,7 +76,7 @@ class BoardCard extends Component{
 
     render(){
       
-        let cardList=this.props.cardList;
+        let cardList=this.props.cardList;   console.log(cardList)
        
         let cardRender=null;
         let cardtitle=null;

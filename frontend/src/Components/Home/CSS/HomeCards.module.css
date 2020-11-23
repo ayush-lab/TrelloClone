@@ -1,10 +1,11 @@
 .Link{
     text-decoration: none !important;
-    color:white;
+    color:inherit !important;
 }
 
 .Link:hover{
     text-decoration:none;
+    color:inherit !important;
 }
 
 .BoardSectionName{
@@ -19,7 +20,6 @@
 .boardsCardSection{
     display: flex;
     flex-direction:column;
-    background:#247ba0;
     height:100px;
     width:200px;
     margin-top:8px;
@@ -27,27 +27,58 @@
     margin-bottom:16px;
     color:white;
     padding:10px;
-    border-radius:4px;
+    background: #9263FF;
+    border-radius: 8px;
+    justify-content: space-between;
     font-weight: bold;
-    justify-content: center;
-    text-align: center;
-    border-left:8px solid #1f6a8a;
     transition: all 0.4s ease;
+    
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.boardsCardSection:hover .boardCardStar{
+    opacity:1 !important;
+    transform: translate(0) !important;
+    
 }
 
 .boardsCardSection:hover{
     
     opacity:0.9;
+    box-shadow: none;
 }
+
 
 
 .boardTitle{    
 
     font-family:'Gilroy';
     font-size:17px;
+    text-align:left;
 }
 
 .boardCardStar{
     color:#ffe066;
     text-align:right;
+    opacity:0;
+    transform: translate(50px);
+    transition: all 0.4s ease-in-out; 
+}
+
+@media (max-width:850px){
+
+    .boardsCardSection{
+        height:90px;
+        width:130px;
+        margin-top:8px;
+        margin-right:10px;
+        margin-left:10px;
+        margin-bottom:10px;
+       
+    }
+
+    .boardCardStar{
+        
+    }
+    
 }

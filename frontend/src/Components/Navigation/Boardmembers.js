@@ -4,39 +4,58 @@ import {connect} from 'react-redux';
 // import styles from './CSS/BoardCardList.module.css';
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+import ListMembers from './ListMembers';
+
+
 
 class BoardMembers extends Component{
 
     state={
-
+        open:false,
     }
+
+    onOpenModal=()=>{
+        this.setState({open:true})
+    }
+
+    onCloseModal=()=>{
+        this.setState({open:false})
+        console.log(this.state.open)
+    }
+
 
     render(){
 
-        let {Members} =this.props;
+        let {LISTS} =this.props;
         let members = <p> </p>; 
         
         
-        console.log(Members);
-        if(Members){
-            if(Members.Boards.members!==[]){
-                members = (
-                   
-                                    
-                                   <AvatarGroup max={3}>
-                                        {
-                                         Members.Boards.members.map(
-                                          avatar=> (<Avatar alt={avatar}>{avatar[0].toUpperCase()}</Avatar>))
-                                        }
-                                         
-                                    </AvatarGroup> 
         
-                            
+        if(LISTS){
+            if(LISTS.list.lists.members!==[]){
+               
+                members = ( 
+                            <AvatarGroup max={3}>
+                                {
+                                    LISTS.list.members.map(
+                                    avatar=> (<Avatar alt={avatar.name}>{avatar.name[0][0].toUpperCase()}
+                                    </Avatar>))
+                                }
+                                         
+                            </AvatarGroup> 
+        
                 )
             }}
         return(
-            <div className="ml-3">
+            <div className="ml-3" onClick={this.onOpenModal}>
                 {members}
+
+                <Modal  open={this.state.open} onClose={this.onCloseModal} center>
+                   <ListMembers/>
+                </Modal>
+
             </div>
                                     
         );
@@ -45,7 +64,7 @@ class BoardMembers extends Component{
 }
 
 const mapStateToProps = state => ({
-    Members:state.Members,
+    LISTS:state.lists,
 })
 
 const mapDispatchToProps =dispatch => {
@@ -54,7 +73,5 @@ const mapDispatchToProps =dispatch => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(BoardMembers);
-
-
 
 

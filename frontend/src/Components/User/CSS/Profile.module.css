@@ -1,0 +1,126 @@
+.profileSection{
+    font-family:Gilroy;
+    background:#F4F5F7;
+    height:150px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile{
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    
+}
+.avatar{
+   
+    width:80px;
+    height:80px;
+    background: #9263FF;
+}
+
+.userName{
+    font-size:26px;
+    margin-left:20px;
+    margin-right:20px;
+    color:#0C3953;
+
+}
+
+.userId{
+    color:rgb(192, 195, 202);
+    font-size:16px;
+}
+.AboutSection{
+    
+    margin:10px;
+
+}
+.AboutText{
+    color:#172b4d;
+    font-size:21px;
+    margin-top:30px;   
+}
+
+.About{
+    color:#172b4d;
+    font-size:21px;
+    margin-top:0px;
+    margin-bottom:20px;
+}
+
+.bio{
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-family:Gilroy;
+}
+
+.user h5 , .bioDesc h5{
+    color:#172b4d;
+    font-size:15px;
+    margin-bottom:5px;
+    font-weight:4000;
+}
+
+.bioDesc h5{
+    margin-top:10px;
+}
+
+.bio button{
+    border:none;
+    box-shadow: none;
+    width:300px;
+    margin-top:25px;
+    text-align: center;
+    background:#61BD4F;
+    color:white;
+    padding:4px;
+    border-radius:4px;
+}
+
+.input{
+    border: 2px solid rgb(192, 195, 202);;
+    border-radius:4px;
+    padding:4px;
+    box-shadow: none;
+    width:300px;
+
+}
+
+.input:active, .input:focus{
+    border: 2px solid #9263FF;
+}
+.input:hover {
+    background:rgb(235, 233, 233);
+}
+
+@media (max-width:500px){
+ 
+    .input,.bio button{
+        width:250px;
+    }
+    .profileSection{
+        height:100px;
+    }
+    
+   
+    .avatar{
+        width:50px;
+        height:50px;
+    }
+    
+    .userName{
+        font-size:20px;
+        margin-left:10px;
+        margin-right:10px;
+        color:#0C3953;
+    
+    }
+}

@@ -166,7 +166,7 @@ export default function Team(props) {
           
           <div className={styles.HomeCards}>
             {teamBoard}
-            <AddTeam/>
+            <AddTeam TeamId={TeamId}/>
           </div>
             
         </TabPanel>

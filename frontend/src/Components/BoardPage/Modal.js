@@ -6,6 +6,7 @@ import Fade from '@material-ui/core/Fade';
 import style from './CSS/Modal.module.css';
 import Button from '@material-ui/core/Button';
 import Member from './memberAdd';
+import Archive from '../Navigation/Archive';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,11 +14,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+   
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    borderRadius:'5px',
   },
 }));
 
@@ -41,22 +44,42 @@ export default function TransitionsModal(props) {
     setId(props.BoardId);
   }
 
+  const handleOpenArchive = ()=>{
+    setOpen(true);
+    setType('Archive');
+    //setId(props.BoardId);
+  }
 
   const handleClose = () => {
     setOpen(false);
   };
 
+  
+
   return (
     <div>
     
-      {
-        props.button ==="card"?<Button variant="outlined"  onClick={handleOpen} className={style.buttonFeatures}>Members</Button>:
-        
-        <div onClick={handleOpenList}  className="nav-link team-board-visibility-nav"> 
-        <span className="users-visibility-nav">Invite </span>
-        <i data-toggle="tooltip" data-placement="top" title="Bookmarked Courses"
-        className="fa fa-users users-nav ml-1" aria-hidden="true"></i></div>
+      {props.button ==="card" &&
+        <Button variant="outlined"  onClick={handleOpen}
+         className={style.buttonFeatures}>Members</Button>
       }
+        
+      {props.button ==="board" &&
+        (<div onClick={handleOpenList}  className="nav-link team-board-visibility-nav"> 
+          <span className="users-visibility-nav">Invite </span>
+
+          <i data-toggle="tooltip" data-placement="top" title="Bookmarked Courses"
+          className="fa fa-users users-nav ml-1" aria-hidden="true"></i>
+        </div>)
+      }
+
+      {props.button==='archive' && 
+        (<div onClick={handleOpenArchive}>
+          <i className="fa fa-circle-o-notch" aria-hidden="true"></i>
+          <span className="more-option-nav"> Archive items</span>
+        </div>)
+      }
+
       
       <Modal
         aria-labelledby="transition-modal-title"
@@ -72,7 +95,8 @@ export default function TransitionsModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <Member type={type} BoardId={id}/>
+            {type==="Archive" ? <Archive/> :<Member type={type} BoardId={id}/>}
+            
           </div>
         </Fade>
       </Modal>

@@ -4,3 +4,71 @@
     font-family:Gilroy !important;
     font-weight: bolder !important;
 }
+
+.CardList{
+    
+    background:#F7F5F5;
+    color:rgb(22, 21, 21);
+    width: 280px;
+    height:auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0, 0, 0, 0.055);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 6px;    
+    padding:6px;
+    padding-bottom:0;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+    overflow-y:visible !important;
+    font-size:15px;
+}
+
+
+.archiveList h4{
+ 
+    text-align:center;
+    margin-bottom:10px;
+}
+
+
+.memBar{
+    display:flex;
+    justify-content:space-between;
+    width:500px;
+    margin-bottom:20px;
+}
+
+.memBar button{
+   text-align:center;
+   justify-content: center;
+   height:30px;
+   margin-right:50px;
+   margin-top:10px;
+   color: #091014;
+   background:rgb(223, 216, 216);
+   border-radius:3px;
+}
+
+
+.memBarRow{
+    display:flex;
+}
+.Name{
+    margin-left:10px;
+    margin-top:15px;
+    line-height:7px;
+}
+
+.UserName{
+    
+}
+
+.NameId{
+    color: #625F5F;
+}
+
+
+.memBarRow img{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+}

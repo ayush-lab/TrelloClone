@@ -60,7 +60,7 @@ class BoardPage extends Component{
             (<div className={styles.BoardCardParent}>
                 <div className={styles.BoardCard}>
                 
-                        { LISTS.list.lists.map(list => (<BoardCard 
+            { LISTS.list.lists.map(list => (<BoardCard 
             boardId={this.state.BoardId}
             key={list.id}
             title={list.name}

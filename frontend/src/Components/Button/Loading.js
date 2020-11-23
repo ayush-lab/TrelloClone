@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const loadingButton = ()=> (
 
     <div style={{textAlign:'center'}}>
-    <CircularProgress style={{color:"#89609E"}} />
+    <CircularProgress style={{color:"#9263FF"}} />
     </div>
 );
 

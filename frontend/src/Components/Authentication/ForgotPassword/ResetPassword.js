@@ -192,25 +192,25 @@ inputBlurHandler = (event,inputIdentifier)=> {
             
             AuthService.ResetPassword(formData,this.state.id) 
             .then(response => {console.log('Response:', response)
-
+                    this.setState({ redirect: "/home" });
                 if(response.status ===201 || response.status ===200){
                      
                      localStorage.setItem("email",this.state.Form.email.value);
                      localStorage.setItem("type","success");
                      localStorage.setItem("msg",response.data.message);
-                     
-                     this.setState({ redirect: "/signup/otp" });
+                   //  this.setState({text:error.response.data.detail, type: "error"})
+                     this.setState({ redirect: "/homepage" });
                   
                 }
                  
 
-                })
-                  //  alert("Something went wrong")})
+               // })
+                 alert("Something went wrong")})
 
             .catch(error=>{console.log(error.response);
                  this.setState({loading:false})
                  console.log(error.response)
-                 this.setState({text:error.response.data.detail, type: "error"})
+                // this.setState({text:error.response.data.detail, type: "error"})
                 } );
             
             

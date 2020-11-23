@@ -11,7 +11,7 @@ import BoardPage from './Components/BoardPage/BoardPage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/Home/Home';
 import Team from './Components/Team/Team';
-
+import Profile from './Components/User/Profile';
 function App() {
   return (
 
@@ -34,6 +34,9 @@ function App() {
      <Route path='/home' component={Home}/>
      <Route path='/team/:teamId' 
      render ={props =><Team key={props.location.pathname} {...props}/>}/>
+
+    <Route path='/User/:userId' 
+     render ={props =><Profile key={props.location.pathname} {...props}/>}/>
 
 
      <Redirect to="/home"/> 

@@ -9,11 +9,13 @@ const board = (state=initialState,action)=> {
 
         case CONSTANTS.BOARDS:
         
-            return {...state, Boards:action.payload}
+            return {...state, Boards:action.payload, redirect:null}
+            break;
            
         case CONSTANTS.CREATE_TEAM:
         
             return {...state}
+            break;
            
 
         case CONSTANTS.STAR_BOARDS:
@@ -67,16 +69,19 @@ const board = (state=initialState,action)=> {
 
             if(Object.keys(starred).length!==0)
                 {newState.Boards.starred_boards.push(starred) 
-                 console.log('wtf')}
+                    }
 
             starred={};
             index=null;
             return {...newState}
-        
+            break;
+
+
         case CONSTANTS.ERROR:
         
             return {...state, redirect:action.payload}
-        
+            console.log("error execuuted")
+            break;
 
         default:
             

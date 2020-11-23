@@ -32,7 +32,7 @@ class AuthServices {
     }
 
     ResetPassword(data,id){
-        return axios.post(`/auth/user/${id}/`,data,{
+        return axios.patch(`/auth/user/${id}/`,data,{
             headers: {
                 
                 Authorization: 'Bearer '+ localStorage.getItem('access')
@@ -117,7 +117,7 @@ class AuthServices {
     }
 
     EditCard(CardId,data){
-        return axios.put(`cards/${CardId}/edit`,data,{
+        return axios.put(`/cards/${CardId}/edit/`,data,{
             headers: {
                 
                 Authorization: 'Bearer '+ localStorage.getItem('access')
@@ -126,7 +126,7 @@ class AuthServices {
     }
 
     EditList(ListId,data){
-        return axios.put(`lists/${ListId}/edit/`,data,{
+        return axios.put(`/lists/${ListId}/edit/`,data,{
             headers: {
                 
                 Authorization: 'Bearer '+ localStorage.getItem('access')

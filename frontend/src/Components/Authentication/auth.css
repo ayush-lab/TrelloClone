@@ -14,7 +14,7 @@
     width:100%;
     text-align: center;
     color: #FCFCFC;
-    background: #89609E 0% 0% no-repeat padding-box;
+    background: #9263FF 0% 0% no-repeat padding-box;
     border-radius: 8px;
     font:16px/19px;
 }
@@ -52,11 +52,11 @@
 
 .account-login a{
     text-decoration: none;
-    color: #2D81F7;
+    color: #9263FF;;
     
 }
 .Link-teach{
-    color: #2D81F7;
+    color: #9263FF;;
     text-align: center;
     margin-top:20px;
     cursor:pointer;

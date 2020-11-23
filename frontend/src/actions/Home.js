@@ -110,12 +110,12 @@ export const AsynCreateTeam = (data)=> {
 
         AuthService.CreateTeam(data)
         .then(response => {console.log('Response:', response) 
-
+            
         if(response.status ===201 || response.status ===200 || response.status ===202) 
           
             { 
-               
-                dispatch(CreateTeam("/team"));
+              
+                dispatch(CreateTeam(`/team/${response.data.id}/`));
         
             }
            

@@ -19,7 +19,8 @@ function HomeCards(props){
 
     const [star, setStar] =useState(props.star);
 
-    function handleClick(){
+    function handleClick(e){
+        e.preventDefault();
         setStar(!star);
         setOpen(true);
         let formData ={};
@@ -40,16 +41,18 @@ function HomeCards(props){
 
       return(
             <>
-             
+             <Link className={styles.Link} to={`/b/${props.BoardId}/${props.Title}`} >
                 <div className={styles.boardsCardSection}>
 
-                <Link className={styles.Link} to={`/b/${props.BoardId}/${props.Title}`} ><p className={styles.boardTitle}>{props.Title}</p> </Link>        
+                
+                    <p className={styles.boardTitle}>{props.Title}</p>
+                       
                     <div className={styles.boardCardStar}> 
-                    {star ? <StarRoundedIcon onClick={handleClick}/> : 
-                    <StarBorderRoundedIcon onClick={handleClick} /> }</div>
+                    {star ? <StarRoundedIcon onClick={(event)=>handleClick(event)}/> : 
+                    <StarBorderRoundedIcon onClick={(event)=>handleClick(event)} /> }</div>
 
                 </div>
-           
+                </Link> 
 
                 <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                     {

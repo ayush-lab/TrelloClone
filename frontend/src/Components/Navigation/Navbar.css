@@ -5,7 +5,7 @@
 
 .navbar{
     
-    background: #89609E 0% 0% no-repeat padding-box !important; 
+    background:#9263FF 0% 0% no-repeat padding-box !important; 
     box-shadow: 0px 3px 11px #BAD8FD40 !important;
     height:48px;
     
@@ -46,7 +46,7 @@
 .fa-dashcube{
     color:rgb(255, 255, 255);
     font-size:17px;
-    
+    border-radius:3px;
 }
 
 .board{
@@ -57,6 +57,7 @@
     color:white;
     padding-left:6px;
     font-weight:bolder;
+    
 }
 
 .Logo-specs{
