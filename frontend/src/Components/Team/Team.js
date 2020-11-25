@@ -9,9 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-// import PersonPinIcon from '@material-ui/icons/PersonPin';
-// import DashboardIcon from '@material-ui/icons/Dashboard';
-// import PeopleIcon from '@material-ui/icons/People';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from '@material-ui/core/AppBar';
@@ -127,11 +124,6 @@ export default function Team(props) {
 
     }
 
-
-
-
- 
-
         return(
             <>
                 <Navbar/>
@@ -180,7 +172,7 @@ export default function Team(props) {
         </TabPanel>
 
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+          Setting
         </TabPanel>
 
       </SwipeableViews>

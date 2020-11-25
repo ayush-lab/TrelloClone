@@ -98,13 +98,13 @@ class BoardNav extends Component{
     {NewCard}
 
     <button className="navbar-toggler" type="button" data-toggle="collapse" 
-        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        data-target="#navbarSupportedContentSub" aria-controls="navbarSupportedContentSub"
         aria-expanded="false"
         aria-label="Toggle navigation">
-        <i className="fa fa-bars bar-nav" aria-hidden="true"></i>
+        <i className="fa fa-bars bar-nav-sub" aria-hidden="true"></i>
     </button>
 
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <div className="collapse navbar-collapse" id="navbarSupportedContentSub">
 
         <ul className="navbar-nav mr-auto">
             
@@ -125,10 +125,10 @@ class BoardNav extends Component{
             </li>
         
         <li className="nav-item">
-            <BoardMembers/>
+            <BoardMembers BoardId={this.props.boardId}/>
         </li>
 
-        <li className="nav-item ml-3">
+        <li className="nav-item invite">
             <TransitionsModal button={"board"} BoardId={this.props.boardId}/>
                 
             </li>

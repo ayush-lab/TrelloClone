@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './Navbar.css';
-import {NavLink,Redirect} from 'react-router-dom';
+import {NavLink,Redirect,Link} from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
-import Tooltip from '@material-ui/core/Tooltip';
 
 class Navbar extends Component {
     
@@ -12,28 +11,15 @@ class Navbar extends Component {
         redirect:null,
     }
 
-    // componentDidMount(){
-    //     let userToken = AuthServices.getCurrentUser();
-    //     let userName= AuthServices.getUserName();
-    //     if(userToken!==null){
-    //         this.setState({isLoggedIn:true,userName:userName});
-         
-    //     }
-
-    
-        
-    //  }
 
      logout=() => {
        this.setState({redirect:"/login"})
-        localStorage.clear();
-
-
+       localStorage.clear();
     }
 
 
 
-    render(){
+     render(){
 
       let LoginLinks,firstLetter;
 
@@ -54,8 +40,9 @@ class Navbar extends Component {
         <li className="nav-item">
         
       
-        <Avatar style={{background:"white", color:"#89609E"}}>{firstLetter[0].toUpperCase()}</Avatar>
-        
+        <Link to={`user/${localStorage.getItem('userId')}/`}><Avatar 
+              className="avatar">{firstLetter[0].toUpperCase()}</Avatar>
+        </Link>
         
         </li>
 
@@ -105,7 +92,7 @@ class Navbar extends Component {
 
   <nav className=" navbar navbar-expand-lg sticky-top ">
 
-  <NavLink to="/home/all" className="navbar-brand">Flow</NavLink>
+  <NavLink to="/home" className="navbar-brand">Flow</NavLink>
 
   <button className="navbar-toggler" type="button" data-toggle="collapse" 
   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

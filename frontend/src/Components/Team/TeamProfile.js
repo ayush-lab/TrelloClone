@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CSS/TeamHome.module.css';
-import TeamProfile from '../../assets/Images/TeamProfile.jpg';
+import TeamProfile from '../../assets/Images/TeamProfile.png';
 import EditIcon from '@material-ui/icons/Edit';
 
 

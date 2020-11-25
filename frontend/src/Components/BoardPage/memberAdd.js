@@ -24,7 +24,7 @@ function Member(props){
         formData['members']=emailArray;
         
     
-        if(emailArray)
+        if(emailValue!==null)
             props.addMember(props.BoardId,formData);
 
     }
@@ -41,7 +41,7 @@ function Member(props){
          formData['members']=emailArrayList;
          
      
-         if(emailArrayList)
+         if(emailValueList!==null)
              props.addMemberList(props.BoardId,formData);
  
      }
@@ -62,21 +62,26 @@ function Member(props){
 
                 <Button variant="outlined"  
                 onClick={addMembers}
-                className={styles.button}>Sumbit</Button>
+                className={styles.button}>Invite</Button>
 
-                </div>:<div className={styles.Member}>
+                </div>:
+                
+                <div className={styles.Member}>
 
-                <h3>Add members in the board</h3>
+                <h3>Invite to board</h3>
                     <input 
                     type="email" 
                     className={styles.input}
-                    placeholder="enter email"
+                    placeholder="Enter email"
                     onChange={(event)=>inputHandlerList(event)}
                     />
 
                 <Button variant="outlined"  
                 onClick={addMembersList}
-                className={styles.button}>Sumbit</Button>
+                className={styles.button}>Invite</Button>
+
+                <h4 className={styles.InviteHeading}>Invite with Link</h4>
+                <p className={styles.InviteLink}>{window.location.href}</p>
 
                 </div> }
            

@@ -15,6 +15,13 @@ export const addMembersList = (data)=> {
     }
 };
 
+export const removeMembersList = (data)=> {
+    return {
+        type:CONSTANTS.REMOVE_MEMBERS_LIST,
+        payload:data,
+    }
+}
+
 export const AsynaddMember = (CardId,formData)=> {
     
     return dispatch => {
@@ -57,6 +64,37 @@ export const AsynaddMemberList = (BoardId,formData)=> {
             { 
              
                 dispatch(addMembersList(formData));
+        
+            }
+           
+        else if(response.status===401) alert("Something went wrong")})
+        
+        .catch(error=>{console.log(error.response); 
+            //this.setState({loading:false});
+        //this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+        })
+
+     }
+}
+
+
+
+
+export const AsynRemoveMemberList = (BoardId,formData)=> {
+    
+    return dispatch => {
+
+        AuthService.RemoveMembers(BoardId,formData)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+            { 
+             
+                dispatch(removeMembersList(formData));
         
             }
            

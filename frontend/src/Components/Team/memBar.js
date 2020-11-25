@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styles from './CSS/Members.module.css';
-import profilePic from '../../assets/Images/TeamProfile.jpg';
+import profilePic from '../../assets/Images/TeamProfile.png';
 
 
 function memBar(props) {

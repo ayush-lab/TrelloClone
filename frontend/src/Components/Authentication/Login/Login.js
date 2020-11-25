@@ -198,7 +198,9 @@ inputBlurHandler = (event,inputIdentifier)=> {
                      localStorage.setItem('access', response.data.access);
                      localStorage.setItem('refresh', response.data.refresh);
                      localStorage.setItem('userName',response.data.name); 
-                   
+                     localStorage.setItem('userId',response.data.user_id); 
+
+
                      this.setState({ redirect: "/home" });
                 }
                  

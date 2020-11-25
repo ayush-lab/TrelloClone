@@ -178,14 +178,36 @@ const listReducers = (state=initialState,action)=> {
 
             newState= {...state}
             let member={};
-            
-            member["name"]=action.payload["members"];
+            let length=action.payload['members'].length-1;         
+            console.log(length)
+            member["name"]=action.payload["members"][length];
             member["id"]=id;
             id+=1;
 
             newState.list.members.push(member)
         
 
+        
+
+            return {...newState}
+            break;
+        }   
+
+        case CONSTANTS.REMOVE_MEMBERS_LIST:{
+
+            newState= {...state}
+            let index;
+            
+           
+            newState.list.members.map((member,index)=>{
+
+                if(member.id ===action.payload["members"]){
+                    index=index;
+                }
+            });
+            
+            if(index!==null)
+            newState.list.members.splice(index,1);
         
 
             return {...newState}

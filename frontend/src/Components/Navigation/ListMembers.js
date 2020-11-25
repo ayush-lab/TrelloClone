@@ -1,13 +1,25 @@
 import React, {useState} from 'react';
 import styles from './visibility.module.css';
-import profilePic from '../../assets/Images/TeamProfile.jpg';
+import profilePic from '../../assets/Images/TeamProfile.png';
 import {connect} from 'react-redux';
+import {AsynRemoveMemberList} from '../../actions';
+
+
 
 function ListMembers(props) {
 
+    const RemoveMember =(memberId)=>{
+       console.log('memberId=',memberId, " ","boardId=",props.BoardId); 
+       let formData = {};
+       formData['member']=memberId;    
+       props.addMember(props.BoardId,formData);
+    
+        
+    }
 
     let {LISTS} =props;
-     let members = <p> </p>; 
+    
+    let members = <p> </p>; 
         
      if(LISTS){
         if(LISTS.list.lists.members!==[]){
@@ -17,13 +29,14 @@ function ListMembers(props) {
                                 LISTS.list.members.map(
                                 avatar=> (<div className={styles.memBar}>
                                             <div className={styles.memBarRow}>
-                                            <img src={profilePic} alt={"ptofile picture"}/>
+                                            <img src={profilePic} alt={"profile picture"}/>
                                             <div className={styles.Name}>
                                                 <p className={styles.UserName}>{avatar.name}</p>
                                                 <p className={styles.NameId}>@{avatar.id}</p>
                                             </div>
                                           </div>
-                                        <button>Remove</button></div>))
+                                            <button onClick={(id)=>RemoveMember(avatar.id)}>Remove</button>
+                                        </div>))
                             
                      )
         }}
@@ -45,7 +58,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps =dispatch => {
   
-    return {};
+    return {
+        addMember: (id,formData)=> dispatch(AsynRemoveMemberList(id,formData)),
+    };
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ListMembers);  

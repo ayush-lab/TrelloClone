@@ -144,6 +144,18 @@ class AuthServices {
         })
     }
 
+    RemoveMembers(BoardId,data){
+        return axios.patch(`/boards/${BoardId}/edit/members/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+
+     
+
+
     AddMembersCard(BoardId,data){
         return axios.post(`/cards/${BoardId}/members/`,data,{
             headers: {
@@ -186,6 +198,25 @@ class AuthServices {
 
     ViewTeamDetails(id){
         return axios.get(`/teams/${id}`,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+
+    Profile(user_id){
+        return axios.get(`/auth/user/${user_id}/`,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+
+
+    EditProfile(user_id,data){
+        return axios.patch(`/auth/user/${user_id}/`,data,{
             headers: {
                 
                 Authorization: 'Bearer '+ localStorage.getItem('access')

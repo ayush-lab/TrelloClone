@@ -29,6 +29,7 @@ class BoardMembers extends Component{
     render(){
 
         let {LISTS} =this.props;
+        console.log(LISTS)
         let members = <p> </p>; 
         
         
@@ -49,11 +50,11 @@ class BoardMembers extends Component{
                 )
             }}
         return(
-            <div className="ml-3" onClick={this.onOpenModal}>
+            <div className="member" onClick={this.onOpenModal}>
                 {members}
 
                 <Modal  open={this.state.open} onClose={this.onCloseModal} center>
-                   <ListMembers/>
+                   <ListMembers BoardId={this.props.BoardId}/>
                 </Modal>
 
             </div>

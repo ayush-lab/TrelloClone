@@ -7,16 +7,8 @@
     
     background:#9263FF 0% 0% no-repeat padding-box !important; 
     box-shadow: 0px 3px 11px #BAD8FD40 !important;
-    height:48px;
+    margin-bottom:0px!important;
     
-}
-
-.nav-item{
-
-    list-style:none;
-}
-.navbarBoard{
-    height:50px;
 }
 
 
@@ -62,21 +54,6 @@
 
 .Logo-specs{
     margin-left:150px;
-}
-
-.teachLink{
-    font: normal normal 200 17px/23px Gilroy;
-    letter-spacing: 0.47px;
-    color: #566775;
-    border-radius:6px;
-    background:rgba(128, 128, 128, 0.192);
-    margin-right:30px;
-    
-  
-}
-.teacherActive{
-    background:white;
-    border:1px solid #566775;;
 }
 
 
@@ -127,22 +104,24 @@
 }
 
 .dropdown-toggle{
-    color: #566775;
+    color: #ffffff !important;
 }
 
 
-
+.fa-bars {
+    color:white;
+}
 .dropdown-item{
    
     font: normal normal  17px/20px Gilroy;
     letter-spacing: 0.47px;
-    color: #566775;
+    color: #ffffff;
     opacity:0.7;
    
 }
 
 .dropdown-item:active{
-    background:#08BD80 !important;
+    background:rgb(66, 110, 96) !important;
 }
 
 
@@ -180,11 +159,20 @@
 
 
 .bar-nav{
-    color:#2D81F7;
+    color:white!important;
+}
+
+.bar-nav-sub{
+    color:rgb(34, 32, 32)!important;
 }
 
 .usere{
     margin-right:20px;
+}
+
+.avatar{
+    background:white;
+    color:#89609E;
 }
 
 
@@ -192,18 +180,33 @@
 
 @media (max-width:998px){
 
-    .Signupbtn,.Loginbtn,.logoutlink{
-        
+
+    .home,.board,.avatar{
+        background:rgba(255, 255, 255, 0.247);
+       
     }
 
-    .btnactive{
-      
+    
+    .logout{
+        margin-left:0px;
+        padding:2px;
+    }
+
+
+    .board{
+        margin-left:0px;
+        padding:2px;
+    }
+
+    .avatar{
+        margin-top:5px;
+        margin-bottom:5px;
+        padding:2px;
     }
     
-    
-
 }
-
+    
+    
 
 .myClassName .myControlClassName .myMenuClassName{
     background:red;

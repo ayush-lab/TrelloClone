@@ -5,19 +5,66 @@
 }
 
 .Member h3{
-    text-transform: uppercase;
+    
     font:Gilroy;
+    font-size:18px;
+    color:rgb(60, 72, 82);
+  
+
 }
 
 
 .input{
     padding:2px;
-    margin-top:20px;
-    margin-bottom:10px;
+    margin-top:15px;
+    margin-bottom:15px;
+    border:2px solid rgb(214, 210, 210);
+    box-shadow: none;
+    padding:4px;
     border-radius:3px;
+}
+
+.input:hover{
+    background:rgb(215, 202, 243);
+    opacity:0.7;
+}
+
+.input:active, .input:focus{
+    border:2px solid rgb(146, 99, 255);
 }
 
 .button{
     background-color:#61BD4F !important;
     color:white !important;
+    text-transform: none !important;
+    border-radius:3px;
+}
+
+.InviteHeading{
+    margin-top:25px;
+    font-size:16px;
+    color:grey;
+    
+}
+
+.InviteLink{
+    border:2px solid rgb(214, 210, 210);
+    padding:4px;
+    white-space:nowrap;
+    overflow-x:scroll;
+    width:200px;
+    border-radius:3px;
+}
+
+.InviteLink:active, .InviteLink:focus{
+    border-color:rgb(146, 99, 255);
+
+}
+
+.InviteLink {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.InviteLink::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }

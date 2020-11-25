@@ -11,7 +11,7 @@ import {sort} from '../../actions';
 import Gif from '../../assets/Images/143.gif';
 
 
-class BoardPage extends Component{
+class BoardPage extends Component {
 
     state = {
         BoardId:this.props.match.params.BoardId,
