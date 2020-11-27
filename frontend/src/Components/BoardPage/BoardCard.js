@@ -76,7 +76,8 @@ class BoardCard extends Component{
 
     render(){
       
-        let cardList=this.props.cardList;   console.log(cardList)
+        let cardList=this.props.cardList; 
+        
        
         let cardRender=null;
         let cardtitle=null;
@@ -105,7 +106,9 @@ class BoardCard extends Component{
        
         if(cardList!==null){
            
-           cardRender = cardList.map((item,index) =>
+           cardRender = cardList
+           .filter(item=>item.archived ===false ) 
+           .map((item,index) =>
              
             (<BoardList 
             key={item.id}
@@ -116,6 +119,7 @@ class BoardCard extends Component{
             subHeading={this.props.title}
             description={item.desc}
             dueDate={item.due_date}
+            archived={item.archived}
             />));
           
         }

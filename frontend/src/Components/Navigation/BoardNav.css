@@ -15,12 +15,17 @@
     margin-top:13px;
 }
 
+.nav-item{
+    list-style:none;    
+}
+
 .team-board-visibility-nav,.star-board-nav{
     background:rgb(246, 245, 247);
     background:#3A88A9;
     border-radius:1px;
-    cursor:pointer;
-
+    
+    
+    
 }
 
 .star-board-nav{

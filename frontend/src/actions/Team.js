@@ -13,6 +13,14 @@ export const ViewTeam = (response)=> {
 };
 
 
+export const removeMembersTeam = (data)=> {
+    return {
+        type:CONSTANTS.REMOVE_MEMBERS_TEAM,
+        payload:data,
+    }
+}
+
+
 
 
 export const AsynViewTeam = ()=> {
@@ -43,4 +51,73 @@ export const AsynViewTeam = ()=> {
         
         })
     }
+}
+
+
+
+export const addMembersTeam= (data)=> {
+    return {
+        type:CONSTANTS.ADD_MEMBERS_TEAM,
+        payload:data,
+    }
+};
+
+export const AsynaddMemberTeam = (TeamId,formData)=> {
+    
+    return dispatch => {
+
+        AuthService.AddMembersTeam(TeamId,formData)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+            { 
+             
+                dispatch(addMembersTeam(formData));
+        
+            }
+           
+        else if(response.status===401) alert("Something went wrong")})
+        
+        .catch(error=>{console.log(error.response); 
+            //this.setState({loading:false});
+        //this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+        })
+
+     }
+}
+
+
+
+
+
+export const AsynRemoveMemberTeam = (TeamId,formData)=> {
+    
+    return dispatch => {
+
+        AuthService.RemoveTeamMembers(TeamId,formData)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+            { 
+             
+                dispatch(removeMembersTeam(formData));
+        
+            }
+           
+        else if(response.status===401) alert("Something went wrong")})
+        
+        .catch(error=>{console.log(error.response); 
+            //this.setState({loading:false});
+        //this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+        })
+
+     }
 }

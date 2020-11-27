@@ -120,7 +120,7 @@ class BoardNav extends Component{
                 
             <li className="nav-item">
 
-                <Visibility/>
+                <Visibility boardId={this.props.boardId}/>
                 
             </li>
         

@@ -43,3 +43,35 @@ export const initCardList = (BoardId)=> {
 }
 
 
+export const permission =(items)=>{
+
+    return {
+        type:CONSTANTS.PERMISSION,
+        payload:items,
+    };
+};
+
+export const AsynPermission = (BoardId,formdata)=> {
+    
+    return dispatch => {
+
+        AuthService.EditBoard(BoardId,formdata)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+            { 
+                dispatch(permission(response.data));
+        
+            }})
+           
+       
+        
+        .catch(error=>{
+          //something
+        
+        })
+    }
+}
+
+

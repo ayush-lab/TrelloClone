@@ -13,6 +13,44 @@ export const addCard = (text,listId)=> {
 };
 
 
+export const archive = (cardId,archive)=> {
+
+    return {
+        type:CONSTANTS.ARCHIVE,
+        payload:{cardId,archive},
+        
+    }
+};
+
+
+
+
+export const AsynArchive = (cardId,formData)=> {
+    
+    return dispatch => {
+
+        AuthService.EditCard(cardId,formData)
+        .then(response => {console.log('Response:', response) 
+
+        if(response.status ===201 || response.status ===200 || response.status ===202) 
+          
+            { 
+                
+                dispatch(archive(cardId,formData["archived"]));
+        
+            }
+        
+    
+        }).catch(error=>{console.log(error.response); 
+            //this.setState({loading:false});
+        //this.setState({text:error.response.data.detail, type: "error"})
+
+        
+        
+        })
+    }
+}
+
 
 export const AsynAddNewCard = (ListId,formData,text)=> {
     

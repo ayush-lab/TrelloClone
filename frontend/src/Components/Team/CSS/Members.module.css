@@ -28,7 +28,6 @@
 .HeadingMain{
     display:flex;
     flex-direction: column;
-    
     flex-grow:1;
 }
 
@@ -36,8 +35,7 @@
 .HeadingBar{
     display:flex;
     justify-content: space-between;
-  
-    
+    flex-direction: row;
 }
 
 .HeadingBar h3{
@@ -100,4 +98,36 @@
     width:65px;
     height:65px;
     border-radius:50%;
+}
+
+@media(max-width:680px){
+
+
+    .MembersCount{
+        display:none;
+    }
+    
+    .HeadingBar button{
+       
+        padding:2px;
+        border-radius:5px;
+    }
+
+
+    .GroupIcon{
+        
+        font-size:12px;
+    }
+
+
+    
+
+}
+
+@media(max-width:460px){
+
+    .HeadingBar{
+        flex-direction: column;
+        
+    }
 }

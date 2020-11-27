@@ -17,7 +17,13 @@ class BoardPage extends Component {
         BoardId:this.props.match.params.BoardId,
         BoardName:this.props.match.params.BoardName,
         List:'',
+        
+
     }
+
+    
+    
+    
 
     onDragEnd =(result)=> {
         const {destination,source,draggableId} = result;
@@ -49,6 +55,7 @@ class BoardPage extends Component {
         let title = "";
         let lists;
         let star=false;
+        let error=null;
         console.log(LISTS);
       
 
@@ -56,6 +63,9 @@ class BoardPage extends Component {
 
         title=LISTS.list.name;
         star=LISTS.list.starred;
+
+        
+
         lists = 
             (<div className={styles.BoardCardParent}>
                 <div className={styles.BoardCard}>
@@ -89,6 +99,7 @@ class BoardPage extends Component {
            title="";
        }
 
+
         return(
             <DragDropContext onDragEnd={this.onDragEnd}>        
                 <div className={styles.BoardPage}>
@@ -97,7 +108,7 @@ class BoardPage extends Component {
 
                         {lists}
 
-           
+                     
             </div>
            </DragDropContext>
         );
@@ -114,6 +125,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps =dispatch => {
   
     return {
+        
         ShowListCard: (BoardId)=> dispatch(initCardList(BoardId)),
         sort: (a,b,c,d)  => dispatch(sort(a,b,c,d)),
            }

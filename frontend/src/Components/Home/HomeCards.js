@@ -60,7 +60,7 @@ function HomeCards(props){
                         Your board has been successfully <b>starred</b>!
                     </Alert> : 
                     
-                    <Alert onClose={handleClose} severity="success">
+                    <Alert onClose={handleClose} severity="warning">
                         Your board has been successfully <b>unstarred</b>!
                     </Alert>
                     

@@ -2,7 +2,6 @@ import {CONSTANTS } from '../actions';
 
 
 let listId =1;
-let cardId =4;
 let id=10000; 
 
 const initialState = null;
@@ -11,6 +10,30 @@ let newState;
 const listReducers = (state=initialState,action)=> {
 
     switch (action.type){
+
+        case CONSTANTS.ARCHIVE:
+
+            newState ={...state};
+            newState.lists.lists.map(list=>{
+                list.map(card=>{
+                    if(card.id===action.payload.cardId){
+                        card.archive = action.payload.cardId
+                    }
+                })
+            })
+            console.log("archive:",newState)
+            return {...newState}
+            
+            break;
+        
+        case CONSTANTS.LIST_ERRORS:{
+
+            newState ={...state,error:action.payload}
+            
+            return{...newState}
+            break;
+
+        }
 
         case CONSTANTS.ADD_LIST:
         
@@ -33,18 +56,35 @@ const listReducers = (state=initialState,action)=> {
 
 
         case CONSTANTS.ADD_CARD:
+
+            newState = {...state};
+            let length,cardId;
+            
+            newState.list.lists.map(list=> {
+                if(list.id === action.payload.listId){
+                length=list.cards.length-1;
+                if(length === -1){
+                    cardId=10000;
+                }
+                else{
+                    cardId=list.cards[length].id+1;
+                    console.log("cardId=",cardId)
+                   }
+            }})
+
+            
             
             const newCard = {
                 name:action.payload.text,
                 id:cardId,
                 desc:"",
+                archived:false,
             };
             
             cardId+=1;
 
             
-            newState = {...state};
-
+            
             newState.list.lists.map(list=> {
                 if(list.id === action.payload.listId){
                     list.cards.push(newCard);
@@ -54,8 +94,24 @@ const listReducers = (state=initialState,action)=> {
             
             return {...newState}
             break;
+
+        case CONSTANTS.ARCHIVE:
+
+            newState ={...state};
+            newState.lists.lists.map(list=>{
+                list.map(card=>{
+                    if(card.id===action.payload.cardId){
+                        card.archive = action.payload.cardId
+                    }
+                })
+            })
+            console.log("archive:",newState)
+            return {...newState}
+            
+            break;
         
-            case CONSTANTS.ADD_CARD_DESC:
+        
+        case CONSTANTS.ADD_CARD_DESC:
             
             
                 
@@ -73,7 +129,7 @@ const listReducers = (state=initialState,action)=> {
                         })
                 }})
     
-                console.log("====>",newState)
+                
                 return {...newState}
                 break;
             
@@ -95,7 +151,7 @@ const listReducers = (state=initialState,action)=> {
                         })
                 }})
     
-                console.log("====>",newState)
+               
                 return {...newState}
                 break;
                 
@@ -196,18 +252,20 @@ const listReducers = (state=initialState,action)=> {
         case CONSTANTS.REMOVE_MEMBERS_LIST:{
 
             newState= {...state}
-            let index;
+            let i=0;
             
            
-            newState.list.members.map((member,index)=>{
+            newState.list.members.map((member,index)=>
+            
+            {
 
-                if(member.id ===action.payload["members"]){
-                    index=index;
+                if(member.id ==action.payload["members"]){
+                    i=index;
                 }
             });
             
-            if(index!==null)
-            newState.list.members.splice(index,1);
+            if(i!==null)
+            newState.list.members.splice(i,1);
         
 
             return {...newState}

@@ -17,6 +17,9 @@ class Navbar extends Component {
        localStorage.clear();
     }
 
+    avatar=()=>{
+      this.setState({redirect:`user/${localStorage.getItem('userId')}/`})
+    }
 
 
      render(){
@@ -31,7 +34,7 @@ class Navbar extends Component {
       else firstLetter = 'A';
 
        if (this.state.redirect) {
-            return <Redirect to="/login" />
+            return <Redirect to={this.state.redirect} />
         }
       
 
@@ -40,9 +43,8 @@ class Navbar extends Component {
         <li className="nav-item">
         
       
-        <Link to={`user/${localStorage.getItem('userId')}/`}><Avatar 
-              className="avatar">{firstLetter[0].toUpperCase()}</Avatar>
-        </Link>
+       <Avatar onClick={this.avatar} className="avatar">{firstLetter[0].toUpperCase()}</Avatar>
+        
         
         </li>
 

@@ -133,6 +133,18 @@ class AuthServices {
             } 
         })
     }
+
+
+    EditBoard(boardId,data){
+        return axios.put(`/boards/${boardId}/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+
+
     // To add and remove members in the board
 
     AddMembers(BoardId,data){
@@ -204,6 +216,26 @@ class AuthServices {
             } 
         })
     }
+
+
+    AddMembersTeam(TeamId,data){
+        return axios.post(`/teams/${TeamId}/add/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+
+    RemoveTeamMembers(TeamId,data){
+        return axios.post(`/teams/${TeamId}/remove/`,data,{
+            headers: {
+                
+                Authorization: 'Bearer '+ localStorage.getItem('access')
+            } 
+        })
+    }
+
 
     Profile(user_id){
         return axios.get(`/auth/user/${user_id}/`,{

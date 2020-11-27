@@ -31,17 +31,19 @@ class BoardMembers extends Component{
         let {LISTS} =this.props;
         console.log(LISTS)
         let members = <p> </p>; 
+        let admin=null;
         
         
         
         if(LISTS){
+            admin=LISTS.list.admins[0].id;
             if(LISTS.list.lists.members!==[]){
                
                 members = ( 
                             <AvatarGroup max={3}>
                                 {
                                     LISTS.list.members.map(
-                                    avatar=> (<Avatar alt={avatar.name}>{avatar.name[0][0].toUpperCase()}
+                                    avatar=> (<Avatar key={avatar.id} alt={avatar.name}>{avatar.name[0][0].toUpperCase()}
                                     </Avatar>))
                                 }
                                          
@@ -54,7 +56,7 @@ class BoardMembers extends Component{
                 {members}
 
                 <Modal  open={this.state.open} onClose={this.onCloseModal} center>
-                   <ListMembers BoardId={this.props.BoardId}/>
+                   <ListMembers BoardId={this.props.BoardId} admin={admin}/>
                 </Modal>
 
             </div>

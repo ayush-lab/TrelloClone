@@ -2,18 +2,22 @@ import React, {useState} from 'react';
 import styles from './CSS/Members.module.css';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import MemBar from './memBar';
-
+import TransitionsModal from '../BoardPage/Modal';
 
 function members(props) {
 
     let users = null;
+    let total_members=null;
 
     if(props.users!==null){
         console.log(props.users.team)
+        total_members=props.users.team.members.length;
        users= props.users.team.members.map(user=>
-            (<MemBar Name={user.name} key={user.id}/>
+            (<MemBar Name={user.name} key={user.id} id={user.id} teamId={props.users.team.id}/>
         ))
     }
+
+    
 
     return(
         <div>
@@ -30,9 +34,9 @@ function members(props) {
 
 
                     <div className={styles.HeadingBar}>
-                         <h3> Total Members <span>25</span></h3>
-                         <button><GroupAddIcon className={styles.GroupIcon}/>Invite team members</button>
-
+                         <h3> Total Members <span>{total_members}</span></h3>
+                         
+                         <TransitionsModal button={"TeamBoard"} TeamId={props.users.team.id} />
                         
                             
                      </div>

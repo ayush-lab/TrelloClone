@@ -292,7 +292,7 @@ class BoardList extends Component{
                                     <Button variant="outlined" onClick={this. handlerLabel} className={style.buttonFeatures}>Label</Button>
                                     <Button variant="outlined" onClick={this.handlerDueDate}  className={style.buttonFeatures}>Due Date</Button>
                                     <Button variant="outlined" onClick={this.handlerChecklist} className={style.buttonFeatures}>Checklist</Button>
-                                    <SimpleMenu  Menu={"More v"} option1={"Attachment"} option2={"Something"} option3={"Somehting"} />
+                                    <SimpleMenu cardId={this.props.CardId} Menu={"More"} option1={"Archive card"} option2={"Something"} option3={"Somehting"} />
 
 
                                 </div>

@@ -17,6 +17,7 @@ const board = (state=initialState,action)=> {
             return {...state}
             break;
            
+        
 
         case CONSTANTS.STAR_BOARDS:
         
@@ -77,6 +78,7 @@ const board = (state=initialState,action)=> {
             break;
 
 
+       
         case CONSTANTS.ERROR:
         
             return {...state, redirect:action.payload}

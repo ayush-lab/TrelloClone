@@ -7,7 +7,7 @@ import style from './CSS/Modal.module.css';
 import Button from '@material-ui/core/Button';
 import Member from './memberAdd';
 import Archive from '../Navigation/Archive';
-
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     borderRadius:'5px',
+    overflowY:'scroll',
+    
   },
 }));
 
@@ -50,6 +52,12 @@ export default function TransitionsModal(props) {
     //setId(props.BoardId);
   }
 
+  const handleOpenTeam=()=>{
+    setOpen(true);
+    setType('Team');
+    setId(props.TeamId)
+  }
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -64,6 +72,13 @@ export default function TransitionsModal(props) {
          className={style.buttonFeatures}>Members</Button>
       }
         
+        {props.button ==="TeamBoard" &&
+       
+         <button onClick={handleOpenTeam}><GroupAddIcon className={style.GroupIcon}/>
+         Invite team members</button>
+      }
+        
+
       {props.button ==="board" &&
         (<div onClick={handleOpenList}  className="nav-link team-board-visibility-nav"> 
           <span className="users-visibility-nav">Invite </span>
@@ -85,6 +100,7 @@ export default function TransitionsModal(props) {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
+        className={style.Modals}
         open={open}
         onClose={handleClose}
         closeAfterTransition

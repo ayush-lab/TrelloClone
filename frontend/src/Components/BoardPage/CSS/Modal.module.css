@@ -219,3 +219,23 @@
 .Textarea{
     width:100%;
 }
+
+.Modals{
+
+    display:flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    align-items:center;
+    overflow-y:scroll;
+    margin-top:80px;
+    margin-bottom:80px;
+
+}
+
+
+
+.GroupIcon{
+    margin-right:5px;
+    margin-left:5px;
+    font-size:15px;
+}

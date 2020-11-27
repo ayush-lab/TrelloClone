@@ -8,6 +8,13 @@ export const addList = (data)=> {
     }
 };
 
+export const error_list = (data)=> {
+    return {
+        type:CONSTANTS.LIST_ERRORS,
+        payload:data,
+    }
+};
+
 
 export const AsynAddNewList = (BoardId,formData,text)=> {
     
@@ -27,8 +34,7 @@ export const AsynAddNewList = (BoardId,formData,text)=> {
         else if(response.status===401) alert("Something went wrong")})
         
         .catch(error=>{console.log(error.response); 
-            //this.setState({loading:false});
-        //this.setState({text:error.response.data.detail, type: "error"})
+            dispatch(error_list(error.response.statusText))
 
         
         

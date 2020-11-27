@@ -213,11 +213,6 @@
     background: #89609E;
 }
 
-.loader{
-   
-    
-    
-}
 
 .loader img{
     position:absolute;
@@ -226,4 +221,52 @@
     left:0;
     right:0;
     margin:auto;
+}
+
+@media(max-width:450px){
+
+    .Card{
+       
+        min-width:200px;
+        border-radius:4px;
+        margin-left:20px;
+        margin-top:15px;
+        padding:16px;
+        
+    }
+
+    .CardList{
+    
+        width: 200px;
+       
+    }
+
+    .List_Details_Indicator{
+        display:none;
+    }
+    .CardAddCard{
+        
+        margin-top:20px;
+        width: 200px;
+        border-radius: 4px;    
+        padding:10px;
+    }
+
+
+    .BoardTextarea{
+        
+        width: 200px; 
+        margin-right:3px;
+        
+    }    
+
+
+
+    .Textarea{
+        width: 200px;
+      
+    }
+
+
+
 }
