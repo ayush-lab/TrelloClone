@@ -13,7 +13,13 @@ class Navbar extends Component {
 
 
      logout=() => {
-       this.setState({redirect:"/login"})
+       let url=window.location.href;
+       url=url.split("/")[3];
+       console.log(url);
+       if(url === "login")
+       {}
+
+       else this.setState({redirect:"/login"})
        localStorage.clear();
     }
 
@@ -38,12 +44,14 @@ class Navbar extends Component {
         }
       
 
-       LoginLinks = ( <ul className="navbar-nav ml-auto">
+       LoginLinks = ( 
+       
+       <ul className="navbar-nav ml-auto">
   
         <li className="nav-item">
         
       
-       <Avatar onClick={this.avatar} className="avatar">{firstLetter[0].toUpperCase()}</Avatar>
+       <Link to={`/user/${localStorage.getItem('userId')}/`} style={{ textDecoration: 'none' }}><Avatar className="avatar">{firstLetter[0].toUpperCase()}</Avatar></Link>
         
         
         </li>

@@ -49,15 +49,22 @@ function Profile(props){
       const sumbitHandler=()=>{
 
         let formData={};
+        console.log("name=",name);
+        console.log("bio=",userbioo);
         formData ={profile: {
             "name":name,
             "bio":userbioo,
         }}
-
-        if(formData['name']===null){
-            setAlert({type:"warning",text:"Username can't be left blank"})
+        console.log(formData);
+        if(name == null){
+            if(user!==null){
+                 console.log("user didnt type anything");
+                 formData["profile"]["name"]=user.profile.name;
+                 formData["profile"]["bio"]=user.profile.bio;   
+            }
+            else setAlert({type:"warning",text:"Username can't be left blank"})
         }
-
+        
         if(formData['name']!==null){
             AuthService.EditProfile(userId,formData)
             .then(response => {
@@ -68,14 +75,14 @@ function Profile(props){
                     { 
                     
                     setUser(response.data);
-                    setAlert(null)
+                    setAlert({type:"success",text:"Successfully changed!"})
                     
                 
                     }})
                 
                 
             .catch(error=>{console.log(error.response); 
-                setAlert({type:"warning",text:"Username can't be left blank"})
+                setAlert({type:"warning",text:error.response.data.profile.name})
                 
             })
        }
@@ -88,7 +95,7 @@ function Profile(props){
         userName=user.profile.name;
         bio=user.profile.bio;
         if(bio===null){
-            bio="wanna be chad";
+            bio="I like organisation";
         }
         id=user.profile.id;
     }
@@ -122,7 +129,8 @@ function Profile(props){
                 <hr className={styles.About}/>
                 <h5>Username</h5>
                 <input className={styles.input} type="text"
-                 placeholder={userName}
+                 defaultValue={userName}
+                 placeholder="Enter your name"
                  onChange={(event)=>inputHandlerName(event)}/>
             </div>
 
@@ -130,7 +138,8 @@ function Profile(props){
             <div className={styles.bioDesc}>
                 <h5>bio</h5>
                 <input className={styles.input} type="text"
-                    placeholder={bio}
+                    defaultValue={bio}
+                    placeholder="Enter your bio"
                     onChange={(event)=>inputHandlerBio(event)}/>
             </div>
 

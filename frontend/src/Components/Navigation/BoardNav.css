@@ -80,6 +80,9 @@
 .invite,.member{
     margin-left:10px;
 }
+.archiveFeature{
+    cursor: pointer;
+}
 
 @media(min-width:999px){
     .navbar-board{

@@ -72,7 +72,7 @@ class LandingPage extends Component{
                     </div>
 
                     <div className={styles.Content_button}>
-                       <p>Get started</p>
+                        <Link to="/home"> <p>Get started</p></Link>
                     </div>
 
 

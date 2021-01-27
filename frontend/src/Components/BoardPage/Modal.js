@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+ 
    
   },
   paper: {
@@ -89,7 +90,7 @@ export default function TransitionsModal(props) {
       }
 
       {props.button==='archive' && 
-        (<div onClick={handleOpenArchive}>
+        (<div onClick={handleOpenArchive} className="archiveFeature">
           <i className="fa fa-circle-o-notch" aria-hidden="true"></i>
           <span className="more-option-nav"> Archive items</span>
         </div>)

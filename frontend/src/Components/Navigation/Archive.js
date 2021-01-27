@@ -46,8 +46,8 @@ function Member(props){
 
     if(LISTS)
         {Archived_items=  (
-            <div>
-                <h5 className="mb-4">Your Archive cards </h5>
+            <div className={styles.ArchiveModal}>
+                <h5 className="mb-4"  className={styles.EmptyCartheading}>Your Archive cards </h5>
             {LISTS.list.lists.map(
                 item=>{
                 
