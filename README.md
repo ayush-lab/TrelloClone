@@ -33,54 +33,31 @@
 
 
 ### Screenshots
-#### Authentication pages
- 
- ```  Signup Page ```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shelpSignup.png)
 
- ```  Login Page ```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/loginShelp.png)
 
- ```  Otp and Resend Otp Page ```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/otp.png)
-
- 
- ```  Forgot Password Page ```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/forgotPassword.png)
-
- ---
  #### Main Screens
 
   ```Homepage```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/homepage.png)
+![alt text](https://raw.githubusercontent.com/ayush-lab/TrelloClone/master/frontend/src/assets/Images/FlowHome.png)
 
 
-```Course Page```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/coursePage.png)
+```Board Page```
+![alt text](https://raw.githubusercontent.com/ayush-lab/TrelloClone/master/frontend/src/assets/Images/boardpage.png)
 
 
-```Preference Page```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/shlepPreference.png)
-
-```Teacher's Courses ```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/teachershelp.png)
-
-```Teacher Uploading Details```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/TeacherUploadCourse.png)
+```Create board```
+![alt text](https://github.com/ayush-lab/TrelloClone/blob/master/frontend/src/assets/Images/createboard.png?raw=true)
 
 
-```Teacher Uploading Videos```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/uploadshelp.png)
+```Card Details```
+![alt text](https://raw.githubusercontent.com/ayush-lab/TrelloClone/master/frontend/src/assets/Images/card.png)
 
----
-#### Responsive Designs
-```Mobile Design Authentication```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobileLogin.png)
+```Create your team ```
+![alt text](https://raw.githubusercontent.com/ayush-lab/TrelloClone/master/frontend/src/assets/Images/createTeam.png)
 
- 
-```Mobile Design CoursePage```
-![alt text](https://raw.githubusercontent.com/AbhishekSrivas114319/S.H.E.L.P/master/Front-end/src/assets/mobilecourse.png)
 
+```Team boards```
+![alt text](https://github.com/ayush-lab/TrelloClone/blob/master/frontend/src/assets/Images/TeamBoard.png?raw=true)
 
 
 
